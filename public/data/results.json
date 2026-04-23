@@ -1,15 +1,15 @@
 {
   "season": "2026",
-  "updated": "2026-04-22",
+  "updated": "2026-04-23",
   "races": [
     {
       "date": "2026-04-12",
       "round": 1,
       "track": "Tri-City Raceway",
       "event": "57th Apple Cup VMRA Season Opener",
-      "winner": { "car": "30", "name": "Kyten Jones" },
-      "winner_note": "Closed it out with a broken upper control arm — last several laps one-handed.",
-      "notes": "57th running of the Apple Cup and the season opener for VMRA's 40th Anniversary tour."
+      "winner": { "car": "23", "name": "Kahl Cheth" },
+      "winner_note": "Took the main event by the full 25-point margin on a night Kyten Jones never unloaded.",
+      "notes": "57th running of the Apple Cup and the season opener for VMRA's 40th Anniversary tour. Cheth #23 led home Quatsoe #8 and Woods #22."
     }
   ]
 }
