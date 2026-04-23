@@ -38,7 +38,9 @@ add_action( 'init', function () {
 		'show_in_rest'        => true,
 		'menu_position'       => 22,
 		'menu_icon'           => 'dashicons-flag',
-		'has_archive'         => 'schedule',
+		// has_archive intentionally false: /schedule/ is a Page that lists races.
+		// Single race permalinks stay at /races/{slug}.
+		'has_archive'         => false,
 		'rewrite'             => array( 'slug' => 'races', 'with_front' => false ),
 		'supports'            => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
 		'hierarchical'        => false,

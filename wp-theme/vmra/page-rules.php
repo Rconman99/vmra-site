@@ -1,0 +1,221 @@
+<?php
+/**
+ * Template for the /rules/ page.
+ * Ported from the static public/rules/index.html.
+ *
+ * WP auto-loads this template when a Page with slug "rules" is viewed.
+ * Per-page CSS stays inline to match the static site 1:1.
+ * Data-driven JS fetches point at /wp-content/themes/vmra/data/ via str_replace.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+$vmra_data_base = esc_url( VMRA_THEME_URI . '/data' );
+
+get_header(); ?>
+
+<style>
+:root{
+  --asphalt:#0e0e10;--asphalt-2:#17171a;--asphalt-3:#212126;--grease:#2a2a30;
+  --chalk:#f4ede1;--chalk-dim:#c9c0ae;--race-red:#d11a2a;--sodium:#ffb319;--engine-blue:#2a5d8f;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Space Grotesk',-apple-system,sans-serif;background:var(--asphalt);color:var(--chalk);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+
+.hero{padding:60px 5vw 40px;border-bottom:1px solid var(--grease);background:linear-gradient(180deg,var(--asphalt-2),var(--asphalt))}
+.hero-inner{max-width:1080px;margin:0 auto}
+.eyebrow{font-family:'JetBrains Mono',monospace;color:var(--sodium);font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:14px}
+h1{font-family:'Anton',sans-serif;font-size:clamp(2.5rem,6vw,4.5rem);letter-spacing:.02em;line-height:1;margin-bottom:18px}
+.lede{font-size:1.15rem;color:var(--chalk-dim);max-width:740px}
+
+.downloads{background:var(--asphalt-2);padding:50px 5vw;border-bottom:1px solid var(--grease)}
+.downloads-inner{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px}
+.dl-card{background:var(--asphalt-3);border:1px solid var(--grease);padding:28px;text-decoration:none;color:inherit;transition:all .2s;display:block}
+.dl-card:hover{border-color:var(--race-red);transform:translateY(-2px)}
+.dl-tag{font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.15em;color:var(--sodium);text-transform:uppercase;margin-bottom:10px}
+.dl-title{font-family:'Anton',sans-serif;font-size:1.6rem;line-height:1.1;margin-bottom:8px}
+.dl-meta{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--chalk-dim)}
+.dl-arrow{color:var(--race-red);font-weight:700;margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:.85rem;letter-spacing:.1em}
+
+main{max-width:1080px;margin:0 auto;padding:60px 5vw}
+section{margin-bottom:60px}
+section .marker{font-family:'JetBrains Mono',monospace;color:var(--sodium);font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px;display:block}
+h2{font-family:'Anton',sans-serif;font-size:clamp(1.8rem,4vw,2.6rem);line-height:1.1;margin-bottom:18px;letter-spacing:.02em}
+h3{font-family:'Anton',sans-serif;font-size:1.3rem;color:var(--sodium);margin:24px 0 10px}
+p{margin-bottom:14px}
+ul.specs{list-style:none;padding:0}
+ul.specs li{padding:14px 0;border-bottom:1px solid var(--grease);display:grid;grid-template-columns:200px 1fr;gap:20px}
+ul.specs li:last-child{border-bottom:none}
+ul.specs li .k{font-family:'JetBrains Mono',monospace;font-size:.78rem;letter-spacing:.1em;color:var(--chalk-dim);text-transform:uppercase}
+ul.specs li .v{color:var(--chalk)}
+@media (max-width:620px){ul.specs li{grid-template-columns:1fr;gap:6px}}
+
+.note{background:var(--asphalt-2);border-left:3px solid var(--race-red);padding:18px 24px;margin:24px 0;font-size:.95rem;color:var(--chalk-dim)}
+</style>
+
+<?php
+$body = <<<'VMRA_BODY_EOT'
+<section class="hero"><div class="hero-inner">
+  <span class="eyebrow">§ Rulebook · 2026 Season</span>
+  <h1>Run What You Brought.<br>Build It Right.</h1>
+  <p class="lede">VMRA cars are American-made pre-1970 modified stock cars — same body styles you saw running the bullrings in the '50s and '60s, with a handful of 1970-77 compacts allowed. Below is the short version of how we score, what we require for safety, what makes a car legal, and what happens when somebody protests one. The two PDFs are the actual rulebooks. Print them, mark them up, bring them to tech.</p>
+</div></section>
+
+<section class="downloads"><div class="downloads-inner">
+  <a class="dl-card" href="/downloads/vmra-2026-membership-form.pdf" target="_blank" rel="noopener" style="border-color:var(--race-red)">
+    <div class="dl-tag" style="color:var(--race-red)">PDF · 2026 Membership</div>
+    <div class="dl-title">VMRA 2026 Membership Application</div>
+    <div class="dl-meta">$50 annual dues · Print, fill out, sign, bring to the next race</div>
+    <div class="dl-arrow">↓ Download Form</div>
+  </a>
+  <a class="dl-card" href="/downloads/vmra-2026-house-rules.docx" target="_blank" rel="noopener">
+    <div class="dl-tag">DOC · 2026 Season</div>
+    <div class="dl-title">House Rules 2026</div>
+    <div class="dl-meta">Awards, meetings, money, points, track procedures, protests, shock claims</div>
+    <div class="dl-arrow">↓ Download Doc</div>
+  </a>
+  <a class="dl-card" href="/downloads/vmra-construction-rules-2026-2028.docx" target="_blank" rel="noopener">
+    <div class="dl-tag">DOC · 2026-2028 Cycle</div>
+    <div class="dl-title">Construction Rules 2026-2028</div>
+    <div class="dl-meta">Body, safety, frames, suspension, engines, crate-motor allowances</div>
+    <div class="dl-arrow">↓ Download Doc</div>
+  </a>
+</div></section>
+
+<main>
+
+<section>
+  <span class="marker">§ 01 · Awards &amp; Numbers</span>
+  <h2>Honoring the People Who Built This.</h2>
+  <ul class="specs">
+    <li><span class="k">Sportsman of the Year</span><span class="v">Awarded annually in honor of <strong>Don Wilhite</strong></span></li>
+    <li><span class="k">Rookie of the Year</span><span class="v">Awarded annually in honor of <strong>Doug Matheny</strong></span></li>
+    <li><span class="k">Car #1</span><span class="v">Reserved for the previous year's champion. Champ's old number gets reserved that year.</span></li>
+    <li><span class="k">Retired Numbers</span><span class="v">Two-year limit on all retired car numbers</span></li>
+  </ul>
+</section>
+
+<section>
+  <span class="marker">§ 02 · Points Scoring</span>
+  <h2>How a Race Adds Up.</h2>
+  <p>Points go with the car number, not the driver. If a driver swap happens, the car starts at the back of any race it had already qualified for. Substitutions are allowed twice per season — but not back-to-back.</p>
+  <ul class="specs">
+    <li><span class="k">Time-Ins</span><span class="v">20 down to 1 (top to bottom)</span></li>
+    <li><span class="k">A-Heat Race</span><span class="v">15 down to 1</span></li>
+    <li><span class="k">B-Heat Race</span><span class="v">13 down to 1</span></li>
+    <li><span class="k">Main Event</span><span class="v">25 for the win, then 22 / 20 / 19 / 18 / 17 / 16 down (−3, −2, −1, −1...)</span></li>
+    <li><span class="k">Rookie Bonus</span><span class="v">Same scale, minus the show-up points. Must declare before first race. Rookie = under 3 VMRA races.</span></li>
+    <li><span class="k">Rainout</span><span class="v">Points awarded for any completed time-ins, heats, and main events up to the rainout</span></li>
+  </ul>
+  <div class="note"><strong>One-second rule</strong> applies in the Main when 10+ cars time in. Anyone more than a second off the fast time starts at the rear of the main, behind the previous race's top two finishers (who also start at the rear, but ahead of the one-second cars).</div>
+</section>
+
+<section>
+  <span class="marker">§ 03 · Membership &amp; Money</span>
+  <h2>Where the Dues Go.</h2>
+  <ul class="specs">
+    <li><span class="k">Annual Membership</span><span class="v">$50 per year (form linked above)</span></li>
+    <li><span class="k">Banquet Allocation</span><span class="v">$25 of every membership goes to the awards banquet fund</span></li>
+    <li><span class="k">New Car Registration</span><span class="v">$50 one-time fee when you register a new car number</span></li>
+    <li><span class="k">Tow Money</span><span class="v">All cars paid equally. Extra purse (when available) breaks down by event.</span></li>
+    <li><span class="k">Board Spending Cap</span><span class="v">$200 max without a full-membership vote</span></li>
+    <li><span class="k">Year-End Carryover</span><span class="v">Anything over the $2,500 operating reserve rolls into next year's banquet account</span></li>
+  </ul>
+</section>
+
+<section>
+  <span class="marker">§ 04 · Meetings &amp; Voting</span>
+  <h2>How the Club Runs.</h2>
+  <ul class="specs">
+    <li><span class="k">General Meeting</span><span class="v">Third Tuesday of every month</span></li>
+    <li><span class="k">Board Meeting</span><span class="v">First Monday of every month</span></li>
+    <li><span class="k">Annual Meeting</span><span class="v">November — the year's motions get voted in or deleted</span></li>
+    <li><span class="k">Construction Rules</span><span class="v">Changes restricted to Sept / Oct / Nov every third year (frozen during build + race seasons)</span></li>
+    <li><span class="k">House Rules</span><span class="v">Revised at the November meeting and voted on</span></li>
+  </ul>
+  <div class="note"><strong>Vested member voting.</strong> All members vote on general business. Construction and competition motions are one-vote-per-car by vested members only — vested = competed in 4+ VMRA races in the previous 18 months, OR voted in as a lifetime member by club majority.</div>
+</section>
+
+<section>
+  <span class="marker">§ 05 · Track Procedures &amp; Safety</span>
+  <h2>Non-Negotiable.</h2>
+  <ul class="specs">
+    <li><span class="k">Driver Suit</span><span class="v">Fire-retardant, full coverage. Nomex underwear, gloves, and hoods recommended.</span></li>
+    <li><span class="k">Helmet</span><span class="v">Required, with eye protection</span></li>
+    <li><span class="k">Fire Extinguisher</span><span class="v">A-B-C rated, mandatory in the driver compartment</span></li>
+    <li><span class="k">Two-Way Comms</span><span class="v">Allowed for safety</span></li>
+    <li><span class="k">Race-ceivers</span><span class="v">Required (driver or spotter) at all tracks using them</span></li>
+    <li><span class="k">Tires</span><span class="v">10-inch-wide Hoosier <strong>take-offs</strong> procured by VMRA. Left side <strong>ST1</strong>, right side <strong>ST2 or ST3</strong>. No siping, cutting, or grooving.</span></li>
+    <li><span class="k">Engine Tech</span><span class="v">Tech Committee can pull intake + exhaust at any time. Further inspection only if suspicion is raised. Won't hold a car out of its next race that day.</span></li>
+  </ul>
+  <div class="note"><strong>No controversial decisions get made at the track.</strong> All race results come from the tower unless someone files a written challenge to the points officials or 2+ board members within 20 minutes of the end of the race. After time-in announcements, all cars time in together unless they tell a pit official about a mechanical issue.</div>
+</section>
+
+<section>
+  <span class="marker">§ 06 · Protests &amp; Penalties</span>
+  <h2>If You Think a Car's Over the Line.</h2>
+  <p>Formal protests require <strong>$150 cash</strong> within 15 minutes after VMRA's last race of the event being protested. Submit to the Club President (or in their absence, another board member) in writing — must be specific (engine, top end, bottom end, clutch, flywheel, etc.). If the protest is upheld, the $150 returns to the protester. If not, it goes to the protested car. Refusing a protest = automatically considered illegal.</p>
+  <ul class="specs">
+    <li><span class="k">First Offense</span><span class="v">Lose all points for that race date. $50 fine before the car can return to the track.</span></li>
+    <li><span class="k">Second Offense</span><span class="v">Lose all race points + all money for that date. $100 fine. Two-race suspension (carries into next season if needed).</span></li>
+    <li><span class="k">Third Offense</span><span class="v">Lose all season points. $150 fine. Eight-race suspension (carries into next season if needed).</span></li>
+  </ul>
+</section>
+
+<section>
+  <span class="marker">§ 07 · Shock Claims</span>
+  <h2>Claim a Shock at the Trailer.</h2>
+  <p>Driver must be a current paid VMRA member in good standing. Shocks must be claimed within <strong>15 minutes</strong> of the end of the Main Event, and removed within 15 minutes of the claim. <strong>$150 per claimed shock</strong>, paid to the board's Sgt. of Arms (or another board member if absent). Any driver who started the Main can claim. No limit on number of claims per car per season.</p>
+  <ul class="specs">
+    <li><span class="k">First Refusal</span><span class="v">Lose Main Event points + $50 penalty</span></li>
+    <li><span class="k">Second Refusal (same car)</span><span class="v">Lose Main Event points + $100 penalty + 1-race suspension</span></li>
+  </ul>
+</section>
+
+<section>
+  <span class="marker">§ 08 · Vehicle Construction</span>
+  <h2>What Counts as "Vintage Modified."</h2>
+  <p>The full construction rulebook (2026-2027-2028 cycle) is the binding spec — download it above for chapter and verse. Below is the high-level shape:</p>
+  <ul class="specs">
+    <li><span class="k">Body</span><span class="v">Any American-made car body 1969 or older. 1970-77 compacts (Vega, Pinto, Gremlin) allowed with tech approval. No convertibles, pickups, 4×4, FWD, or rear-engine cars.</span></li>
+    <li><span class="k">Min Weight</span><span class="v">2,950 lbs with driver at start of race · max 57% left-side weight · must not weigh under 2,900 after the race</span></li>
+    <li><span class="k">Wheelbase</span><span class="v">102&Prime; minimum</span></li>
+    <li><span class="k">Track Width</span><span class="v">82&Prime; max, outside-to-outside at spindle height (front and rear)</span></li>
+    <li><span class="k">Body Height</span><span class="v">45&Prime; minimum measured 12&Prime; back from windshield top. Roof can't exceed +2.5&Prime; anywhere else.</span></li>
+    <li><span class="k">Engine Size</span><span class="v">370 cubic inches max · steel American-factory or aftermarket blocks only · no aluminum blocks · no dry sump · flat-top pistons only</span></li>
+    <li><span class="k">Crate Motors</span><span class="v">GM 604 sealed crate allowed (no weight break). +50 lb if seal broken. −100 lb for GM 602 sealed crate.</span></li>
+    <li><span class="k">Forced Induction</span><span class="v">None. No fuel injection, blowers, superchargers, turbos. No traction control. No magnetos.</span></li>
+    <li><span class="k">Fuel</span><span class="v">Pump gas, racing fuel, or aviation fuel. NO nitrous. NO alcohol.</span></li>
+    <li><span class="k">Suspension</span><span class="v">No coil-overs, struts, center-pull, or coil-over eliminators. No straight front axle. No cockpit-adjustable suspension. No electronic suspension.</span></li>
+    <li><span class="k">Wheels</span><span class="v">Steel, max 10&Prime; wide. Wide-5 hubs allowed on stock OEM spindles.</span></li>
+    <li><span class="k">Brakes</span><span class="v">Operational four-wheel brakes. Max one 2-piston caliper per front wheel.</span></li>
+    <li><span class="k">Mufflers</span><span class="v">Mufflers or approved baffles mandatory. Subject to track noise approval.</span></li>
+  </ul>
+  <div class="note"><strong>Safety equipment beyond the basics:</strong> Snell SA 2015 helmet (or newer), SFI 3.2A/1 fire suit minimum, 2.5-lb A-B-C extinguisher, fuel cell with one-way rollover vent, window net, 3&Prime; lap belt + double shoulder harness with single quick release (replace 5 years after manufacture date), driveshaft retaining hoop, six-point cage with detailed bar specs (1¾&Prime; OD × .095 main, 1½&Prime; OD × .095 doors, four bars driver side, three or X passenger side, 1/8&Prime; steel plate over driver door bars), color-coded master kill switch reachable inside and out. Window must be ⅛&Prime; or thicker Lexan-type, full width.</div>
+  <div class="note"><strong>Tech committee has final say.</strong> "It is understood that rules can be viewed differently by everyone. The technical committee will determine whether the way you conform to the rules is within the spirit of VMRA and the spirit of why the rule was written." — Rulebook</div>
+</section>
+
+<section>
+  <span class="marker">§ 09 · Unsportsmanlike Conduct</span>
+  <h2>How We Handle Bad Behavior.</h2>
+  <p>Members can be disciplined by the board for behavior that reflects negatively on VMRA. Standard fine: <strong>$50</strong>, paid before the next scheduled race. Suspension (temporary or permanent) is on the table depending on the offense. Car owners and drivers are responsible for their pit crew's actions — if a crew member acts up, the car number can be disciplined. Track incidents are handled case-by-case.</p>
+</section>
+
+<section>
+  <span class="marker">§ 10 · The Fine Print</span>
+  <h2>Read the Source Document.</h2>
+  <p>This page is a summary. The two source documents above — the 2026 House Rules and the 2026-2028 Construction Rules — are the binding text. Download them for committee assignments, exact procedural language, every spec, and the edge cases. If a question isn't answered there, email <a href="mailto:board@vmra.club" style="color:var(--sodium);text-decoration:none;border-bottom:1px solid currentColor">board@vmra.club</a> before race day, not after tech. Tech Committee has final say on whether a build is in the spirit of the rules.</p>
+</section>
+
+</main>
+VMRA_BODY_EOT;
+
+// Retarget /data/*.json fetches at the theme's data dir.
+$body = str_replace( "'/data/", "'" . $vmra_data_base . "/", $body );
+$body = str_replace( '"/data/', '"' . $vmra_data_base . '/', $body );
+echo $body;
+?>
+
+<?php get_footer();

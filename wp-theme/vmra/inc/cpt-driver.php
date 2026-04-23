@@ -35,8 +35,9 @@ add_action( 'init', function () {
 		'show_in_rest'        => true,   // REST API + block editor
 		'menu_position'       => 21,
 		'menu_icon'           => 'dashicons-groups',
-		'has_archive'         => 'racers',
-		'rewrite'             => array( 'slug' => 'racers', 'with_front' => false ),
+		// has_archive off: /racers/ is a Page. Single-driver permalink: /racers/{slug}.
+		'has_archive'         => false,
+		'rewrite'             => array( 'slug' => 'driver', 'with_front' => false ),
 		'supports'            => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
 		'hierarchical'        => false,
 	) );

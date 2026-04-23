@@ -4,17 +4,52 @@
    Load AFTER each page's own <style> block so these rules win.
    ========================================================= */
 
-/* --- Editorial palette (needed by shell rules below) ------ */
+/* --- Design tokens — complete palette + base reset -------
+   The static site defines these inline in each page's <style>
+   block; in the WP theme we consolidate them here so every
+   template (incl. Gutenberg pages) gets the dark editorial
+   canvas without needing its own <style> block. ------------ */
 :root {
-  --oxblood: #1a0508;
+  /* Neutral stack */
+  --asphalt:      #0e0e10;
+  --asphalt-2:    #17171a;
+  --asphalt-3:    #212126;
+  --grease:       #2a2a30;
+  --chalk:        #f4ede1;
+  --chalk-dim:    #c9c0ae;
+
+  /* Signal colors */
+  --race-red:     #d11a2a;
+  --race-red-hot: #ff2a3c;
+  --sodium:       #ffb319;
+  --sodium-hot:   #ffd060;
+  --engine-blue:  #2a5d8f;
+  --rust:         #9a3b1e;
+
+  /* Editorial accent palette */
+  --oxblood:      #1a0508;
   --oxblood-deep: #0a0204;
   --oxblood-edge: #3d0a14;
-  --bone: #f1e6d3;
-  --bone-dim: #b8ad97;
-  --gold-line: rgba(255,179,25,0.30);
-  --gold-rule: rgba(255,179,25,0.55);
-  --gold-dim: #8a7333;
+  --bone:         #f1e6d3;
+  --bone-dim:     #b8ad97;
+  --gold-line:    rgba(255,179,25,0.30);
+  --gold-rule:    rgba(255,179,25,0.55);
+  --gold-dim:     #8a7333;
 }
+
+/* Base reset — matches the static site's per-page reset. */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Space Grotesk', -apple-system, sans-serif;
+  background: var(--asphalt) !important;
+  color: var(--chalk);
+  line-height: 1.55;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+img { max-width: 100%; height: auto; display: block; }
 
 /* --- GLOBAL OVERLAYS — grain + scanlines on every page ---- */
 body::before {

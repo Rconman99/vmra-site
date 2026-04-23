@@ -1,0 +1,521 @@
+<?php
+/**
+ * Template for the /tracks/ page.
+ * Ported from the static public/tracks/index.html.
+ *
+ * WP auto-loads this template when a Page with slug "tracks" is viewed.
+ * Per-page CSS stays inline to match the static site 1:1.
+ * Data-driven JS fetches point at /wp-content/themes/vmra/data/ via str_replace.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+$vmra_data_base = esc_url( VMRA_THEME_URI . '/data' );
+
+get_header(); ?>
+
+<style>
+:root{
+  --asphalt:#0e0e10;
+  --asphalt-2:#17171a;
+  --asphalt-3:#212126;
+  --grease:#2a2a30;
+  --chalk:#f4ede1;
+  --chalk-dim:#c9c0ae;
+  --race-red:#d11a2a;
+  --race-red-hot:#ff2a3c;
+  --sodium:#ffb319;
+  --sodium-hot:#ffd060;
+  --engine-blue:#2a5d8f;
+  --rust:#9a3b1e;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Space Grotesk',sans-serif;
+  background:var(--asphalt);color:var(--chalk);line-height:1.55;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+
+/* HERO */
+header.hero{
+  padding:60px 5vw 50px;position:relative;overflow:hidden;
+  border-bottom:3px solid var(--race-red);
+  background:
+    radial-gradient(ellipse at 20% 30%,rgba(209,26,42,.12) 0%,transparent 50%),
+    radial-gradient(ellipse at 80% 70%,rgba(255,179,25,.08) 0%,transparent 50%),
+    linear-gradient(180deg,var(--asphalt) 0%,var(--asphalt-2) 100%);
+}
+.hero-bg-grid{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(rgba(244,237,225,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(244,237,225,.04) 1px,transparent 1px);
+  background-size:60px 60px;
+}
+.hero-inner{position:relative;z-index:5;max-width:1200px;margin:0 auto}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--sodium);margin-bottom:20px;font-weight:700;
+  padding:6px 12px;border:1px solid var(--sodium);background:rgba(255,179,25,.05);
+}
+h1{
+  font-family:'Anton',sans-serif;
+  font-size:clamp(2.8rem,6.5vw,5.2rem);
+  line-height:.9;letter-spacing:-.01em;text-transform:uppercase;
+  margin-bottom:22px;
+}
+h1 .red{color:var(--race-red)}
+h1 .outline{color:transparent;-webkit-text-stroke:2px var(--chalk)}
+.lede{font-size:1.1rem;color:var(--chalk-dim);max-width:720px;border-left:3px solid var(--sodium);padding-left:18px;margin-bottom:28px}
+
+/* STATS STRIP */
+.hero-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:2px;
+  background:var(--grease);border:1px solid var(--grease);margin-top:20px;
+}
+.hero-stat{background:var(--asphalt-2);padding:16px 18px}
+.hero-stat .k{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--chalk-dim);margin-bottom:6px}
+.hero-stat .v{font-family:'Anton',sans-serif;font-size:1.6rem;color:var(--sodium);line-height:1}
+@media(max-width:800px){.hero-stats{grid-template-columns:repeat(2,1fr)}}
+
+/* MAP-LIKE SCHEDULE TABLE (text-based "map" of tracks) */
+.region-strip{
+  background:var(--asphalt-2);padding:36px 5vw;
+  border-bottom:1px solid var(--grease);
+}
+.region-inner{max-width:1200px;margin:0 auto}
+.region-head{
+  display:flex;justify-content:space-between;align-items:baseline;
+  padding-bottom:14px;margin-bottom:20px;border-bottom:1px dashed var(--grease);gap:20px;flex-wrap:wrap;
+}
+.region-title{display:flex;align-items:baseline;gap:14px}
+.region-title .marker{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--race-red);font-weight:700}
+.region-title h2{font-family:'Anton',sans-serif;font-size:clamp(1.4rem,2.5vw,1.9rem);text-transform:uppercase;letter-spacing:.02em}
+.region-pills{display:flex;gap:8px;flex-wrap:wrap}
+.region-pill{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;
+  padding:6px 12px;background:var(--asphalt);border:1px solid var(--grease);color:var(--chalk-dim);
+}
+.region-pill .dot{width:8px;height:8px;border-radius:50%;background:var(--race-red)}
+.region-pill.or .dot{background:var(--sodium)}
+.region-pill.id .dot{background:var(--engine-blue)}
+
+/* TRACK CARDS */
+main{padding:60px 5vw 80px;max-width:1200px;margin:0 auto}
+
+.track{
+  background:var(--asphalt-2);border:1px solid var(--grease);
+  margin-bottom:32px;overflow:hidden;
+  display:grid;grid-template-columns:1fr 1.6fr;
+  position:relative;
+}
+.track.flipped{grid-template-columns:1.6fr 1fr}
+@media(max-width:880px){
+  .track,.track.flipped{grid-template-columns:1fr}
+}
+
+/* "venue visual" tile — no actual photos, all CSS art */
+.track-visual{
+  position:relative;
+  min-height:340px;
+  overflow:hidden;
+  border-right:1px solid var(--grease);
+  display:flex;align-items:center;justify-content:center;
+  padding:30px;
+}
+.track.flipped .track-visual{border-right:none;border-left:1px solid var(--grease);order:2}
+@media(max-width:880px){
+  .track.flipped .track-visual{order:0;border:none;border-bottom:1px solid var(--grease)}
+  .track-visual{border:none;border-bottom:1px solid var(--grease);min-height:240px}
+}
+
+/* Unique treatments per track for identity */
+.track-visual.evergreen{background:linear-gradient(160deg,#1a2d3a 0%,var(--asphalt) 80%)}
+.track-visual.south-sound{background:linear-gradient(160deg,#2d4a3a 0%,var(--asphalt) 80%)}
+.track-visual.tri-cities{background:linear-gradient(160deg,#4a2d1e 0%,var(--asphalt) 80%)}
+.track-visual.wenatchee{background:linear-gradient(160deg,#3d4a1e 0%,var(--asphalt) 80%)}
+.track-visual.stateline{background:linear-gradient(160deg,#2a2e4a 0%,var(--asphalt) 80%)}
+
+/* The oval "diagram" — a stylized track shape */
+.oval-diagram{
+  width:85%;max-width:380px;aspect-ratio:2/1;
+  position:relative;
+  border:3px solid var(--chalk);border-radius:9999px;
+  box-shadow:inset 0 0 0 6px transparent,inset 0 0 0 8px var(--grease),inset 0 0 0 12px transparent,inset 0 0 0 14px rgba(244,237,225,.15);
+  opacity:.92;
+}
+.oval-diagram::before{
+  content:"";position:absolute;inset:14%;
+  border:1px dashed var(--chalk-dim);border-radius:9999px;opacity:.6;
+}
+.oval-diagram.figure8::after{
+  content:"";position:absolute;top:50%;left:20%;right:20%;height:1px;
+  background:repeating-linear-gradient(90deg,var(--chalk-dim) 0 6px,transparent 6px 12px);
+  transform:rotate(0deg);
+}
+.oval-diagram.tight{aspect-ratio:1.4/1}
+.oval-stats{
+  position:absolute;top:14px;left:16px;
+  font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.18em;
+  color:var(--chalk-dim);text-transform:uppercase;
+}
+.oval-stats .big{
+  display:block;font-family:'Anton',sans-serif;font-size:1.6rem;line-height:1;
+  color:var(--sodium);letter-spacing:.02em;margin-top:4px;
+}
+.oval-stats.right{left:auto;right:16px;text-align:right}
+
+/* track number plate (like a racing number on track) */
+.track-num-plate{
+  position:absolute;bottom:16px;right:16px;
+  font-family:'Anton',sans-serif;font-size:4rem;line-height:.8;
+  color:rgba(244,237,225,.15);letter-spacing:-.03em;
+}
+
+/* Track body */
+.track-body{padding:32px 36px}
+@media(max-width:880px){.track-body{padding:26px 24px}}
+
+.track-num-marker{
+  font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.25em;
+  text-transform:uppercase;color:var(--race-red);font-weight:700;margin-bottom:8px;
+}
+.track h3{
+  font-family:'Anton',sans-serif;
+  font-size:clamp(1.8rem,3vw,2.4rem);
+  line-height:.95;letter-spacing:.02em;text-transform:uppercase;margin-bottom:6px;
+}
+.track-location{
+  font-family:'JetBrains Mono',monospace;font-size:.76rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--sodium);margin-bottom:18px;
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+}
+.track-location::before{
+  content:"";display:inline-block;width:10px;height:10px;
+  background:var(--sodium);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);
+}
+
+.track-nickname{
+  font-style:italic;color:var(--chalk-dim);
+  font-size:1rem;margin-bottom:16px;
+  padding-left:14px;border-left:2px solid var(--race-red);
+}
+
+.track-body p{font-size:.96rem;color:var(--chalk);line-height:1.6;margin-bottom:14px;max-width:62ch}
+
+/* specs grid */
+.specs{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:2px;
+  background:var(--grease);border:1px solid var(--grease);
+  margin:18px 0;
+}
+.spec{background:var(--asphalt);padding:12px 14px}
+.spec .k{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--chalk-dim);margin-bottom:4px}
+.spec .v{font-family:'Space Grotesk',sans-serif;font-size:.92rem;color:var(--chalk);font-weight:600}
+.spec .v.hot{color:var(--sodium)}
+
+/* links row */
+.track-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.track-link{
+  font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.15em;
+  text-transform:uppercase;font-weight:700;
+  padding:9px 14px;text-decoration:none;
+  border:1px solid var(--grease);color:var(--chalk);
+  transition:all .2s;
+}
+.track-link:hover{border-color:var(--sodium);color:var(--sodium)}
+.track-link.primary{
+  background:var(--race-red);border-color:var(--race-red);
+}
+.track-link.primary:hover{background:var(--race-red-hot);border-color:var(--race-red-hot);color:var(--chalk)}
+
+/* VMRA history callout inside each card */
+.vmra-note{
+  margin-top:18px;padding:14px 16px;
+  background:rgba(209,26,42,.06);border-left:3px solid var(--race-red);
+  font-size:.88rem;color:var(--chalk-dim);line-height:1.5;
+}
+.vmra-note strong{color:var(--chalk);font-weight:600}
+.vmra-note::before{
+  content:"VMRA @ THIS TRACK";display:block;
+  font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.25em;
+  color:var(--race-red);font-weight:700;margin-bottom:6px;
+}
+
+/* FOOTER STRIP */
+.cta-strip{
+  background:var(--sodium);color:var(--asphalt);
+  padding:40px 5vw;margin-top:40px;
+}
+.cta-inner{
+  max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center;
+}
+.cta-strip h3{
+  font-family:'Anton',sans-serif;font-size:clamp(1.5rem,3vw,2.2rem);
+  line-height:1;text-transform:uppercase;letter-spacing:.02em;margin-bottom:8px;
+}
+.cta-strip p{font-size:.95rem;max-width:560px}
+.cta-btn{
+  background:var(--asphalt);color:var(--sodium);
+  padding:16px 22px;font-family:'JetBrains Mono',monospace;
+  font-size:.76rem;letter-spacing:.15em;text-transform:uppercase;font-weight:700;
+  text-decoration:none;white-space:nowrap;border:2px solid var(--asphalt);transition:all .2s;
+}
+.cta-btn:hover{background:var(--chalk);color:var(--asphalt);border-color:var(--chalk)}
+@media(max-width:800px){.cta-inner{grid-template-columns:1fr;text-align:center}.cta-btn{justify-self:center}}
+
+/* footer */
+</style>
+
+<?php
+$body = <<<'VMRA_BODY_EOT'
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-inner">
+    <div class="eyebrow">§ The 2026 Tour · 5 Venues · 2 States</div>
+    <h1>
+      <span class="outline">Five</span> <span class="red">Tracks,</span><br>
+      One Championship,<br>
+      Forty Years of History.
+    </h1>
+    <p class="lede">
+      VMRA's 2026 calendar stretches from the <strong>Superspeedway of the West</strong> at Evergreen Speedway in Monroe, Washington, all the way east to Stateline Speedway on the Idaho border. Five purpose-built short-track ovals. Three states. One vintage modified championship. Here's what each track is, what makes it distinct, and what VMRA drivers are chasing when they unload there.
+    </p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="k">Tracks</div><div class="v">5</div></div>
+      <div class="hero-stat"><div class="k">States</div><div class="v">WA · ID</div></div>
+      <div class="hero-stat"><div class="k">Shortest</div><div class="v">¼ mi</div></div>
+      <div class="hero-stat"><div class="k">Longest</div><div class="v">⅝ mi</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- REGION STRIP -->
+<section class="region-strip">
+  <div class="region-inner">
+    <div class="region-head">
+      <div class="region-title">
+        <span class="marker">§ Region Coverage</span>
+        <h2>Washington · Idaho</h2>
+      </div>
+      <div class="region-pills">
+        <span class="region-pill"><span class="dot"></span>WA · 4 tracks</span>
+        <span class="region-pill id"><span class="dot"></span>ID · 1 track</span>
+      </div>
+    </div>
+    <p style="color:var(--chalk-dim);font-size:.95rem;max-width:78ch;">
+      West-side racing opens the season at Tri-City in April, then moves to Evergreen. Mid-season the tour crosses the Cascades to Wenatchee Valley and Stateline for the east-side summer swing, with South Sound hosting the 40th Anniversary Bash in late July. Each track adds a different chapter to the championship — long, fast, and wide at Evergreen; tight, technical, and nose-to-tail at Stateline.
+    </p>
+  </div>
+</section>
+
+<!-- TRACKS -->
+<main>
+
+  <!-- TRACK 01 · EVERGREEN -->
+  <article class="track" id="evergreen">
+    <div class="track-visual evergreen">
+      <div class="oval-stats"><span>OVAL LENGTH</span><span class="big">0.625</span><span>MI · PAVED</span></div>
+      <div class="oval-diagram"></div>
+      <div class="track-num-plate">01</div>
+    </div>
+    <div class="track-body">
+      <div class="track-num-marker">§ Track 01 · Washington</div>
+      <h3>Evergreen Speedway</h3>
+      <div class="track-location">Monroe, WA · Snohomish County Fairgrounds</div>
+      <div class="track-nickname">"The Superspeedway of the West." — David Pearson</div>
+
+      <p>The only NASCAR-sanctioned track in Washington and the crown jewel of the VMRA calendar. Built as a horse track in 1954 and paved in 1963, Evergreen's <strong>5/8-mile outer oval</strong> is oversized for a short track — drivers describe it as the fastest half-hour of their season. Inside that 0.625-mile oval sit a 3/8-mile oval, a 1/5-mile oval, a drag strip, and the #2-ranked figure-eight track in America.</p>
+
+      <p>For VMRA, Evergreen means wide racing lines, tire-wear strategy, and heat races that genuinely sort the field. Kyten Jones has made his career here. Defending champs have won here; rookies have lost championships here.</p>
+
+      <div class="specs">
+        <div class="spec"><div class="k">Configuration</div><div class="v">5/8-mile paved outer oval</div></div>
+        <div class="spec"><div class="k">Grandstand</div><div class="v">7,500 covered + 7,500 open</div></div>
+        <div class="spec"><div class="k">Opened</div><div class="v hot">1954</div></div>
+        <div class="spec"><div class="k">Sanctioning</div><div class="v">NASCAR Weekly Series</div></div>
+      </div>
+
+      <div class="vmra-note">
+        Evergreen is where the championship points spread usually widens. VMRA visits four times in 2026 — <strong>Grocery Outlet Night</strong> (Apr 25, Round 2), the CARS Tour Mark Galloway Shootout (Jun 27, Round 4), Tire Pros Summer Showdown (Aug 15, Round 7), and NASCAR Championship Night (Sep 19, Round 9). First big-venue test is Apr 25.
+      </div>
+
+      <div class="track-links">
+        <a href="https://evergreenspeedway.com/" class="track-link primary" target="_blank" rel="noopener">Official Site →</a>
+        <a href="https://maps.google.com/?q=Evergreen+Speedway+Monroe+WA" class="track-link" target="_blank" rel="noopener">Directions</a>
+        <a href="#" class="track-link">VMRA Results History</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- TRACK 02 · SOUTH SOUND -->
+  <article class="track flipped" id="south-sound">
+    <div class="track-body">
+      <div class="track-num-marker">§ Track 02 · Washington</div>
+      <h3>South Sound Speedway</h3>
+      <div class="track-location">Rochester, WA · Southwest Washington</div>
+      <div class="track-nickname">"The fastest short track of its kind on the West Coast."</div>
+
+      <p>Opened in 1971 as the Olympia-Tenino Speedway, South Sound is the track that made vintage modified racing a VMRA staple. Wikipedia lists <strong>"NW Vintage Modified"</strong> as one of the track's core hosted divisions — alongside Late Models, Hobby Stocks, Legends, and sprint cars. It's not an exaggeration to say this track has been a home for the club.</p>
+
+      <p>The 3/8-mile paved oval was repaved in 2001 and the backstretch wall pushed back, dropping lap times immediately. Notable alumni who raced here: Greg Biffle, Ron Hornaday Jr., Derrike Cope, and the Cope sisters (who trained here as teenagers).</p>
+
+      <div class="specs">
+        <div class="spec"><div class="k">Configuration</div><div class="v">3/8-mile paved oval + Figure 8</div></div>
+        <div class="spec"><div class="k">Opened</div><div class="v hot">1971</div></div>
+        <div class="spec"><div class="k">Grandstand</div><div class="v">~5,000 capacity</div></div>
+        <div class="spec"><div class="k">Season</div><div class="v">April – September</div></div>
+      </div>
+
+      <div class="vmra-note">
+        One of the longest-running homes for Pacific Northwest vintage modified racing. The 2026 <strong>VMRA 40th Anniversary Bash</strong> (Jul 25, Round 6) is the feature event on the calendar — directly honoring the club's 40th season.
+      </div>
+
+      <div class="track-links">
+        <a href="https://southsoundspeedway.com/" class="track-link primary" target="_blank" rel="noopener">Official Site →</a>
+        <a href="https://maps.google.com/?q=South+Sound+Speedway+Rochester+WA" class="track-link" target="_blank" rel="noopener">Directions</a>
+        <a href="#" class="track-link">VMRA Results History</a>
+      </div>
+    </div>
+    <div class="track-visual south-sound">
+      <div class="oval-stats right"><span>OVAL LENGTH</span><span class="big">0.375</span><span>MI · PAVED</span></div>
+      <div class="oval-diagram figure8"></div>
+      <div class="track-num-plate">02</div>
+    </div>
+  </article>
+
+  <!-- TRACK 03 · TRI-CITIES -->
+  <article class="track" id="tri-cities">
+    <div class="track-visual tri-cities">
+      <div class="oval-stats"><span>OVAL LENGTH</span><span class="big">3/8</span><span>MI · PAVED</span></div>
+      <div class="oval-diagram"></div>
+      <div class="track-num-plate">03</div>
+    </div>
+    <div class="track-body">
+      <div class="track-num-marker">§ Track 03 · Washington</div>
+      <h3>Tri-City Raceway</h3>
+      <div class="track-location">West Richland, WA · Columbia Basin</div>
+      <div class="track-nickname">Home of the Apple Cup and the Fall Classic.</div>
+
+      <p>The Columbia Basin's premier short track and VMRA's eastern Washington anchor. Tri-City opens the season with the <strong>57th Apple Cup</strong> every April — one of the highest-profile events on the VMRA calendar — then closes it with the Fall Classic championship weekend in October.</p>
+
+      <p>For teams making the trip over the Cascades, the Apple Cup weekend is the season opener, and the Fall Classic is where the title is decided. Tri-City rewards mechanical consistency and patience over raw speed.</p>
+
+      <div class="specs">
+        <div class="spec"><div class="k">Configuration</div><div class="v">3/8-mile paved oval</div></div>
+        <div class="spec"><div class="k">Region</div><div class="v">Columbia Basin</div></div>
+        <div class="spec"><div class="k">VMRA Events</div><div class="v hot">Apple Cup + Fall Classic</div></div>
+        <div class="spec"><div class="k">2026 Rounds</div><div class="v hot">1 · 10 · 11</div></div>
+      </div>
+
+      <div class="vmra-note">
+        Tri-City is bookends for the 2026 season — <strong>Round 1</strong> (57th Apple Cup, Apr 12, completed — Kahl Cheth #23 won), <strong>Round 10</strong> (Fall Classic Championship Night, Oct 3), and <strong>Round 11</strong> (Fall Classic Open Comp, Oct 4, non-points).
+      </div>
+
+      <div class="track-links">
+        <a href="#" class="track-link primary">Apple Cup Details →</a>
+        <a href="https://maps.google.com/?q=Tri-City+Raceway+West+Richland+WA" class="track-link" target="_blank" rel="noopener">Directions</a>
+        <a href="#" class="track-link">VMRA Results History</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- TRACK 04 · WENATCHEE -->
+  <article class="track flipped" id="wenatchee">
+    <div class="track-body">
+      <div class="track-num-marker">§ Track 04 · Washington</div>
+      <h3>Wenatchee Valley Super Oval</h3>
+      <div class="track-location">East Wenatchee, WA · Apple Country</div>
+      <div class="track-nickname">"Apple Blossom Rubber Down." — VMRA spring anthem</div>
+
+      <p>A quarter-mile paved oval deep in the Columbia Basin's apple country. The tightest east-side track on VMRA's 2026 calendar outside of Stateline — fast rhythm, short drafts, and a floor set by spring temps that test setups built for the cooler west-side races.</p>
+
+      <p>Part of the Tri-State Challenge Series circuit (alongside Stateline and Tri-City). Wenatchee gets two VMRA visits in 2026 — the May opener and an August return — bookending the east-side swing.</p>
+
+      <div class="specs">
+        <div class="spec"><div class="k">Configuration</div><div class="v">1/4-mile paved oval</div></div>
+        <div class="spec"><div class="k">State</div><div class="v">Washington</div></div>
+        <div class="spec"><div class="k">Series</div><div class="v">Tri-State Challenge Series</div></div>
+        <div class="spec"><div class="k">2026 Rounds</div><div class="v hot">3 · 8</div></div>
+      </div>
+
+      <div class="vmra-note">
+        Two stops for VMRA in 2026 — <strong>Round 3</strong> (Apple Blossom Rubber Down, May 2) and <strong>Round 8</strong> (Thunder in the Valley Open Wheel Show, Aug 22). The May weekend is the east-side season opener.
+      </div>
+
+      <div class="track-links">
+        <a href="https://www.wvso.com/" class="track-link primary" target="_blank" rel="noopener">Official Site →</a>
+        <a href="https://maps.google.com/?q=Wenatchee+Valley+Super+Oval+East+Wenatchee+WA" class="track-link" target="_blank" rel="noopener">Directions</a>
+        <a href="#" class="track-link">VMRA Results History</a>
+      </div>
+    </div>
+    <div class="track-visual wenatchee">
+      <div class="oval-stats right"><span>OVAL LENGTH</span><span class="big">1/4</span><span>MI · PAVED</span></div>
+      <div class="oval-diagram tight"></div>
+      <div class="track-num-plate">04</div>
+    </div>
+  </article>
+
+  <!-- TRACK 05 · STATELINE -->
+  <article class="track" id="stateline">
+    <div class="track-visual stateline">
+      <div class="oval-stats"><span>OVAL LENGTH</span><span class="big">1/4</span><span>MI · PAVED</span></div>
+      <div class="oval-diagram tight"></div>
+      <div class="track-num-plate">05</div>
+    </div>
+    <div class="track-body">
+      <div class="track-num-marker">§ Track 05 · Idaho</div>
+      <h3>Stateline Speedway</h3>
+      <div class="track-location">Post Falls, ID · On the WA/ID border</div>
+      <div class="track-nickname">"Racing every Friday & Saturday, April through September."</div>
+
+      <p>The tightest track on the VMRA schedule — a 1/4-mile paved oval that rewards a completely different driving style from Evergreen's 5/8-mile. At Stateline, corner entry and patience matter more than raw horsepower. The drafts are short. The passes are usually dive-bombs.</p>
+
+      <p>Officially branded as <strong>MØDE Stadium Stateline Speedway</strong> in recent seasons, the track sits right on the Washington-Idaho state line outside Post Falls. Part of the Tri-State Challenge Series. Family-friendly with a strong local following — kids 5 and under are free to all motorsports events.</p>
+
+      <div class="specs">
+        <div class="spec"><div class="k">Configuration</div><div class="v hot">1/4-mile paved oval</div></div>
+        <div class="spec"><div class="k">State</div><div class="v">Idaho</div></div>
+        <div class="spec"><div class="k">Season</div><div class="v">April – September</div></div>
+        <div class="spec"><div class="k">Racing Nights</div><div class="v">Friday & Saturday</div></div>
+      </div>
+
+      <div class="vmra-note">
+        VMRA's Idaho stop is the <strong>Ron Rohde Memorial</strong> (Round 5, Jul 11 — non-points special). The tightest track on the schedule means a different kind of race — traffic, patience, and heat-race running order matter more here than anywhere else on tour.
+      </div>
+
+      <div class="track-links">
+        <a href="#" class="track-link primary">Official Site →</a>
+        <a href="https://maps.google.com/?q=Stateline+Speedway+Post+Falls+ID" class="track-link" target="_blank" rel="noopener">Directions</a>
+        <a href="#" class="track-link">VMRA Results History</a>
+      </div>
+    </div>
+  </article>
+
+</main>
+
+<!-- CTA -->
+<section class="cta-strip">
+  <div class="cta-inner">
+    <div>
+      <h3>Follow the 2026 Tour · All 11 Rounds</h3>
+      <p>Get the full 2026 schedule with dates, tracks, purses, and race-night timing. Add every VMRA event to your calendar in one click.</p>
+    </div>
+    <a href="/#schedule" class="cta-btn">Full 2026 Schedule →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+VMRA_BODY_EOT;
+
+// Retarget /data/*.json fetches at the theme's data dir.
+$body = str_replace( "'/data/", "'" . $vmra_data_base . "/", $body );
+$body = str_replace( '"/data/', '"' . $vmra_data_base . '/', $body );
+echo $body;
+?>
+
+<?php get_footer();

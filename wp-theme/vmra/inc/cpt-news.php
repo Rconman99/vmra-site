@@ -39,7 +39,8 @@ add_action( 'init', function () {
 		'show_in_rest'        => true,
 		'menu_position'       => 20,
 		'menu_icon'           => 'dashicons-megaphone',
-		'has_archive'         => 'news',
+		// has_archive off: /news/ is a Page. Single-article permalink: /news/{slug}.
+		'has_archive'         => false,
 		'rewrite'             => array( 'slug' => 'news', 'with_front' => false ),
 		'supports'            => array( 'title', 'editor', 'thumbnail', 'excerpt', 'author' ),
 		'hierarchical'        => false,

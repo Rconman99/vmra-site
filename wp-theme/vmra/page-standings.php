@@ -1,0 +1,140 @@
+<?php
+/**
+ * Template for the /standings/ page.
+ * Ported from the static public/standings/index.html.
+ *
+ * WP auto-loads this template when a Page with slug "standings" is viewed.
+ * Per-page CSS stays inline to match the static site 1:1.
+ * Data-driven JS fetches point at /wp-content/themes/vmra/data/ via str_replace.
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+$vmra_data_base = esc_url( VMRA_THEME_URI . '/data' );
+
+get_header(); ?>
+
+<style>
+:root{
+  --asphalt:#0e0e10;--asphalt-2:#17171a;--asphalt-3:#212126;--grease:#2a2a30;
+  --chalk:#f4ede1;--chalk-dim:#c9c0ae;--race-red:#d11a2a;--sodium:#ffb319;--engine-blue:#2a5d8f;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Space Grotesk',-apple-system,sans-serif;background:var(--asphalt);color:var(--chalk);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+
+.hero{padding:60px 5vw 40px;border-bottom:1px solid var(--grease);background:linear-gradient(180deg,var(--asphalt-2),var(--asphalt))}
+.hero-inner{max-width:1080px;margin:0 auto}
+.eyebrow{font-family:'JetBrains Mono',monospace;color:var(--sodium);font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:14px}
+h1{font-family:'Anton',sans-serif;font-size:clamp(2.5rem,6vw,4.5rem);letter-spacing:.02em;line-height:1;margin-bottom:18px}
+.lede{font-size:1.15rem;color:var(--chalk-dim);max-width:740px}
+
+main{max-width:1080px;margin:0 auto;padding:60px 5vw}
+
+.standings{width:100%;border-collapse:collapse;font-family:'Space Grotesk',sans-serif}
+.standings thead{background:var(--asphalt-2);border-top:2px solid var(--race-red)}
+.standings th{padding:14px 18px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--sodium);border-bottom:1px solid var(--grease)}
+.standings td{padding:16px 18px;border-bottom:1px solid var(--grease);vertical-align:middle}
+.standings tbody tr:hover{background:var(--asphalt-2)}
+.standings .pos{font-family:'Anton',sans-serif;font-size:1.4rem;color:var(--sodium);width:60px}
+.standings .car{font-family:'JetBrains Mono',monospace;color:var(--chalk-dim);font-size:.95rem;width:80px}
+.standings .name{font-weight:600;font-size:1.05rem}
+.standings .pts{font-family:'JetBrains Mono',monospace;font-weight:700;text-align:right;color:var(--chalk);font-size:1.05rem}
+.standings tr:nth-child(1) .pos{color:var(--race-red)}
+.standings tr:nth-child(2) .pos,.standings tr:nth-child(3) .pos{color:var(--sodium)}
+@media (max-width:620px){
+  .standings th,.standings td{padding:10px 8px;font-size:.85rem}
+  .standings .pos{font-size:1.1rem;width:36px}
+  .standings .car{width:50px;font-size:.78rem}
+}
+
+.note{background:var(--asphalt-2);border-left:3px solid var(--race-red);padding:18px 24px;margin:30px 0;font-size:.92rem;color:var(--chalk-dim)}
+</style>
+
+<?php
+$body = <<<'VMRA_BODY_EOT'
+<section class="hero"><div class="hero-inner">
+  <span class="eyebrow">§ 2026 YTD · After Round 01 of 11</span>
+  <h1>Cheth Leads the 40th.</h1>
+  <p class="lede">One round down. Kahl Cheth #23 leads the 2026 points at 64 after taking the main at the 57th Apple Cup at Tri-City. Jason Quatsoe #8 sits four back at 60. Steve Woods #22 is another three behind at 57. Defending champ Kyten Jones #30 didn't unload on the night — the title race opens wide. Ten rounds left. Points stay with the car, not the driver.</p>
+</div></section>
+
+<main>
+  <table class="standings">
+    <thead>
+      <tr>
+        <th>Pos</th>
+        <th>Car</th>
+        <th>Driver</th>
+        <th class="pts">Points</th>
+      </tr>
+    </thead>
+    <tbody id="standingsBody">
+      <tr><td class="pos">1</td><td class="car">#23</td><td class="name">Kahl Cheth</td><td class="pts">64</td></tr>
+      <tr><td class="pos">2</td><td class="car">#8</td><td class="name">Jason Quatsoe</td><td class="pts">60</td></tr>
+      <tr><td class="pos">3</td><td class="car">#22</td><td class="name">Steve Woods</td><td class="pts">57</td></tr>
+      <tr><td class="pos">4</td><td class="car">#68</td><td class="name">B. Hector Sr</td><td class="pts">55</td></tr>
+      <tr><td class="pos">5</td><td class="car">#57</td><td class="name">Shane Strimple</td><td class="pts">53</td></tr>
+      <tr><td class="pos">6</td><td class="car">#25B</td><td class="name">B. Greiner</td><td class="pts">52</td></tr>
+      <tr><td class="pos">7</td><td class="car">#82</td><td class="name">Vince Conwell</td><td class="pts">50</td></tr>
+      <tr><td class="pos">8</td><td class="car">#72</td><td class="name">C. Forney</td><td class="pts">49</td></tr>
+      <tr><td class="pos">9</td><td class="car">#2</td><td class="name">Rick Villyard</td><td class="pts">47</td></tr>
+      <tr><td class="pos">10</td><td class="car">#77</td><td class="name">G. Chamber</td><td class="pts">45</td></tr>
+      <tr><td class="pos">11</td><td class="car">#51</td><td class="name">Dave Trapp</td><td class="pts">43</td></tr>
+      <tr><td class="pos">12</td><td class="car">#79</td><td class="name">J. Boczar</td><td class="pts">32</td></tr>
+      <tr><td class="pos">13</td><td class="car">#25RT</td><td class="name">RT Greiner</td><td class="pts">20</td></tr>
+      <tr><td class="pos">14</td><td class="car">#6</td><td class="name">R. Learch</td><td class="pts">0</td></tr>
+      <tr><td class="pos">15</td><td class="car">#7</td><td class="name">Mike Clother</td><td class="pts">0</td></tr>
+      <tr><td class="pos">16</td><td class="car">#10</td><td class="name">B. Cottrell</td><td class="pts">0</td></tr>
+      <tr><td class="pos">17</td><td class="car">#11</td><td class="name">B. Cole</td><td class="pts">0</td></tr>
+      <tr><td class="pos">18</td><td class="car">#30</td><td class="name">Kyten Jones</td><td class="pts">0</td></tr>
+      <tr><td class="pos">19</td><td class="car">#37</td><td class="name">Mitch Woods</td><td class="pts">0</td></tr>
+      <tr><td class="pos">20</td><td class="car">#65</td><td class="name">Randy Adams</td><td class="pts">0</td></tr>
+      <tr><td class="pos">21</td><td class="car">#66</td><td class="name">G. Nash</td><td class="pts">0</td></tr>
+      <tr><td class="pos">22</td><td class="car">#92</td><td class="name">T. McCartney</td><td class="pts">0</td></tr>
+      <tr><td class="pos">23</td><td class="car">#23x</td><td class="name">Chad Broom</td><td class="pts">0</td></tr>
+    </tbody>
+  </table>
+  <p id="standingsUpdated" style="font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.12em;color:var(--chalk-dim);text-transform:uppercase;margin-top:14px;text-align:right">Updated Apr 23, 2026 · 1 round completed</p>
+
+  <script>
+  (function(){
+    fetch('/data/standings.json')
+      .then(function(r){ return r.json(); })
+      .then(function(data){
+        var rows = data.drivers.map(function(d){
+          return '<tr>' +
+            '<td class="pos">' + d.position + '</td>' +
+            '<td class="car">#' + d.car + '</td>' +
+            '<td class="name">' + d.name + '</td>' +
+            '<td class="pts">' + d.points + '</td>' +
+            '</tr>';
+        }).join('');
+        document.getElementById('standingsBody').innerHTML = rows;
+        if (data.updated) {
+          var dt = new Date(data.updated + 'T12:00:00');
+          var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+          document.getElementById('standingsUpdated').textContent =
+            'Updated ' + months[dt.getMonth()] + ' ' + dt.getDate() + ', ' + dt.getFullYear() +
+            (data.rounds_completed ? ' · ' + data.rounds_completed + ' rounds completed' : '');
+        }
+      })
+      .catch(function(){
+        document.getElementById('standingsBody').innerHTML =
+          '<tr><td colspan="4" style="text-align:center;color:var(--chalk-dim);padding:30px">Standings temporarily unavailable. Try refreshing.</td></tr>';
+      });
+  })();
+  </script>
+
+  <div class="note"><strong>Scoring reminder:</strong> Time-ins pay 20 down to 1, A-heats 15 down to 1, B-heats 13 down to 1. Main events pay 25 for the win, then −3, −2, −1 down the order. Points stay with the car number; rookies get the same scale minus the show-up bonus. Full breakdown on the <a href="/rules/" style="color:var(--sodium);text-decoration:none;border-bottom:1px solid currentColor">Rules page</a>.</div>
+</main>
+VMRA_BODY_EOT;
+
+// Retarget /data/*.json fetches at the theme's data dir.
+$body = str_replace( "'/data/", "'" . $vmra_data_base . "/", $body );
+$body = str_replace( '"/data/', '"' . $vmra_data_base . '/', $body );
+echo $body;
+?>
+
+<?php get_footer();

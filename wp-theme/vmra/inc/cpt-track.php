@@ -34,8 +34,9 @@ add_action( 'init', function () {
 		'show_in_rest'        => true,
 		'menu_position'       => 23,
 		'menu_icon'           => 'dashicons-location-alt',
-		'has_archive'         => 'tracks',
-		'rewrite'             => array( 'slug' => 'tracks', 'with_front' => false ),
+		// has_archive off: /tracks/ is a Page. Single-track permalink: /track/{slug}.
+		'has_archive'         => false,
+		'rewrite'             => array( 'slug' => 'track', 'with_front' => false ),
 		'supports'            => array( 'title', 'editor', 'thumbnail' ),
 		'hierarchical'        => false,
 	) );

@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'VMRA_THEME_VERSION', '1.0.0' );
+define( 'VMRA_THEME_VERSION', '1.1.2' );
 define( 'VMRA_THEME_DIR',     get_template_directory() );
 define( 'VMRA_THEME_URI',     get_template_directory_uri() );
 
