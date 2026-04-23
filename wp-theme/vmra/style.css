@@ -1,0 +1,19 @@
+/*
+Theme Name: VMRA 40th Anniversary
+Theme URI: https://vmra.club/
+Author: Ryan Conwell (for VMRA)
+Author URI: https://vmra.club/
+Description: Custom WordPress theme for the Vintage Modified Racing Association — Pacific Northwest 40th anniversary 1986 to 2026. Pit-wall-meets-speedway editorial design with a dark charcoal base, VMRA racing red, sodium-amber accents, and vintage typography. Built to match the Vercel-hosted preview at vmra-preview-theta.vercel.app. Uses custom post types for Drivers, Races, Tracks, and News so the board can post weekly updates from the WP admin.
+Version: 1.0.0
+Requires at least: 6.2
+Tested up to: 6.5
+Requires PHP: 7.4
+License: Proprietary — VMRA use only
+License URI: https://vmra.club/
+Text Domain: vmra
+Tags: sports, custom-colors, custom-menu, custom-logo, featured-images, threaded-comments, translation-ready, block-styles, wide-blocks, editor-style
+
+All theme CSS lives in /assets/css/. This file exists only to register the theme
+with WordPress; WP enqueues the real stylesheets (shell.css, home.css, per-page
+stylesheets) via wp_enqueue_style() calls in functions.php. See inc/enqueue.php.
+*/

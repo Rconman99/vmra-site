@@ -1,0 +1,50 @@
+{
+  "season": "2026",
+  "title": "2026 40th Anniversary Tour Schedule",
+  "intro": "Round 1 in the books — the 57th running of the Apple Cup at Tri-City. Eleven dates total on the 40th Anniversary tour, nine of them counting toward the championship. Two specials on the calendar (Ron Rohde Memorial at Stateline + Fall Classic Open Comp at Tri-City) — fast cars, no points, all heart.",
+  "tracks": {
+    "Tri-City Raceway": {
+      "address": "8280 W Van Giesen St, West Richland, WA 99353",
+      "city": "West Richland, WA",
+      "shape": "3/8-mile paved oval",
+      "website": "https://www.tricityraceway.com/"
+    },
+    "Evergreen Speedway": {
+      "address": "14405 179th Ave SE, Monroe, WA 98272",
+      "city": "Monroe, WA",
+      "shape": "5/8-mile paved oval — \"The Half-Mile\"",
+      "website": "https://evergreenspeedway.com/"
+    },
+    "Wenatchee Valley Super Oval": {
+      "address": "2850 Gun Club Rd, East Wenatchee, WA 98802",
+      "city": "East Wenatchee, WA",
+      "shape": "1/4-mile paved oval",
+      "website": "https://www.wvso.com/"
+    },
+    "Stateline Speedway": {
+      "address": "1349 N Beck Rd, Post Falls, ID 83854",
+      "city": "Post Falls, ID",
+      "shape": "1/4-mile banked paved oval",
+      "website": "https://www.raceidaho.com/"
+    },
+    "South Sound Speedway": {
+      "address": "3730 183rd Ave SW, Rochester, WA 98579",
+      "city": "Rochester, WA",
+      "shape": "3/8-mile paved oval + figure-8",
+      "website": "https://www.southsoundspeedway.com/"
+    }
+  },
+  "races": [
+    { "round": 1,  "date": "2026-04-12", "track": "Tri-City Raceway",          "short": "Tri-City · 57th Apple Cup",          "location": "Tri-City Raceway · West Richland, WA",           "tag": "completed", "tag_label": "Round 1 · Complete", "event_name": "57th Apple Cup VMRA Season Opener", "points": true },
+    { "round": 2,  "date": "2026-04-25", "track": "Evergreen Speedway",        "short": "Evergreen · Grocery Outlet Night",   "location": "Evergreen Speedway · Monroe, WA · The Half-Mile", "tag": "weekend",   "tag_label": "This Weekend",        "event_name": "Grocery Outlet Night", "points": true, "carCount": "17 and counting" },
+    { "round": 3,  "date": "2026-05-02", "track": "Wenatchee Valley Super Oval", "short": "Wenatchee · Apple Blossom Rubber Down", "location": "Wenatchee Valley Super Oval · East Wenatchee, WA", "tag": "regular",   "tag_label": "Round 3", "event_name": "Apple Blossom Rubber Down", "points": true },
+    { "round": 4,  "date": "2026-06-27", "track": "Evergreen Speedway",        "short": "Evergreen · Mark Galloway Shootout", "location": "Evergreen Speedway · Monroe, WA · The Half-Mile", "tag": "regular",   "tag_label": "Round 4", "event_name": "CARS Tour Mark Galloway Shootout", "points": true },
+    { "round": 5,  "date": "2026-07-11", "track": "Stateline Speedway",        "short": "Stateline · Ron Rohde Memorial",     "location": "Stateline Speedway · Post Falls, ID",            "tag": "exhibition","tag_label": "Special · Non-Points", "event_name": "Ron Rohde Memorial", "points": false },
+    { "round": 6,  "date": "2026-07-25", "track": "South Sound Speedway",       "short": "South Sound · 40th Anniversary Bash", "location": "South Sound Speedway · Rochester, WA",          "tag": "feature",   "tag_label": "40th Anniversary Bash", "event_name": "VMRA 40th Anniversary Bash", "points": true },
+    { "round": 7,  "date": "2026-08-15", "track": "Evergreen Speedway",        "short": "Evergreen · Tire Pros Summer Showdown", "location": "Evergreen Speedway · Monroe, WA · The Half-Mile", "tag": "regular",   "tag_label": "Round 7", "event_name": "Tire Pros Summer Showdown", "points": true },
+    { "round": 8,  "date": "2026-08-22", "track": "Wenatchee Valley Super Oval", "short": "Wenatchee · Thunder in the Valley", "location": "Wenatchee Valley Super Oval · East Wenatchee, WA", "tag": "regular", "tag_label": "Round 8", "event_name": "Thunder in the Valley Open Wheel Show", "points": true },
+    { "round": 9,  "date": "2026-09-19", "track": "Evergreen Speedway",        "short": "Evergreen · NASCAR Championship Night", "location": "Evergreen Speedway · Monroe, WA · The Half-Mile", "tag": "regular", "tag_label": "Round 9", "event_name": "NASCAR Championship Night", "points": true },
+    { "round": 10, "date": "2026-10-03", "track": "Tri-City Raceway",          "short": "Tri-City · Fall Classic Championship", "location": "Tri-City Raceway · West Richland, WA",          "tag": "finale",    "tag_label": "Season Championship Night", "event_name": "Fall Classic VMRA Season Championship Night", "points": true },
+    { "round": 11, "date": "2026-10-04", "track": "Tri-City Raceway",          "short": "Tri-City · Fall Classic Open Comp",   "location": "Tri-City Raceway · West Richland, WA",          "tag": "exhibition","tag_label": "Special · Non-Points", "event_name": "Fall Classic Vintage Modified Open Comp", "points": false }
+  ]
+}
