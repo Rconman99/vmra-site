@@ -168,13 +168,7 @@ body{
   background:var(--asphalt);color:var(--chalk);line-height:1.55;
   -webkit-font-smoothing:antialiased;overflow-x:hidden;
 }
-body::before{
-  content:"";position:fixed;inset:0;pointer-events:none;z-index:200;
-  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.9'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/></svg>");
-  opacity:.05;mix-blend-mode:overlay;
-}
 
-/* SIMPLE NAV */
 /* HERO */
 header.hero{
   padding:60px 5vw 50px;position:relative;overflow:hidden;

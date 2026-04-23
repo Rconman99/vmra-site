@@ -16,6 +16,29 @@
   --gold-dim: #8a7333;
 }
 
+/* --- GLOBAL OVERLAYS — grain + scanlines on every page ---- */
+body::before {
+  content: "";
+  position: fixed; inset: 0;
+  pointer-events: none;
+  z-index: 200;
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.9'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/></svg>");
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+}
+body::after {
+  content: "";
+  position: fixed; inset: 0;
+  pointer-events: none;
+  z-index: 199;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0 3px,
+    rgba(0,0,0,0.05) 3px 4px
+  );
+}
+
 /* --- NAV — editorial / broadcast control room ------------- */
 nav.main {
   position: sticky; top: 0; z-index: 100;

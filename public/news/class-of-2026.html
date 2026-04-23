@@ -85,17 +85,12 @@ body{
   background:var(--asphalt);color:var(--chalk);line-height:1.6;
   -webkit-font-smoothing:antialiased;
 }
-body::before{
-  content:"";position:fixed;inset:0;pointer-events:none;z-index:200;
-  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.9'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/></svg>");
-  opacity:.05;mix-blend-mode:overlay;
-}
 
 /* EDITOR MODE BANNER — tells Ryan this is a template */
 .editor-banner{
   background:var(--fill);color:var(--chalk);padding:10px 5vw;text-align:center;
   font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;
-  border-bottom:2px solid var(--race-red);position:sticky;top:0;z-index:150;
+  border-bottom:2px solid var(--race-red);
 }
 .editor-banner b{color:var(--sodium)}
 
@@ -103,26 +98,6 @@ body::before{
 .fill{background:rgba(139,58,139,.25);border-bottom:2px dashed var(--fill);color:var(--chalk);padding:0 3px;font-weight:600;cursor:help}
 .fill::before{content:"[";color:var(--fill);font-weight:700}
 .fill::after{content:"]";color:var(--fill);font-weight:700}
-
-/* NAV */
-nav.main{
-  background:rgba(14,14,16,.92);backdrop-filter:blur(8px);
-  border-bottom:1px solid var(--grease);
-  padding:14px 5vw;display:flex;align-items:center;justify-content:space-between;
-  position:sticky;top:36px;z-index:100;
-}
-.logo-lockup{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
-.logo-shield{
-  width:38px;height:46px;background:var(--race-red);
-  clip-path:polygon(0 0,100% 0,100% 75%,50% 100%,0 75%);
-  display:flex;align-items:flex-start;justify-content:center;
-  font-family:'Archivo Black',sans-serif;font-size:.85rem;color:var(--chalk);
-  padding-top:8px;transform:rotate(-2deg);
-}
-.logo-text{font-family:'Anton',sans-serif;font-size:1.2rem;line-height:.95;letter-spacing:.02em}
-.logo-text small{display:block;font-family:'JetBrains Mono',monospace;font-size:.52rem;letter-spacing:.25em;color:var(--sodium);margin-top:2px}
-.nav-back{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--chalk-dim);text-decoration:none;border:1px solid var(--grease);padding:8px 14px;transition:all .2s}
-.nav-back:hover{color:var(--sodium);border-color:var(--sodium)}
 
 /* ARTICLE HEADER */
 article.post{max-width:880px;margin:0 auto;padding:0 5vw}
@@ -231,63 +206,25 @@ article.post{max-width:880px;margin:0 auto;padding:0 5vw}
   .driver-spotlight .car-num{font-size:3.5rem}
 }
 
-/* FOOTER */
+/* POST FOOTER (article-end card — not the site footer) */
 .post-footer{
   margin-top:60px;padding:30px 0;border-top:2px solid var(--grease);
   font-family:'JetBrains Mono',monospace;font-size:.78rem;letter-spacing:.1em;
   color:var(--chalk-dim);text-align:center;
 }
 .post-footer a{color:var(--sodium);text-decoration:none;border-bottom:1px solid var(--sodium)}
-
-footer.site{
-  background:var(--asphalt-2);border-top:3px solid var(--race-red);
-  padding:40px 5vw;text-align:center;margin-top:60px;
-}
-footer.site .sig{font-family:'Anton',sans-serif;font-size:1.5rem;color:var(--sodium);letter-spacing:.05em}
-footer.site p{color:var(--chalk-dim);font-size:.82rem;margin:6px auto;max-width:600px}
-
-/* ===== MOBILE MENU TOGGLE ===== */
-.nav-toggle{display:none;width:44px;height:44px;background:transparent;border:1px solid var(--grease);cursor:pointer;flex-direction:column;justify-content:center;align-items:center;gap:5px;padding:0;border-radius:2px;-webkit-tap-highlight-color:transparent;transition:border-color .15s;margin-left:12px}
-.nav-toggle:hover,.nav-toggle:focus{border-color:var(--sodium);outline:none}
-.nav-toggle span{display:block;width:22px;height:2px;background:var(--chalk);transition:transform .25s ease,opacity .2s ease}
-.nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-.nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
-.nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-.mobile-menu{position:fixed;inset:0;background:rgba(14,14,16,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);z-index:200;display:none;overflow-y:auto;padding:90px 5vw 60px;-webkit-overflow-scrolling:touch}
-.mobile-menu[aria-hidden="false"]{display:block;animation:mmFade .2s ease}
-@keyframes mmFade{from{opacity:0}to{opacity:1}}
-.mobile-menu-inner{max-width:480px;margin:0 auto;display:flex;flex-direction:column;gap:6px;position:relative;z-index:1}
-.mm-link{display:block;padding:18px 22px;font-family:'Anton',sans-serif;font-size:1.5rem;letter-spacing:.04em;color:var(--chalk);text-decoration:none;border:1px solid var(--grease);background:var(--asphalt-2);transition:all .15s;text-transform:uppercase;-webkit-tap-highlight-color:transparent}
-.mm-link:hover,.mm-link:active{background:var(--race-red);border-color:var(--race-red);color:var(--chalk)}
-.mm-divider{height:1px;background:var(--grease);margin:20px 0 8px}
-.mm-secondary{display:block;padding:14px 22px;font-family:'JetBrains Mono',monospace;font-size:.82rem;letter-spacing:.08em;color:var(--chalk-dim);text-decoration:none;text-align:center;-webkit-tap-highlight-color:transparent}
-.mm-secondary:hover,.mm-secondary:active{color:var(--sodium)}
-@media (max-width:900px){.nav-toggle{display:flex}}
-
-
-
-/* ===== 40TH ANNIVERSARY BANNER ===== */
-.anniversary-banner{background:#050507;padding:22px 5vw 26px;text-align:center;border-bottom:1px solid var(--grease);position:relative;overflow:hidden}
-.anniversary-banner::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 80% 100% at center,rgba(209,26,42,.18) 0%,rgba(42,93,143,.08) 35%,transparent 70%);pointer-events:none}
-.anniversary-banner::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:linear-gradient(90deg,transparent,var(--race-red) 30%,var(--race-red) 70%,transparent);opacity:.6}
-.ab-link{display:inline-block;max-width:1100px;width:100%;position:relative;z-index:1;transition:transform .35s ease;line-height:0}
-.ab-link:hover{transform:scale(1.015)}
-.ab-link:active{transform:scale(.99)}
-.ab-link img{width:100%;height:auto;display:block;filter:drop-shadow(0 6px 18px rgba(209,26,42,.28))}
-@media (max-width:720px){
-  .anniversary-banner{padding:14px 4vw 18px}
-}
-
 </style>
+
+<link href="/css/shell.css" rel="stylesheet">
+<script src="/js/shell.js" defer></script>
 </head>
 <body>
 
 <!-- TEMPLATE BANNER (delete when publishing) -->
 <div class="editor-banner">
-  ⚠️ EDITORIAL TEMPLATE · Fields in <b>[PURPLE BRACKETS]</b> are fill-ins · Delete this bar before publishing
+  EDITORIAL TEMPLATE · Fields in <b>[PURPLE BRACKETS]</b> are fill-ins · Delete this bar before publishing
 </div>
 
-<!-- NAV -->
 <!-- ===== 40TH ANNIVERSARY BANNER ===== -->
 <section class="anniversary-banner" aria-label="40th Anniversary 1986 to 2026">
   <a href="/" class="ab-link">
@@ -308,14 +245,30 @@ footer.site p{color:var(--chalk-dim);font-size:.82rem;margin:6px auto;max-width:
   </a>
 </section>
 
+<!-- ===== CANONICAL NAV ===== -->
 <nav class="main">
-  <a href="/" class="logo-lockup">
-    <div class="logo-shield">VMRA</div>
-    <div class="logo-text">Vintage Modified<small>RACING ASSOCIATION · NW</small></div>
-  </a>
-  <a href="/#news" class="nav-back">← All News</a>
-  <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span><span></span></button>
+  <div class="nav-inner">
+    <a href="/" class="logo-lockup" aria-label="VMRA — home">
+      <div class="logo-mark" aria-hidden="true">VM</div>
+      <div class="logo-text">Vintage Modified<small>VMRA · NW · EST 1986</small></div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/schedule/">Schedule</a></li>
+      <li><a href="/racers/">Drivers</a></li>
+      <li><a href="/standings/">Standings</a></li>
+      <li><a href="/rules/">Rules</a></li>
+      <li><a href="/classifieds/">Classifieds</a></li>
+      <li><a href="/contact/">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="mailto:board@vmra.club?subject=Sponsorship%20Inquiry%20-%20VMRA%202026" class="nav-cta">Sponsor <span class="arr">›</span></a>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
 </nav>
+
+<!-- ===== CANONICAL MOBILE MENU ===== -->
 <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
   <nav class="mobile-menu-inner" aria-label="Mobile navigation">
     <a href="/" class="mm-link">Home</a>
@@ -349,7 +302,7 @@ footer.site p{color:var(--chalk-dim);font-size:.82rem;margin:6px auto;max-width:
       <span class="red">Forty Years in the Rearview.</span>
     </h1>
     <p class="post-standfirst">
-      An inside look at the <span class="fill">23</span>-driver grid lining up for VMRA's 40th anniversary season. The defending champ with a target on his back. The three-time champion looking for one more. The rookie class bringing new car numbers to a club that's raced for four decades. Here's what to watch — and who to watch it on.
+      An inside look at the <span class="fill">23</span>-driver grid lining up for VMRA's 40th anniversary season. The defending champ with a target on his back. The three-time champion looking for one more. The rookie class bringing new car numbers to a club that's raced for four decades. Here's what to watch, and who to watch it on.
     </p>
     <div class="byline">
       <span class="author">By <span class="fill">The VMRA Desk</span></span>
@@ -359,9 +312,9 @@ footer.site p{color:var(--chalk-dim);font-size:.82rem;margin:6px auto;max-width:
 
   <div class="post-body">
 
-    <p class="dropcap">Forty seasons after the first VMRA race at Spanaway Speedway, the 2026 grid is the kind of roster that tells you exactly where a club is in its life cycle. You have <strong>a defending champion entering his prime</strong>, a veteran field with three former title-winners still turning laps, a rookie class that just showed up with fresh car numbers, and — for the first time in years — a full slate of confirmed entries for every round on the tour. For a 40-year-old club, that's not a coincidence. That's a sign the sport still has a pulse.</p>
+    <p class="dropcap">Forty seasons after the first VMRA race at Spanaway Speedway in 1986, the 2026 grid is the kind of roster that tells you exactly where a club is in its life cycle. You have <strong>a defending champion entering his prime</strong>, a veteran field with three former title winners still turning laps, a rookie class that just showed up with fresh car numbers, and, for the first time in years, a full slate of confirmed entries for every round on the tour. For a 40 year old club, that is not a coincidence. That is a sign the sport still has a pulse.</p>
 
-    <p>The 2026 season opener at <span class="fill">Spanaway Speedway</span> on <span class="fill">April 19</span> gave the field its first chance to show form. <span class="fill">Defending champion Kyten Jones</span> won on a <strong>broken upper control arm</strong> — a result that's already entered the club's folklore. But the field closed to within seconds of him, and this weekend at Evergreen is where the real championship picture begins.</p>
+    <p>The 2026 season opener at <span class="fill">Tri-City Raceway</span> on <span class="fill">April 12</span> gave the field its first chance to show form. <span class="fill">Defending champion Kyten Jones</span> won on a <strong>broken upper control arm</strong>, a result that has already entered the club's folklore. But the field closed to within seconds of him, and this weekend at Evergreen is where the real championship picture begins.</p>
 
     <p>Before the pack lines up on the Superspeedway of the West, let's meet them.</p>
 
@@ -376,11 +329,11 @@ footer.site p{color:var(--chalk-dim);font-size:.82rem;margin:6px auto;max-width:
         <div class="tag defending">Defending Champion · 2025</div>
         <h3><span class="fill">Kyten Jones</span></h3>
         <div class="locale"><span class="fill">Monroe, WA</span> · Car #<span class="fill">30</span></div>
-        <p>Won the 2025 championship by <span class="fill">[X points]</span> over <span class="fill">[runner-up]</span>. Opened 2026 with a win at Spanaway on a broken suspension. <strong>The guy everyone else is chasing.</strong> What makes Jones tough to beat isn't raw speed — it's that he rarely finishes outside the top three, even when the car isn't right.</p>
+        <p>Won the 2025 championship by <span class="fill">X points</span> over <span class="fill">runner-up</span>. Opened 2026 with a win at Tri-City on a broken suspension. <strong>The guy everyone else is chasing.</strong> What makes Jones tough to beat isn't raw speed, it's that he rarely finishes outside the top three, even when the car isn't right.</p>
       </div>
     </div>
 
-    <p>Jones enters the 40th-anniversary season with a target on his back and a dozen reasons to wear it well. <span class="fill">[Add 2-3 sentences: his background, how he came up through VMRA, his crew chief, his car owner, why he matters]</span>. Watch how he manages tire wear at Evergreen this Saturday — if he can do what he did at Spanaway and bring it home without fresh rubber, the rest of the field should start scheming now.</p>
+    <p>Jones enters the 40th anniversary season with a target on his back and a dozen reasons to wear it well. <span class="fill">Add 2 to 3 sentences: his background, how he came up through VMRA, his crew chief, his car owner, why he matters</span>. Watch how he manages tire wear at Evergreen this Saturday. If he can do what he did at Tri-City and bring it home without fresh rubber, the rest of the field should start scheming now.</p>
 
     <!-- SECTION: THE CONTENDERS -->
     <h2><span class="num">§ 02</span> The Contenders</h2>
@@ -395,7 +348,7 @@ footer.site p{color:var(--chalk-dim);font-size:.82rem;margin:6px auto;max-width:
         <div class="tag">Three-Time Champion</div>
         <h3><span class="fill">Steve Woods</span></h3>
         <div class="locale"><span class="fill">Wenatchee, WA</span> · Car #<span class="fill">22</span></div>
-        <p>Three VMRA titles. Set fast time at the Spanaway opener (<span class="fill">16.17</span>). Evergreen has historically been a Woods track — if there's a round where he closes the gap on Jones, this is the one. <span class="fill">[Add the story: his car, his crew, his shop in Wenatchee, the year he won his third title]</span>.</p>
+        <p>Three VMRA titles. Set fast time at the Tri-City opener (<span class="fill">16.17</span>). Evergreen has historically been a Woods track. If there is a round where he closes the gap on Jones, this is the one. <span class="fill">Add the story: his car, his crew, his shop in Wenatchee, the year he won his third title</span>.</p>
       </div>
     </div>
 
@@ -407,7 +360,7 @@ footer.site p{color:var(--chalk-dim);font-size:.82rem;margin:6px auto;max-width:
         <div class="tag">Stateline Group</div>
         <h3><span class="fill">Chad Broom</span></h3>
         <div class="locale"><span class="fill">Stateline, ID</span> · Car #<span class="fill">23x</span></div>
-        <p>The Idaho contingent's best shot. Podium at Spanaway. Never won at Evergreen — but keeps finishing the opening 15 laps in the top five, which is how you eventually get a trophy there. <span class="fill">[Add: what he drove in 2025, who wrenches for him, the Stateline crew that makes the haul with him]</span>.</p>
+        <p>The Idaho contingent's best shot. Podium at Tri-City. Never won at Evergreen, but keeps finishing the opening 15 laps in the top five, which is how you eventually get a trophy there. <span class="fill">Add: what he drove in 2025, who wrenches for him, the Stateline crew that makes the haul with him</span>.</p>
       </div>
     </div>
 
@@ -419,16 +372,16 @@ footer.site p{color:var(--chalk-dim);font-size:.82rem;margin:6px auto;max-width:
         <div class="tag">Most Improved · 2024</div>
         <h3><span class="fill">Kahl Cheth</span></h3>
         <div class="locale"><span class="fill">Tacoma, WA</span> · Car #<span class="fill">14</span></div>
-        <p>Won VMRA's Most Improved award in 2024 and spent the offseason building a new chassis. <span class="fill">[If the car is brand-new for 2026, say so. If it's a rebuild of last year's, say that. What's the story with his crew? First-time car owner? Family operation?]</span>.</p>
+        <p>Won VMRA's Most Improved award in 2024 and spent the offseason building a new chassis. <span class="fill">If the car is brand new for 2026, say so. If it's a rebuild of last year's, say that. What's the story with his crew? First time car owner? Family operation?</span>.</p>
       </div>
     </div>
 
-    <p>Rounding out the championship hunt: <span class="fill">[List 3-5 more drivers with their car numbers, one sentence each about their 2025 finish and what to expect from them in 2026]</span>.</p>
+    <p>Rounding out the championship hunt: <span class="fill">List 3 to 5 more drivers with their car numbers, one sentence each about their 2025 finish and what to expect from them in 2026</span>.</p>
 
     <!-- SECTION: THE ROOKIES -->
     <h2><span class="num">§ 03</span> The Class of Rookies</h2>
 
-    <p>Every healthy racing club has one thing in common: <strong>new car numbers showing up every year</strong>. For the 40th season, VMRA has <span class="fill">[X]</span> confirmed rookies on the grid — drivers racing their first full VMRA campaign. Their path to a championship is longer, but their path to a top-five finish at any given race is shorter than most people think.</p>
+    <p>Every healthy racing club has one thing in common: <strong>new car numbers showing up every year</strong>. For the 40th season, VMRA has <span class="fill">X</span> confirmed rookies on the grid, drivers racing their first full VMRA campaign. Their path to a championship is longer, but their path to a top-five finish at any given race is shorter than most people think.</p>
 
     <div class="driver-spotlight">
       <div class="plate-col">
@@ -438,78 +391,101 @@ footer.site p{color:var(--chalk-dim);font-size:.82rem;margin:6px auto;max-width:
         <div class="tag">Rookie · 2021 (Sophomore in VMRA)</div>
         <h3><span class="fill">Shawn Strimple</span></h3>
         <div class="locale"><span class="fill">Seattle, WA</span> · Car #<span class="fill">37</span></div>
-        <p>Tested the Strimple Racing #37 at Evergreen in April. First real test of the offseason build happens this weekend. <span class="fill">[Add: where the car is built, who's on the crew, any family-racing heritage, expectations]</span>.</p>
+        <p>Tested the Strimple Racing #37 at Evergreen in April. First real test of the offseason build happens this weekend. <span class="fill">Add: where the car is built, who's on the crew, any family racing heritage, expectations</span>.</p>
       </div>
     </div>
 
-    <p><strong>New numbers to watch in 2026:</strong> <span class="fill">[List the rookies: "#44 — Jane Doe from Kent, a first-year VMRA driver who spent 2024 running Hobby Stock at South Sound. #57 — John Smith out of the Tri-Cities, brother of [known driver], inherited the family car and rebuilt it for vintage-mod competition." etc.]</span>.</p>
+    <p><strong>New numbers to watch in 2026:</strong> <span class="fill">List the rookies. Example: "#44 Jane Doe from Kent, a first year VMRA driver who spent 2024 running Hobby Stock at South Sound. #57 John Smith out of the Tri-Cities region, brother of known driver, inherited the family car and rebuilt it for vintage-mod competition." etc.</span>.</p>
 
-    <p>VMRA has always been a club that welcomes new cars. One of the reasons it's lasted 40 years is that the rulebook is built to let a new driver bring a 1960s-era car and go racing without having to spend $50,000 first. The rookie class of 2026 is proof the formula still works.</p>
+    <p>VMRA has always been a club that welcomes new cars. One of the reasons it has lasted 40 years is that the rulebook is built to let a new driver bring a 1960s era car and go racing without having to spend $50,000 first. The rookie class of 2026 is proof the formula still works.</p>
 
     <!-- PULL QUOTE -->
     <div class="pull-quote">
-      "<span class="fill">[Pull a quote from a long-time board member — Rick, Vince, or a senior driver. Two sentences maximum. Something like: "Forty years in, the best part isn't the cars. It's that the same guys who were unloading in 1986 are helping a rookie unload in 2026."]</span>"
+      "<span class="fill">Pull a quote from a long-time board member, Rick, Vince, or a senior driver. Two sentences maximum. Something like: "Forty years in, the best part isn't the cars. It's that the same guys who were unloading in 1986 are helping a rookie unload in 2026."</span>"
       <span class="attrib">— <span class="fill">Name</span> · <span class="fill">Role</span></span>
     </div>
 
     <!-- SECTION: THE LEGENDS STILL RACING -->
     <h2><span class="num">§ 04</span> The Legends Still Turning Laps</h2>
 
-    <p>Vintage modified racing has a rare quality among motorsports: <strong>the veterans don't age out.</strong> In 2026, <span class="fill">[X]</span> drivers on the grid have been racing VMRA events for <span class="fill">[20+]</span> years. They aren't chasing championships anymore. They're chasing something harder to define — the thing that made them pull the car onto the trailer 40 years ago.</p>
+    <p>Vintage modified racing has a rare quality among motorsports: <strong>the veterans don't age out.</strong> In 2026, <span class="fill">X</span> drivers on the grid have been racing VMRA events for <span class="fill">20+</span> years. They aren't chasing championships anymore. They're chasing something harder to define, the thing that made them pull the car onto the trailer 40 years ago.</p>
 
-    <p><span class="fill">[Add 2-3 paragraphs profiling the senior drivers. For each: name, years in the club, a memorable win or finish, what they drive now, why they're still doing it. This section is the emotional heart of the piece. Don't rush it. Vince knows who these people are.]</span></p>
+    <p><span class="fill">Add 2 to 3 paragraphs profiling the senior drivers. For each: name, years in the club, a memorable win or finish, what they drive now, why they're still doing it. This section is the emotional heart of the piece. Don't rush it. Vince knows who these people are.</span></p>
 
     <!-- SECTION: WHAT TO WATCH -->
-    <h2><span class="num">§ 05</span> What to Watch Across 12 Rounds</h2>
+    <h2><span class="num">§ 05</span> What to Watch Across 11 Rounds</h2>
 
-    <p>The 2026 calendar runs from <span class="fill">[April]</span> through <span class="fill">[September]</span>, spanning <span class="fill">12</span> rounds across five tracks in three states. A few subplots worth tracking:</p>
+    <p>The 2026 calendar runs from <span class="fill">April</span> through <span class="fill">September</span>, spanning <span class="fill">11</span> rounds across five tracks in three states (9 points rounds and 2 non-points specials). A few subplots worth tracking:</p>
 
-    <p><strong>Can anyone beat Jones at Evergreen?</strong> The defending champ's home track is the season's first real test. Jones has never lost there in the last <span class="fill">[X]</span> starts. This weekend is where that streak either grows or breaks.</p>
+    <p><strong>Can anyone beat Jones at Evergreen?</strong> The defending champ's home track is the season's first real test after the opener. Jones has rarely lost at Monroe in the last <span class="fill">X</span> starts. This weekend is where that streak either grows or breaks.</p>
 
-    <p><strong>The Apple Cup pivot.</strong> VMRA's mid-season run to Tri-Cities Raceway for the Apple Cup Classic historically splits the standings. A win there is worth more than a win at the season opener — not in points, in momentum.</p>
+    <p><strong>The Apple Cup pivot.</strong> VMRA's mid-season run to Tri-City Raceway for the Apple Cup Classic historically splits the standings. A win there is worth more than a win at the season opener, not in points, in momentum.</p>
 
-    <p><strong>The east-side swing.</strong> Hermiston and Stateline in consecutive weekends is the hardest stretch of the schedule. Teams making the round-trip from the Seattle side are looking at 12+ hours of tow time and two completely different track styles. Teams that come home in one piece with points in hand usually have a shot at the title.</p>
+    <p><strong>The east-side swing.</strong> Wenatchee and Stateline in consecutive weekends is the hardest stretch of the schedule. Teams making the round trip from the Seattle side are looking at 12+ hours of tow time and two completely different track styles. Teams that come home in one piece with points in hand usually have a shot at the title.</p>
 
-    <p><strong>The 40th Anniversary Finale.</strong> <span class="fill">[If a specific event is planned — the Fall Classic, a championship night, an anniversary banquet — preview it here. If not, say: "Details of the 40th Anniversary championship finale will be announced in late summer."]</span></p>
+    <p><strong>The 40th Anniversary Finale.</strong> <span class="fill">If a specific event is planned, the Fall Classic, a championship night, an anniversary banquet, preview it here. If not, say: "Details of the 40th Anniversary championship finale will be announced in late summer."</span></p>
 
     <!-- SECTION: THE 40TH ANNIVERSARY -->
     <h2><span class="num">§ 06</span> Forty Years, Forty Seasons</h2>
 
-    <p>The thing that's different about the Class of 2026 isn't the drivers. It's the <em>context</em>. Every green flag this season is the 40th time VMRA has dropped one. That's a rare number in American grassroots motorsports — most clubs fold before they hit 20. Many never get started at all.</p>
+    <p>The thing that's different about the Class of 2026 isn't the drivers. It's the <em>context</em>. Every green flag this season is the 40th time VMRA has dropped one. That's a rare number in American grassroots motorsports. Most clubs fold before they hit 20. Many never get started at all.</p>
 
-    <p>The drivers on this year's grid know that. The ones who've been here the longest talk about it quietly. The rookies are starting to figure it out. And the championship that gets decided in <span class="fill">[September/October]</span> will be the 40th one the club has ever awarded.</p>
+    <p>The drivers on this year's grid know that. The ones who have been here the longest talk about it quietly. The rookies are starting to figure it out. And the championship that gets decided in <span class="fill">September or October</span> will be the 40th one the club has ever awarded.</p>
 
-    <p>Forty years of racing. Forty years of carrying the spirit of 1950s-through-1970s modified stock cars forward when nobody else was. Forty years of guys unloading at the same tracks, working on the same cars, telling the same stories at the concession stand.</p>
+    <p>Forty years of racing. Forty years of carrying the spirit of 1950s through 1970s modified stock cars forward when nobody else was. Forty years of guys unloading at the same tracks, working on the same cars, telling the same stories at the concession stand.</p>
 
     <p>It's a hell of a grid. Let's go see who wins.</p>
 
-    <!-- FOOTER -->
+    <!-- POST FOOTER -->
     <div class="post-footer">
-      <p><strong>VMRA's 40th Anniversary season is underway.</strong> Follow every race recap, preview, and driver profile at <a href="/news">vmra.club/news</a> — or come out to <a href="/tracks">one of the five tracks on tour</a>. The 2026 championship starts at Evergreen Speedway, May 3.</p>
+      <p><strong>VMRA's 40th Anniversary season is underway.</strong> Follow every race recap, preview, and driver profile at <a href="/news">vmra.club/news</a>, or come out to <a href="/tracks">one of the tracks on tour</a>. The 2026 championship opened at Tri-City Raceway on April 12 and continues across 11 rounds through September.</p>
     </div>
 
   </div>
 </article>
 
-<!-- SITE FOOTER -->
-<footer class="site">
-  <div class="sig">VMRA · EST 1986</div>
-  <p>Vintage Modified Racing Association · 40th Anniversary Season · Pacific Northwest</p>
-  <p><a href="/">← Back to Home</a> · <a href="https://www.facebook.com/NWVMRA/" rel="me noopener" target="_blank">Follow VMRA on Facebook</a></p>
+<!-- ===== CANONICAL FOOTER ===== -->
+<footer class="shell">
+  <div class="foot-inner">
+    <div class="foot-brand">
+      <a href="/" class="logo-lockup" aria-label="VMRA — home">
+        <div class="logo-mark" aria-hidden="true">VM</div>
+        <div class="logo-text">Vintage Modified<small>VMRA · NW · EST 1986</small></div>
+      </a>
+      <p>Pacific Northwest vintage modified stock car racing. Founded 1986 at Spanaway Speedway. Forty seasons of grassroots oval racing, still running on the same handshake rules.</p>
+    </div>
+    <div>
+      <h5>Racing</h5>
+      <ul>
+        <li><a href="/schedule/">Schedule</a></li>
+        <li><a href="/racers/">Drivers</a></li>
+        <li><a href="/standings/">Standings</a></li>
+        <li><a href="/tracks/">Tracks</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Members</h5>
+      <ul>
+        <li><a href="/rules/">Rulebook</a></li>
+        <li><a href="/classifieds/">Classifieds</a></li>
+        <li><a href="/downloads/VMRA-Membership-2026.pdf">Membership</a></li>
+        <li><a href="/contact/">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Connect</h5>
+      <ul>
+        <li><a href="mailto:board@vmra.club">board@vmra.club</a></li>
+        <li><a href="https://www.facebook.com/NWVMRA/" rel="me noopener" target="_blank">Facebook</a></li>
+        <li><a href="/news/">News</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span><span class="chk"></span>© 1986 to 2026 · VMRA · All rights reserved</span>
+    <span>40th Anniversary Season · Made in the PNW</span>
+  </div>
 </footer>
-
-
-<script>
-(function(){
-  var toggle=document.getElementById('navToggle'),menu=document.getElementById('mobile-menu');
-  if(!toggle||!menu)return;
-  function close(){toggle.setAttribute('aria-expanded','false');menu.setAttribute('aria-hidden','true');document.body.style.overflow='';}
-  function open(){toggle.setAttribute('aria-expanded','true');menu.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}
-  toggle.addEventListener('click',function(){toggle.getAttribute('aria-expanded')==='true'?close():open();});
-  menu.addEventListener('click',function(e){var t=e.target.closest('.mm-link,.mm-secondary');if(t)close();});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
-})();
-</script>
 
 </body>
 </html>
