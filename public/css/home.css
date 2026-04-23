@@ -1,0 +1,1993 @@
+/* =========================================================
+   VMRA HOMEPAGE MODULES · home-page-only styles
+   Global shell (nav, mobile menu, banner, footer.shell) lives
+   in /css/shell.css — do NOT redefine those selectors here.
+   Root tokens live in /css/shell.css too.
+   ========================================================= */
+
+/* Grain + film overlay everywhere */
+body::before {
+  content: "";
+  position: fixed; inset: 0;
+  pointer-events: none;
+  z-index: 200;
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.9'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/></svg>");
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+}
+
+/* Halftone scan lines, very subtle */
+body::after {
+  content: "";
+  position: fixed; inset: 0;
+  pointer-events: none;
+  z-index: 199;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0 3px,
+    rgba(0,0,0,0.05) 3px 4px
+  );
+}
+
+/* =========================================================
+   TOP TICKER
+   ========================================================= */
+.ticker {
+  background: var(--race-red);
+  color: var(--chalk);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 8px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  border-bottom: 1px solid rgba(0,0,0,0.3);
+}
+.ticker-track {
+  display: inline-block;
+  animation: ticker 60s linear infinite;
+  padding-left: 100%;
+}
+.ticker-track span { margin-right: 48px; }
+.ticker-track span::before { content: "◆ "; color: var(--sodium); }
+@keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+
+/* =========================================================
+   HERO — cinematic motorsports / broadcast control room
+   ========================================================= */
+.hero {
+  position: relative;
+  min-height: clamp(720px, 92vh, 960px);
+  padding: 80px 5vw 100px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  background: var(--asphalt);
+  border-bottom: 1px solid var(--gold-line);
+}
+
+/* Layered backdrop — black + deep oxblood + restrained red glow */
+.hero::before {
+  content: "";
+  position: absolute; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 78% 38%, rgba(61,10,20,0.55) 0%, rgba(26,5,8,0.32) 35%, transparent 70%),
+    radial-gradient(ellipse 55% 80% at 14% 110%, rgba(209,26,42,0.16) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 30% at 90% 90%, rgba(138,115,51,0.08) 0%, transparent 70%),
+    linear-gradient(168deg, var(--oxblood-deep) 0%, #0e0e10 38%, var(--oxblood) 100%);
+}
+
+/* Tactical grid: 40px fine + 200px coarse, masked to fade at edges */
+.hero::after {
+  content: "";
+  position: absolute; inset: 0; z-index: 1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(241,230,211,0.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(241,230,211,0.022) 1px, transparent 1px),
+    linear-gradient(rgba(241,230,211,0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(241,230,211,0.045) 1px, transparent 1px);
+  background-size: 40px 40px, 40px 40px, 200px 200px, 200px 200px;
+  -webkit-mask-image: radial-gradient(ellipse 95% 100% at 50% 50%, #000 45%, transparent 95%);
+          mask-image: radial-gradient(ellipse 95% 100% at 50% 50%, #000 45%, transparent 95%);
+}
+
+/* Scanline overlay — broadcast feel, very subtle */
+.hero-grain {
+  position: absolute; inset: 0; z-index: 2;
+  pointer-events: none;
+  background: repeating-linear-gradient(0deg, transparent 0 2px, rgba(0,0,0,0.13) 2px 3px);
+  mix-blend-mode: multiply;
+  opacity: 0.55;
+}
+
+/* Cinematic vignette */
+.hero-vignette {
+  position: absolute; inset: 0; z-index: 3;
+  pointer-events: none;
+  background: radial-gradient(ellipse 100% 80% at 50% 50%, transparent 50%, rgba(0,0,0,0.7) 100%);
+}
+
+/* Giant ghost numerals — thin gold/red strokes, restrained */
+.hero-marks {
+  position: absolute; inset: 0; z-index: 1;
+  pointer-events: none;
+  font-family: 'Anton', sans-serif;
+  user-select: none;
+}
+.hero-marks .num {
+  position: absolute;
+  font-size: clamp(20rem, 38vw, 48rem);
+  line-height: 0.78;
+  letter-spacing: -0.06em;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255,179,25,0.07);
+}
+.hero-marks .num.l { top: 4%;  left: -6vw; }
+.hero-marks .num.r {
+  bottom: -10%; right: -3vw;
+  -webkit-text-stroke: 1.5px rgba(209,26,42,0.10);
+}
+.hero-marks .yr {
+  position: absolute;
+  bottom: 5.5%; left: 50%; transform: translateX(-50%);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(5.5rem, 14vw, 16rem);
+  letter-spacing: 0.16em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(241,230,211,0.05);
+  font-weight: 700; white-space: nowrap;
+}
+
+.hero-inner {
+  position: relative; z-index: 10;
+  max-width: 1480px; margin: 0 auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+/* === LEFT: headline composition === */
+.hero-copy { max-width: 780px; }
+
+.hero-copy .badge {
+  display: inline-flex; align-items: center; gap: 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--sodium);
+  margin-bottom: 42px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--gold-rule);
+}
+.hero-copy .badge .ix {
+  font-family: 'Anton', sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  color: var(--bone);
+  padding: 3px 9px;
+  background: rgba(255,179,25,0.10);
+  border: 1px solid rgba(255,179,25,0.45);
+  line-height: 1;
+}
+.hero-copy .badge .pulse {
+  width: 7px; height: 7px;
+  background: var(--race-red);
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px rgba(209,26,42,0.18), 0 0 14px rgba(209,26,42,0.6);
+  animation: pulse 1.6s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1);   opacity: 1; }
+  50%      { transform: scale(1.4); opacity: 0.65; }
+}
+
+.hero h1 {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(4.8rem, 11.5vw, 11.5rem);
+  line-height: 0.86;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--bone);
+  margin: 0;
+  text-shadow: 0 2px 30px rgba(0,0,0,0.4);
+}
+.hero h1 .ln1 { display: block; }
+.hero h1 .ln2 {
+  display: block;
+  color: var(--race-red);
+  text-shadow: 0 0 28px rgba(209,26,42,0.32);
+  position: relative;
+}
+.hero h1 .ln2 .dot {
+  display: inline-block;
+  width: 0.18em; height: 0.18em;
+  background: var(--sodium);
+  margin-left: 0.06em;
+  vertical-align: 0.12em;
+}
+
+.hero-rule {
+  width: 96px; height: 1px;
+  background: var(--gold-rule);
+  margin: 40px 0 30px;
+  position: relative;
+}
+.hero-rule::after {
+  content: ""; position: absolute;
+  left: 0; top: -2px;
+  width: 22px; height: 5px;
+  background: var(--sodium);
+}
+
+.hero-lede {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.0rem;
+  color: var(--bone-dim);
+  max-width: 480px;
+  line-height: 1.7;
+  margin: 0 0 44px;
+  font-weight: 400;
+}
+
+.hero-actions {
+  display: flex; flex-wrap: wrap;
+  gap: 36px;
+  align-items: center;
+}
+.hero-link {
+  display: inline-flex; align-items: center; gap: 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.74rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--bone);
+  padding: 14px 0 12px;
+  border-bottom: 1px solid var(--bone);
+  transition: color 0.2s, border-color 0.2s, letter-spacing 0.2s;
+}
+.hero-link.primary {
+  color: var(--sodium);
+  border-bottom-color: var(--sodium);
+}
+.hero-link .arr {
+  font-family: 'Anton', sans-serif;
+  font-size: 1rem; line-height: 1;
+  transition: transform 0.25s;
+}
+.hero-link:hover { color: var(--race-red); border-bottom-color: var(--race-red); }
+.hero-link:hover .arr { transform: translateX(8px); }
+
+/* === RIGHT: race control panel === */
+.race-panel {
+  position: relative;
+  background:
+    linear-gradient(180deg, rgba(13,9,11,0.86) 0%, rgba(7,4,5,0.94) 100%);
+  border: 1px solid var(--gold-rule);
+  box-shadow:
+    0 0 0 1px rgba(255,179,25,0.05),
+    0 30px 80px -20px rgba(0,0,0,0.7),
+    inset 0 1px 0 rgba(255,179,25,0.18);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.race-panel::before {
+  content: ""; position: absolute; inset: 4px;
+  border: 1px solid rgba(255,179,25,0.10);
+  pointer-events: none;
+}
+/* corner ticks */
+.race-panel::after {
+  content: ""; position: absolute;
+  top: -1px; right: -1px;
+  width: 14px; height: 14px;
+  border-top: 1px solid var(--sodium);
+  border-right: 1px solid var(--sodium);
+}
+
+/* Top "RACE CONTROL // LIVE" strip */
+.panel-strip {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 12px 22px;
+  background: linear-gradient(90deg, rgba(61,10,20,0.55) 0%, rgba(26,5,8,0.78) 100%);
+  border-bottom: 1px solid var(--gold-rule);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--sodium);
+  position: relative;
+}
+.panel-strip .live {
+  display: inline-flex; align-items: center; gap: 8px;
+  color: var(--bone);
+}
+.panel-strip .live::before {
+  content: ""; width: 7px; height: 7px;
+  background: var(--race-red); border-radius: 50%;
+  box-shadow: 0 0 8px rgba(209,26,42,0.8);
+  animation: pulse 1.4s ease-in-out infinite;
+}
+
+.panel-body { padding: 28px 28px 26px; }
+
+.panel-head {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  padding-bottom: 18px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid var(--grease);
+  gap: 16px;
+}
+.panel-head .label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--bone-dim);
+  margin-bottom: 8px;
+}
+.panel-head .round {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.55rem;
+  color: var(--sodium);
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+.panel-head .tag {
+  display: inline-flex; align-items: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--bone);
+  border: 1px solid var(--race-red);
+  padding: 5px 10px;
+  background: rgba(209,26,42,0.12);
+  white-space: nowrap;
+}
+
+.panel-track {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(1.7rem, 2.4vw, 2.25rem);
+  line-height: 1;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  color: var(--bone);
+  margin-bottom: 8px;
+}
+.panel-loc {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  color: var(--bone-dim);
+  margin-bottom: 26px;
+}
+
+/* Countdown — segmented panels in a precision frame */
+.countdown {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+  margin-bottom: 26px;
+  padding: 4px;
+  background: rgba(0,0,0,0.4);
+  border: 1px solid var(--grease);
+}
+.count-cell {
+  background: linear-gradient(180deg, rgba(13,9,11,0.95) 0%, rgba(20,12,15,0.95) 100%);
+  border: 1px solid rgba(255,179,25,0.08);
+  padding: 14px 6px 10px;
+  text-align: center;
+  position: relative;
+}
+.count-cell::before {
+  content: ""; position: absolute;
+  top: 0; left: 8%; right: 8%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--sodium), transparent);
+  opacity: 0.4;
+}
+.count-num {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(1.9rem, 3vw, 2.5rem);
+  color: var(--sodium);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  font-feature-settings: "tnum" 1;
+  text-shadow: 0 0 18px rgba(255,179,25,0.35);
+}
+.count-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--bone-dim);
+  margin-top: 7px;
+}
+
+/* Two-column key/value meta grid with hairline dividers */
+.panel-meta {
+  display: grid; grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--grease);
+}
+.panel-meta > div {
+  padding: 13px 0 12px;
+  border-bottom: 1px dashed var(--grease);
+}
+.panel-meta > div:nth-child(odd) {
+  padding-right: 14px;
+  border-right: 1px dashed var(--grease);
+}
+.panel-meta > div:nth-child(even) { padding-left: 14px; }
+.panel-meta > div:nth-last-child(-n+2) { border-bottom: 0; }
+.panel-meta .k {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-bottom: 5px;
+}
+.panel-meta .v {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.86rem;
+  color: var(--bone);
+  letter-spacing: 0.02em;
+  font-weight: 500;
+}
+
+@media (max-width: 1080px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 56px; }
+  .hero-marks .num.l, .hero-marks .num.r { opacity: 0.55; }
+  .hero { min-height: auto; padding: 60px 5vw 80px; }
+}
+@media (max-width: 720px) {
+  .hero { padding: 44px 5vw 64px; }
+  .hero h1 { font-size: clamp(3.4rem, 16vw, 6rem); }
+  .hero-rule { margin: 32px 0 24px; }
+  .hero-actions { gap: 22px; }
+  .panel-strip { padding: 10px 16px; font-size: 0.56rem; letter-spacing: 0.22em; }
+  .panel-body { padding: 22px 20px; }
+  .panel-meta { grid-template-columns: 1fr; }
+  .panel-meta > div:nth-child(odd) { padding-right: 0; border-right: 0; }
+  .panel-meta > div:nth-child(even) { padding-left: 0; }
+  .panel-meta > div { border-bottom: 1px dashed var(--grease) !important; }
+  .panel-meta > div:last-child { border-bottom: 0 !important; }
+}
+
+/* =========================================================
+   SECTION SHELL
+   ========================================================= */
+section.block {
+  padding: 100px 5vw;
+  position: relative;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.block-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 50px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--grease);
+}
+.block-title {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+}
+.block-marker {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--race-red);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.block-head h2 {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+.block-link {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.76rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--sodium);
+  text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: 1px solid var(--sodium);
+  white-space: nowrap;
+}
+.block-link:hover { color: var(--sodium-hot); }
+
+/* =========================================================
+   UPCOMING RACES STRIP (Super DIRTcar Series pattern)
+   Research move #1 from /last30days racing site audit
+   ========================================================= */
+.upcoming-strip {
+  background: var(--asphalt-2);
+  border-top: 1px solid var(--grease);
+  border-bottom: 1px solid var(--grease);
+  padding: 44px 5vw;
+  position: relative;
+}
+.upcoming-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.upcoming-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 24px;
+  margin-bottom: 24px;
+  padding-bottom: 14px;
+  border-bottom: 1px dashed var(--grease);
+  flex-wrap: wrap;
+}
+.upcoming-head .titleblock {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+.upcoming-head .marker {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--race-red);
+  font-weight: 700;
+}
+.upcoming-head h2 {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+.upcoming-head .link {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--sodium);
+  text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: 1px solid var(--sodium);
+  white-space: nowrap;
+}
+.upcoming-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+.race-card {
+  background: var(--asphalt);
+  border: 1px solid var(--grease);
+  border-top: 3px solid var(--grease);
+  padding: 20px 20px 18px;
+  position: relative;
+  transition: border-color 0.25s, transform 0.25s;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  min-height: 180px;
+}
+.race-card:hover {
+  border-top-color: var(--sodium);
+  transform: translateY(-3px);
+}
+.race-card.next {
+  border-top-color: var(--race-red);
+  background: linear-gradient(180deg, rgba(209,26,42,0.06) 0%, var(--asphalt) 60%);
+}
+.race-card.next::before {
+  content: "NEXT UP";
+  position: absolute;
+  top: -10px; left: 14px;
+  background: var(--race-red);
+  color: var(--chalk);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  padding: 3px 8px;
+  font-weight: 700;
+}
+.race-card .date {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed var(--grease);
+}
+.race-card .date .month {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--chalk-dim);
+}
+.race-card .date .day {
+  font-family: 'Anton', sans-serif;
+  font-size: 2.2rem;
+  color: var(--sodium);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+}
+.race-card .round {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--chalk-dim);
+  margin-bottom: 6px;
+}
+.race-card h3 {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1.05;
+  margin-bottom: 8px;
+  color: var(--chalk);
+}
+.race-card .venue {
+  font-size: 0.8rem;
+  color: var(--chalk-dim);
+  line-height: 1.35;
+  margin-bottom: 10px;
+  flex-grow: 1;
+}
+.race-card .venue strong {
+  color: var(--chalk);
+  font-weight: 600;
+}
+.race-card .meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px dashed var(--grease);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--chalk-dim);
+}
+.race-card .meta .purse { color: var(--sodium); }
+.race-card .meta .arrow { color: var(--race-red); text-decoration: none; transition: color .15s; }
+.race-card .meta .arrow:hover { color: var(--sodium); }
+.race-card .venue .addr { display:block; font-family:'JetBrains Mono',monospace; font-size:.68rem; letter-spacing:.04em; color:var(--chalk-dim); margin-top:6px; line-height:1.4; }
+
+@media (max-width: 1100px) { .upcoming-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .upcoming-grid { grid-template-columns: 1fr; } }
+
+/* =========================================================
+   STANDINGS
+   ========================================================= */
+.standings-wrap {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+.standings {
+  background: var(--asphalt-2);
+  border: 1px solid var(--grease);
+}
+.standings-row {
+  display: grid;
+  grid-template-columns: 60px 80px 1fr 100px 120px;
+  align-items: center;
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--grease);
+  transition: background 0.2s;
+}
+.standings-row:last-child { border-bottom: none; }
+.standings-row:hover { background: var(--asphalt-3); }
+.standings-head {
+  background: var(--asphalt);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--chalk-dim);
+  padding: 12px 24px !important;
+}
+.pos {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.8rem;
+  color: var(--chalk-dim);
+}
+.pos.p1 { color: var(--sodium); }
+.pos.p2 { color: var(--chalk); }
+.pos.p3 { color: var(--rust); }
+
+.car-plate {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px; height: 40px;
+  background: var(--chalk);
+  color: var(--asphalt);
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 1.3rem;
+  transform: skewX(-6deg);
+  letter-spacing: -0.02em;
+  box-shadow: 2px 2px 0 var(--asphalt);
+}
+.car-plate.leader { background: var(--sodium); }
+
+.driver-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+.driver-town {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--chalk-dim);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.wins {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--chalk-dim);
+  letter-spacing: 0.05em;
+}
+.points {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.8rem;
+  color: var(--race-red);
+  text-align: right;
+  letter-spacing: 0.02em;
+}
+
+/* Side panel: season at a glance */
+.season-panel {
+  background: var(--asphalt-2);
+  border: 1px solid var(--grease);
+  padding: 32px;
+  position: relative;
+  overflow: hidden;
+}
+.season-panel::before {
+  content: "SEASON 2026";
+  position: absolute;
+  right: -20px; top: 16px;
+  font-family: 'Anton', sans-serif;
+  font-size: 5rem;
+  color: rgba(244,237,225,0.03);
+  letter-spacing: 0.02em;
+  transform: rotate(90deg);
+  transform-origin: right top;
+}
+.season-panel h3 {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  letter-spacing: 0.02em;
+}
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 14px 0;
+  border-bottom: 1px dashed var(--grease);
+}
+.stat-row:last-child { border-bottom: none; }
+.stat-k {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--chalk-dim);
+}
+.stat-v {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.8rem;
+  color: var(--sodium);
+}
+
+@media (max-width: 900px) {
+  .standings-wrap { grid-template-columns: 1fr; }
+  .standings-row { grid-template-columns: 40px 60px 1fr 80px; }
+  .standings-head .hide-sm, .standings-row .hide-sm { display: none; }
+}
+
+/* =========================================================
+   40TH ANNIVERSARY MILESTONE STRIP
+   ========================================================= */
+.milestone {
+  background: var(--race-red);
+  color: var(--chalk);
+  padding: 60px 5vw;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(0,0,0,0.3);
+  border-bottom: 1px solid rgba(0,0,0,0.3);
+}
+.milestone::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(45deg, rgba(0,0,0,0.08) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(0,0,0,0.08) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(0,0,0,0.08) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(0,0,0,0.08) 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0;
+  opacity: 0.4;
+}
+.milestone-inner {
+  position: relative;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 40px;
+}
+.milestone-40 {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(6rem, 12vw, 11rem);
+  line-height: 0.85;
+  color: var(--chalk);
+  letter-spacing: -0.03em;
+  text-shadow: 6px 6px 0 var(--asphalt);
+}
+.milestone-copy h3 {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  line-height: 1;
+}
+.milestone-copy p {
+  font-size: 1rem;
+  max-width: 520px;
+  opacity: 0.95;
+}
+.milestone-btn {
+  background: var(--asphalt);
+  color: var(--sodium);
+  padding: 18px 26px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  border: 2px solid var(--asphalt);
+  transition: all 0.2s;
+}
+.milestone-btn:hover { background: var(--sodium); color: var(--asphalt); border-color: var(--sodium); }
+
+@media (max-width: 900px) {
+  .milestone-inner { grid-template-columns: 1fr; gap: 20px; text-align: center; }
+  .milestone-btn { justify-self: center; }
+}
+
+/* =========================================================
+   NEWS GRID
+   ========================================================= */
+.news-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 2px;
+  background: var(--grease);
+  border: 1px solid var(--grease);
+}
+.news-card {
+  background: var(--asphalt-2);
+  padding: 32px;
+  text-decoration: none;
+  color: var(--chalk);
+  position: relative;
+  transition: background 0.25s;
+  display: flex;
+  flex-direction: column;
+  min-height: 340px;
+}
+.news-card:hover { background: var(--asphalt-3); }
+.news-card.feature {
+  grid-row: 1 / span 2;
+  min-height: 680px;
+  background: linear-gradient(180deg, var(--asphalt-2) 0%, var(--asphalt-3) 100%);
+  border-left: 3px solid var(--race-red);
+}
+.news-card.feature::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 55%;
+  background:
+    radial-gradient(ellipse at 40% 40%, rgba(209,26,42,0.25) 0%, transparent 60%),
+    linear-gradient(180deg, var(--asphalt-3) 0%, transparent 100%);
+  z-index: 0;
+}
+.news-card.feature::after {
+  content: "◆ FEATURE";
+  position: absolute;
+  top: 24px; right: 24px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  color: var(--sodium);
+  z-index: 2;
+}
+
+/* faux photo placeholder */
+.news-photo {
+  background:
+    repeating-linear-gradient(
+      45deg,
+      rgba(255,255,255,0.02) 0 4px,
+      transparent 4px 8px
+    ),
+    linear-gradient(135deg, var(--rust) 0%, var(--asphalt-3) 60%, var(--asphalt) 100%);
+  height: 55%;
+  margin: -32px -32px 24px;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--grease);
+}
+.news-photo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 70% 30%, rgba(255,179,25,0.3) 0%, transparent 40%);
+}
+.news-photo .num {
+  position: absolute;
+  bottom: 16px; left: 20px;
+  font-family: 'Anton', sans-serif;
+  font-size: 7rem;
+  line-height: 0.8;
+  color: var(--chalk);
+  text-shadow: 4px 4px 0 rgba(0,0,0,0.5);
+  opacity: 0.95;
+  letter-spacing: -0.03em;
+}
+
+.news-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--sodium);
+  margin-bottom: 14px;
+  position: relative;
+  z-index: 2;
+}
+.news-headline {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.3rem;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 2;
+}
+.news-card.feature .news-headline { font-size: 2.4rem; }
+.news-snippet {
+  font-size: 0.9rem;
+  color: var(--chalk-dim);
+  line-height: 1.5;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 2;
+}
+.news-meta {
+  margin-top: auto;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--chalk-dim);
+  display: flex;
+  justify-content: space-between;
+  padding-top: 16px;
+  border-top: 1px dashed var(--grease);
+  position: relative;
+  z-index: 2;
+}
+.news-meta .arrow { color: var(--race-red); }
+
+@media (max-width: 900px) {
+  .news-grid { grid-template-columns: 1fr; }
+  .news-card.feature { grid-row: auto; min-height: 400px; }
+  .news-card.feature .news-headline { font-size: 1.8rem; }
+}
+
+/* =========================================================
+   DRIVER ROSTER
+   ========================================================= */
+.roster {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.driver-card {
+  background: var(--asphalt-2);
+  border: 1px solid var(--grease);
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s, border-color 0.25s;
+  cursor: pointer;
+}
+.driver-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--race-red);
+}
+.driver-head {
+  height: 200px;
+  background:
+    repeating-linear-gradient(
+      135deg,
+      rgba(255,255,255,0.02) 0 2px,
+      transparent 2px 6px
+    ),
+    linear-gradient(160deg, var(--engine-blue) 0%, var(--asphalt-3) 80%);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.driver-card:nth-child(even) .driver-head { background: linear-gradient(160deg, var(--rust) 0%, var(--asphalt-3) 80%), repeating-linear-gradient(135deg, rgba(255,255,255,0.02) 0 2px, transparent 2px 6px); }
+.driver-card:nth-child(3n) .driver-head { background: linear-gradient(160deg, var(--grease) 0%, var(--asphalt) 80%); }
+.driver-card:nth-child(4n) .driver-head { background: linear-gradient(160deg, var(--race-red) 0%, var(--asphalt-3) 80%); }
+
+.driver-num {
+  font-family: 'Anton', sans-serif;
+  font-size: 9rem;
+  line-height: 0.8;
+  color: var(--chalk);
+  text-shadow: 6px 6px 0 rgba(0,0,0,0.5);
+  letter-spacing: -0.04em;
+}
+.driver-body {
+  padding: 18px 20px 22px;
+  border-top: 1px solid var(--grease);
+}
+.driver-card h4 {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.driver-card .meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--chalk-dim);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+}
+.driver-card .meta .rank { color: var(--sodium); }
+
+@media (max-width: 900px) {
+  .roster { grid-template-columns: repeat(2, 1fr); }
+  .driver-num { font-size: 6rem; }
+}
+@media (max-width: 520px) {
+  .roster { grid-template-columns: 1fr; }
+}
+
+/* =========================================================
+   SPONSOR WALL
+   ========================================================= */
+.sponsor-block {
+  background: var(--asphalt-2);
+  padding: 80px 5vw;
+  border-top: 1px solid var(--grease);
+  border-bottom: 1px solid var(--grease);
+}
+.sponsor-inner { max-width: 1400px; margin: 0 auto; }
+.sponsor-head {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: end;
+  margin-bottom: 40px;
+}
+.sponsor-head h2 {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  line-height: 0.9;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+.sponsor-head h2 .accent { color: var(--race-red); }
+
+.sponsor-pitch {
+  max-width: 480px;
+  color: var(--chalk-dim);
+  font-size: 0.98rem;
+  line-height: 1.55;
+  border-left: 2px solid var(--sodium);
+  padding-left: 18px;
+}
+
+.sponsor-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2px;
+  background: var(--grease);
+  border: 1px solid var(--grease);
+  margin-bottom: 40px;
+}
+.sponsor-cell {
+  background: var(--asphalt);
+  aspect-ratio: 16 / 9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  text-align: center;
+  transition: background 0.25s;
+  position: relative;
+}
+.sponsor-cell:hover { background: var(--asphalt-3); }
+.sponsor-cell .name {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.25rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--chalk);
+}
+.sponsor-cell .tier {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--sodium);
+  margin-bottom: 8px;
+}
+.sponsor-cell.open {
+  background: var(--asphalt);
+  border: 2px dashed var(--grease);
+  cursor: pointer;
+}
+.sponsor-cell.open:hover { border-color: var(--sodium); background: var(--asphalt-3); }
+.sponsor-cell.open .name { color: var(--chalk-dim); font-size: 0.85rem; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.2em; }
+.sponsor-cell.open .plus { font-size: 2rem; color: var(--sodium); line-height: 1; margin-bottom: 6px; }
+
+.sponsor-cta {
+  background: var(--sodium);
+  color: var(--asphalt);
+  padding: 40px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 30px;
+  align-items: center;
+}
+.sponsor-cta h3 {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-bottom: 8px;
+}
+.sponsor-cta p { font-size: 0.95rem; max-width: 560px; }
+.btn-media-kit {
+  background: var(--asphalt);
+  color: var(--sodium);
+  padding: 18px 24px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.76rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  border: 2px solid var(--asphalt);
+  transition: all 0.2s;
+}
+.btn-media-kit:hover { background: var(--chalk); color: var(--asphalt); border-color: var(--chalk); }
+
+@media (max-width: 900px) {
+  .sponsor-grid { grid-template-columns: repeat(2, 1fr); }
+  .sponsor-cta { grid-template-columns: 1fr; text-align: center; }
+  .btn-media-kit { justify-self: center; }
+}
+
+/* =========================================================
+   ANSWER-FIRST ABOUT STRIP (SEO/AEO layer)
+   ========================================================= */
+.about-strip {
+  background: var(--asphalt-2);
+  border-top: 1px solid var(--grease);
+  border-bottom: 1px solid var(--grease);
+  padding: 48px 5vw;
+}
+.about-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 40px;
+  align-items: start;
+}
+.about-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--sodium);
+  padding-top: 4px;
+  border-top: 2px solid var(--sodium);
+  padding-left: 0;
+  max-width: 220px;
+}
+.about-copy p {
+  font-size: 1.05rem;
+  color: var(--chalk);
+  line-height: 1.65;
+  max-width: 78ch;
+  margin-bottom: 14px;
+}
+.about-copy p strong { color: var(--sodium); font-weight: 600; }
+.about-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px dashed var(--grease);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+}
+.about-meta div { line-height: 1.5; }
+.about-meta .k {
+  display: block;
+  color: var(--chalk-dim);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.about-meta .v { color: var(--chalk); letter-spacing: 0.03em; }
+@media (max-width: 900px) {
+  .about-inner { grid-template-columns: 1fr; gap: 20px; }
+  .about-label { border-top: none; border-left: 2px solid var(--sodium); padding-left: 14px; padding-top: 0; }
+}
+
+/* =========================================================
+   FAQ SECTION (visible + schema-marked)
+   ========================================================= */
+.faq-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  background: var(--grease);
+  border: 1px solid var(--grease);
+}
+.faq-item {
+  background: var(--asphalt-2);
+  padding: 26px 28px;
+  transition: background 0.25s;
+}
+.faq-item:hover { background: var(--asphalt-3); }
+.faq-item h3 {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-bottom: 10px;
+  line-height: 1.1;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+.faq-item h3::before {
+  content: "Q.";
+  color: var(--race-red);
+  font-size: 0.9em;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.05em;
+}
+.faq-item p {
+  font-size: 0.95rem;
+  color: var(--chalk-dim);
+  line-height: 1.6;
+  padding-left: 28px;
+  position: relative;
+  margin-bottom: 0;
+}
+.faq-item p::before {
+  content: "A.";
+  position: absolute;
+  left: 0;
+  color: var(--sodium);
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+}
+@media (max-width: 720px) {
+  .faq-wrap { grid-template-columns: 1fr; }
+}
+
+/* =========================================================
+   V3 · WHAT TO WATCH FOR (DIRTcar pre-race preview module)
+   ========================================================= */
+.preview-strip {
+  background: linear-gradient(135deg, var(--asphalt-3) 0%, var(--asphalt) 100%);
+  padding: 70px 5vw;
+  border-top: 1px solid var(--grease);
+  border-bottom: 1px solid var(--grease);
+  position: relative;
+  overflow: hidden;
+}
+.preview-strip::before {
+  content: "";
+  position: absolute;
+  top: -100px; left: -100px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(209,26,42,0.08) 0%, transparent 70%);
+}
+.preview-inner {
+  max-width: 1400px; margin: 0 auto; position: relative;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 48px;
+  align-items: start;
+}
+.preview-label {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  text-transform: uppercase;
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+}
+.preview-label .sub-label {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.25em;
+  color: var(--race-red);
+  margin-bottom: 14px;
+  font-weight: 700;
+}
+.preview-label .accent { color: var(--sodium); }
+
+.preview-article h3 {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  margin-bottom: 20px;
+}
+.preview-article p {
+  color: var(--chalk-dim);
+  font-size: 1rem;
+  line-height: 1.65;
+  margin-bottom: 14px;
+  max-width: 68ch;
+}
+.preview-article p strong { color: var(--chalk); }
+.preview-byline {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--chalk-dim);
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--grease);
+}
+.preview-byline strong { color: var(--sodium); }
+
+@media (max-width: 900px) {
+  .preview-inner { grid-template-columns: 1fr; gap: 20px; }
+}
+
+/* =========================================================
+   V3 · TRACKS GRID (USRA Tracks pattern)
+   ========================================================= */
+.tracks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2px;
+  background: var(--grease);
+  border: 1px solid var(--grease);
+}
+.track-card {
+  background: var(--asphalt-2);
+  padding: 26px 24px;
+  text-decoration: none;
+  color: var(--chalk);
+  transition: background 0.25s;
+  position: relative;
+  border-left: 3px solid transparent;
+}
+.track-card:hover { background: var(--asphalt-3); border-left-color: var(--race-red); }
+.track-card .tc-state {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.25em;
+  color: var(--sodium);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.track-card h4 {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.track-card .tc-city {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.9rem;
+  color: var(--chalk-dim);
+  margin-bottom: 16px;
+}
+.track-card .tc-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--grease);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: var(--chalk-dim);
+}
+.track-card .tc-meta .k { color: var(--chalk); text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.62rem; }
+.track-card .tc-next {
+  display: inline-block;
+  margin-top: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: var(--sodium);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   V3 · DOWNLOADS ROW (USRA Downloads pattern — essential for racing)
+   ========================================================= */
+.downloads-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  background: var(--grease);
+  border: 1px solid var(--grease);
+  margin-top: 30px;
+}
+.dl-cell {
+  background: var(--asphalt-2);
+  padding: 26px 22px;
+  text-decoration: none;
+  color: var(--chalk);
+  transition: background 0.25s;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 160px;
+}
+.dl-cell:hover { background: var(--asphalt-3); }
+.dl-cell .dl-icon {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.6rem;
+  color: var(--sodium);
+  margin-bottom: 10px;
+  letter-spacing: 0.05em;
+}
+.dl-cell h4 {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.15rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1.15;
+  margin-bottom: 8px;
+}
+.dl-cell .dl-sub {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.82rem;
+  color: var(--chalk-dim);
+  margin-bottom: 12px;
+  line-height: 1.45;
+}
+.dl-cell .dl-action {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--race-red);
+  font-weight: 700;
+}
+.dl-cell:hover .dl-action { color: var(--sodium); }
+
+@media (max-width: 900px) { .downloads-row { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .downloads-row { grid-template-columns: 1fr; } }
+
+/* =========================================================
+   V3 · SUBSCRIBE STRIP (USRA pattern — email list for fans)
+   ========================================================= */
+.subscribe-strip {
+  background: var(--sodium);
+  color: var(--asphalt);
+  padding: 60px 5vw;
+  position: relative;
+  overflow: hidden;
+}
+.subscribe-strip::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(135deg, rgba(0,0,0,0.05) 25%, transparent 25%),
+    linear-gradient(45deg, rgba(0,0,0,0.05) 25%, transparent 25%);
+  background-size: 20px 20px;
+}
+.subscribe-inner {
+  max-width: 1400px; margin: 0 auto; position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: center;
+}
+.subscribe-strip h2 {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 0.95;
+  color: var(--asphalt);
+}
+.subscribe-strip p {
+  font-size: 1rem;
+  max-width: 540px;
+  margin-top: 10px;
+  color: var(--asphalt);
+  opacity: 0.85;
+}
+.sub-form {
+  display: flex;
+  gap: 2px;
+  background: var(--asphalt);
+  padding: 2px;
+}
+.sub-form input {
+  background: var(--asphalt);
+  color: var(--chalk);
+  border: none;
+  padding: 16px 20px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.95rem;
+  min-width: 260px;
+  outline: none;
+}
+.sub-form input::placeholder { color: var(--chalk-dim); }
+.sub-form button {
+  background: var(--race-red);
+  color: var(--chalk);
+  border: none;
+  padding: 16px 26px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.76rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.sub-form button:hover { background: var(--race-red-hot); }
+
+@media (max-width: 900px) {
+  .subscribe-inner { grid-template-columns: 1fr; }
+  .sub-form { flex-direction: column; gap: 8px; background: transparent; padding: 0; }
+  .sub-form input { min-width: 0; width: 100%; }
+}
+
+/* =========================================================
+   V3 · NEWS BYLINE upgrades (multi-author E-E-A-T)
+   ========================================================= */
+.byline-strong {
+  color: var(--sodium);
+  font-weight: 700;
+}
+
+/* =========================================================
+   V3 · SPONSOR TIER BADGE upgrades
+   ========================================================= */
+.tier-badge {
+  display: inline-block;
+  padding: 3px 9px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+.tier-badge.title { background: var(--sodium); color: var(--asphalt); }
+.tier-badge.major { background: var(--chalk); color: var(--asphalt); }
+.tier-badge.official { background: var(--asphalt); color: var(--sodium); border: 1px solid var(--sodium); }
+
+/* fade-in on load */
+.reveal { opacity: 0; transform: translateY(12px); animation: reveal 0.7s ease-out forwards; }
+.reveal:nth-child(2) { animation-delay: 0.1s; }
+.reveal:nth-child(3) { animation-delay: 0.2s; }
+.reveal:nth-child(4) { animation-delay: 0.3s; }
+@keyframes reveal { to { opacity: 1; transform: translateY(0); } }
+
+/* =========================================================
+   THE CARS · cinematic video block (Vince's #72 walk-around)
+   ========================================================= */
+.cars-block {
+  position: relative;
+  padding: 80px 0 90px;
+  background:
+    radial-gradient(ellipse at 15% 20%, rgba(209,26,42,0.08) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 80%, rgba(255,179,25,0.06) 0%, transparent 55%),
+    linear-gradient(180deg, var(--asphalt) 0%, #08080a 50%, var(--asphalt) 100%);
+  border-top: 1px solid var(--grease);
+  border-bottom: 1px solid var(--grease);
+  overflow: hidden;
+}
+.cars-block::before {
+  content: "";
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(244,237,225,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(244,237,225,0.025) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+}
+.cars-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 5vw;
+  position: relative;
+  z-index: 2;
+}
+.cars-head {
+  display: flex; align-items: baseline; gap: 18px;
+  padding-bottom: 14px; margin-bottom: 36px;
+  border-bottom: 1px dashed var(--grease);
+  flex-wrap: wrap;
+}
+.cars-head .marker {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--race-red); font-weight: 700;
+}
+.cars-head h2 {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  text-transform: uppercase; letter-spacing: 0.02em; line-height: 1;
+}
+.cars-head .meta {
+  margin-left: auto;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.66rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--chalk-dim);
+}
+
+.cars-stage {
+  display: grid;
+  grid-template-columns: minmax(300px, 420px) 1fr;
+  gap: 0;
+  background: #050507;
+  border: 1px solid var(--grease);
+  position: relative;
+  overflow: hidden;
+}
+@media (max-width: 920px) { .cars-stage { grid-template-columns: 1fr; } }
+
+/* Video player frame — portrait (9:16-ish) for phone-shot walk-around */
+.cars-video-wrap {
+  position: relative;
+  background: #000;
+  aspect-ratio: 5 / 9;
+  max-height: 760px;
+  overflow: hidden;
+}
+@media (max-width: 920px) {
+  .cars-video-wrap { aspect-ratio: 5 / 9; max-height: 72vh; margin: 0 auto; width: min(100%, 440px); }
+}
+.cars-video-wrap video {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  background: #000;
+}
+/* Cinematic letterbox on top + bottom */
+.cars-video-wrap::before,
+.cars-video-wrap::after {
+  content: "";
+  position: absolute; left: 0; right: 0;
+  height: 20px;
+  background: #000;
+  z-index: 3; pointer-events: none;
+}
+.cars-video-wrap::before { top: 0; }
+.cars-video-wrap::after { bottom: 0; }
+
+/* Corner-bracket overlay (looks like film viewfinder) */
+.cars-video-frame {
+  position: absolute; inset: 0; z-index: 4; pointer-events: none;
+}
+.cars-video-frame span {
+  position: absolute; width: 22px; height: 22px;
+  border-color: var(--sodium);
+  border-style: solid;
+  border-width: 0;
+  opacity: 0.85;
+}
+.cars-video-frame span:nth-child(1) { top: 30px; left: 16px; border-top-width: 2px; border-left-width: 2px; }
+.cars-video-frame span:nth-child(2) { top: 30px; right: 16px; border-top-width: 2px; border-right-width: 2px; }
+.cars-video-frame span:nth-child(3) { bottom: 30px; left: 16px; border-bottom-width: 2px; border-left-width: 2px; }
+.cars-video-frame span:nth-child(4) { bottom: 30px; right: 16px; border-bottom-width: 2px; border-right-width: 2px; }
+
+/* Recording-style HUD label */
+.cars-hud {
+  position: absolute; top: 36px; left: 28px;
+  z-index: 5;
+  display: flex; align-items: center; gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--chalk); font-weight: 700;
+  background: rgba(0,0,0,0.55);
+  padding: 5px 9px;
+  border-left: 2px solid var(--race-red);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+}
+.cars-hud .rec-dot {
+  width: 8px; height: 8px; background: var(--race-red); border-radius: 50%;
+  box-shadow: 0 0 6px var(--race-red);
+  animation: rec-pulse 1.4s ease-in-out infinite;
+}
+@keyframes rec-pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+/* Sound toggle button */
+.cars-sound-btn {
+  position: absolute; bottom: 36px; right: 28px;
+  z-index: 5;
+  background: rgba(0,0,0,0.6);
+  border: 1px solid var(--sodium);
+  color: var(--sodium);
+  padding: 8px 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex; align-items: center; gap: 8px;
+}
+.cars-sound-btn:hover { background: var(--sodium); color: var(--asphalt); }
+.cars-sound-btn .icon { font-size: 0.9rem; line-height: 1; }
+
+/* Sidebar / story panel */
+.cars-story {
+  padding: 36px 36px 32px;
+  background:
+    linear-gradient(180deg, var(--asphalt-2) 0%, #131316 100%);
+  border-left: 1px solid var(--grease);
+  display: flex; flex-direction: column;
+  position: relative;
+}
+@media (max-width: 920px) { .cars-story { border-left: none; border-top: 1px solid var(--grease); padding: 28px 26px; } }
+.cars-story::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--race-red) 0%, var(--sodium) 100%);
+}
+
+.cars-story .car-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--sodium); font-weight: 700; margin-bottom: 18px;
+}
+.cars-story .car-tag::before {
+  content: ""; width: 8px; height: 8px; background: var(--sodium);
+  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+}
+
+.cars-story .num-plate {
+  font-family: 'Anton', sans-serif;
+  font-size: 5rem; line-height: 0.85;
+  color: var(--chalk); letter-spacing: -0.04em;
+  text-shadow: 3px 3px 0 var(--race-red);
+  margin-bottom: 6px;
+}
+.cars-story h3 {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.6rem; line-height: 1;
+  text-transform: uppercase; letter-spacing: 0.02em;
+  margin-bottom: 4px;
+}
+.cars-story .driver-loc {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--chalk-dim);
+  margin-bottom: 18px;
+}
+
+.cars-story .memorial {
+  background: rgba(255,179,25,0.05);
+  border-left: 3px solid var(--sodium);
+  padding: 14px 16px;
+  margin-bottom: 18px;
+  font-size: 0.92rem; color: var(--chalk-dim); line-height: 1.55;
+}
+.cars-story .memorial strong { color: var(--chalk); font-weight: 600; }
+.cars-story .memorial::before {
+  content: "IN MEMORIAM"; display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.58rem; letter-spacing: 0.25em;
+  color: var(--sodium); font-weight: 700; margin-bottom: 6px;
+}
+
+.cars-story p.copy {
+  font-size: 0.95rem; color: var(--chalk-dim); line-height: 1.6;
+  margin-bottom: 14px;
+}
+.cars-story p.copy strong { color: var(--chalk); font-weight: 600; }
+
+.cars-spec-row {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 2px; background: var(--grease); border: 1px solid var(--grease);
+  margin: 16px 0 18px;
+}
+.cars-spec-row .spec {
+  background: var(--asphalt); padding: 10px 12px;
+}
+.cars-spec-row .spec .k {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.56rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--chalk-dim); margin-bottom: 3px;
+}
+.cars-spec-row .spec .v {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.86rem; color: var(--chalk); font-weight: 600;
+}
+.cars-spec-row .spec .v.hot { color: var(--sodium); }
+
+.cars-sponsor {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px dashed var(--grease);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.66rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--chalk-dim);
+}
+.cars-sponsor strong { color: var(--chalk); font-weight: 700; }
+
+/* Caption strip below the stage */
+.cars-caption {
+  margin-top: 18px;
+  display: flex; justify-content: space-between; gap: 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--chalk-dim);
+  flex-wrap: wrap;
+}
+.cars-caption .left { color: var(--sodium); }
+
+/* ========== Heritage photo (Ernie Conwell's original #72) — archive-diptych treatment ========== */
+.cars-heritage {
+  margin: 36px 0 0;
+  display: grid;
+  grid-template-columns: 1.8fr 1fr;
+  gap: 0;
+  background: #050507;
+  border: 1px solid var(--grease);
+  position: relative;
+  overflow: hidden;
+}
+@media (max-width: 920px) { .cars-heritage { grid-template-columns: 1fr; } }
+
+.cars-heritage-wrap {
+  position: relative;
+  background: #000;
+  aspect-ratio: 2000 / 1048;
+  overflow: hidden;
+}
+.cars-heritage-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: saturate(0.92) contrast(1.04);
+}
+/* Subtle archive/sepia tone on hover — signals "vintage footage" */
+.cars-heritage-wrap::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(255,179,25,0.04) 0%, transparent 35%, rgba(0,0,0,0.25) 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+/* Letterbox strips + corner brackets reuse .cars-video-frame styling */
+.cars-heritage-wrap .cars-video-frame { z-index: 4; }
+.cars-heritage-wrap .cars-hud {
+  top: 20px; left: 22px;
+  border-left-color: var(--sodium);
+}
+.cars-heritage-wrap .cars-hud .rec-dot {
+  background: var(--sodium);
+  box-shadow: 0 0 6px var(--sodium);
+  animation: none;
+}
+
+.cars-heritage-caption {
+  padding: 28px 30px 26px;
+  background: linear-gradient(180deg, var(--asphalt-2) 0%, #131316 100%);
+  border-left: 1px solid var(--grease);
+  display: flex; flex-direction: column; justify-content: center;
+  position: relative;
+}
+@media (max-width: 920px) {
+  .cars-heritage-caption { border-left: none; border-top: 1px solid var(--grease); padding: 22px 24px; }
+}
+.cars-heritage-caption::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--sodium) 0%, var(--race-red) 100%);
+}
+.cars-heritage-caption .tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem; letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--sodium); font-weight: 700; margin-bottom: 12px;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.cars-heritage-caption .tag::before {
+  content: ""; width: 8px; height: 8px; background: var(--sodium);
+  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+}
+.cars-heritage-caption h3 {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.4rem; line-height: 1.05;
+  text-transform: uppercase; letter-spacing: 0.02em;
+  margin-bottom: 10px;
+}
+.cars-heritage-caption p {
+  font-size: 0.92rem; color: var(--chalk-dim); line-height: 1.55;
+  margin-bottom: 8px;
+}
+.cars-heritage-caption p strong { color: var(--chalk); font-weight: 600; }
+.cars-heritage-caption .meta {
+  margin-top: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--chalk-dim);
+  border-top: 1px dashed var(--grease);
+  padding-top: 10px;
+}
+
+

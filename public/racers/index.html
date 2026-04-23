@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>VMRA Roster · The Cars and Drivers · Vintage Modified Racing Association</title>
+<meta name="description" content="The 2026 VMRA driver roster — Vince Conwell's blue #72, Cheater Dave's green #51, Steve Woods' #22, Shane Strimple's #57, and the rest of the Pacific Northwest field. Paddock photos, on-track shots, every car you'll see at Evergreen, Tri-City, Wenatchee, South Sound, and Stateline.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://vmra.club/racers/">
+
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Vintage Modified Racing Association">
+<meta property="og:title" content="VMRA Roster · The Cars and Drivers">
+<meta property="og:description" content="The 2026 VMRA roster — paddock and on-track photographs of the Pacific Northwest vintage modified field.">
+<meta property="og:url" content="https://vmra-preview-theta.vercel.app/racers/">
+<meta property="og:image" content="https://vmra-preview-theta.vercel.app/og-vmra.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://vmra-preview-theta.vercel.app/og-vmra.jpg">
+
+<link rel="preload" href="/fonts/V8mDoQDjQSkFtoMM3T6r8E7mPbF4C_k3HqU.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/1Ptgg87LROyAm3Kz-C8CSKlv.woff2" as="font" type="font/woff2" crossorigin>
+<link href="/fonts/fonts.css" rel="stylesheet">
+<link href="/css/shell.css" rel="stylesheet">
+<script src="/js/shell.js" defer></script>
+
+<style>
+:root {
+  --asphalt: #0e0e10;
+  --asphalt-2: #17171a;
+  --asphalt-3: #212126;
+  --grease: #2a2a30;
+  --chalk: #f4ede1;
+  --chalk-dim: #c9c0ae;
+  --race-red: #d11a2a;
+  --race-red-hot: #ff2a3c;
+  --sodium: #ffb319;
+  --sodium-hot: #ffd060;
+  --engine-blue: #2a5d8f;
+  --rust: #9a3b1e;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--asphalt);
+  color: var(--chalk);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+
+.cb-subscribe { color: var(--sodium); font-weight: 700; }
+
+/* ===== HERO ===== */
+.roster-hero {
+  padding: 64px 5vw 48px;
+  max-width: 1280px; margin: 0 auto;
+  position: relative;
+  border-bottom: 1px dashed var(--grease);
+}
+.roster-hero::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(244,237,225,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(244,237,225,0.02) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+}
+.roster-hero .marker {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem; letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--race-red); font-weight: 700; margin-bottom: 14px;
+  display: inline-flex; align-items: center; gap: 10px;
+}
+.roster-hero .marker::before {
+  content: ""; width: 8px; height: 8px; background: var(--race-red);
+  box-shadow: 0 0 6px var(--race-red);
+}
+.roster-hero h1 {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(2.4rem, 6vw, 4.4rem);
+  text-transform: uppercase; letter-spacing: 0.01em; line-height: 0.95;
+  margin-bottom: 18px;
+  position: relative;
+}
+.roster-hero h1 .accent { color: var(--sodium); }
+.roster-hero .lede {
+  max-width: 760px;
+  font-size: 1.02rem; color: var(--chalk-dim); line-height: 1.6;
+}
+.roster-hero .lede strong { color: var(--chalk); font-weight: 600; }
+
+.roster-stats {
+  display: flex; gap: 28px; margin-top: 24px; flex-wrap: wrap;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--chalk-dim);
+}
+.roster-stats strong { color: var(--sodium); margin-right: 6px; font-weight: 700; }
+
+/* ===== FILTER BAR ===== */
+.filter-bar {
+  max-width: 1280px; margin: 0 auto; padding: 28px 5vw 12px;
+  display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+}
+.filter-bar .filter-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.64rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--chalk-dim); margin-right: 8px;
+}
+.filter-chip {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600;
+  background: transparent; color: var(--chalk-dim);
+  border: 1px solid var(--grease);
+  padding: 7px 13px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.filter-chip:hover { border-color: var(--sodium); color: var(--chalk); }
+.filter-chip[aria-pressed="true"] {
+  background: var(--sodium); color: var(--asphalt); border-color: var(--sodium);
+}
+.filter-count {
+  margin-left: auto;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.66rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--chalk-dim);
+}
+.filter-count strong { color: var(--sodium); }
+
+/* ===== ROSTER GRID ===== */
+.roster-grid {
+  max-width: 1280px; margin: 0 auto; padding: 14px 5vw 80px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+  list-style: none;
+}
+
+/* ===== HELP US BUILD THE ROSTER ===== */
+.help-roster {
+  max-width: 1280px; margin: 0 auto; padding: 50px 5vw 80px;
+  border-top: 1px dashed var(--grease);
+}
+.help-inner { display: grid; gap: 32px; }
+.help-head { max-width: 760px; }
+.help-head .marker {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem; letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--race-red); font-weight: 700; margin-bottom: 12px;
+  display: inline-flex; align-items: center; gap: 10px;
+}
+.help-head .marker::before {
+  content: ""; width: 8px; height: 8px; background: var(--race-red);
+  box-shadow: 0 0 6px var(--race-red);
+}
+.help-head h2 {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem); line-height: 1.05;
+  letter-spacing: 0.02em; margin-bottom: 14px;
+}
+.help-lede { color: var(--chalk-dim); font-size: 1.02rem; line-height: 1.6; }
+
+.help-block { background: var(--asphalt-2); border: 1px solid var(--grease); padding: 26px 28px; }
+.help-block h3 {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.4rem; letter-spacing: 0.02em;
+  color: var(--sodium); margin-bottom: 14px;
+}
+.help-sub { color: var(--chalk-dim); font-size: 0.92rem; margin-bottom: 14px; font-style: italic; }
+.help-list {
+  list-style: none; display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 10px 24px;
+}
+.help-list li {
+  font-family: 'Space Grotesk', sans-serif; font-size: 0.96rem;
+  display: flex; align-items: baseline; gap: 10px;
+  padding: 8px 0; border-bottom: 1px dotted var(--grease);
+}
+.help-list.compact li { padding: 6px 0; font-size: 0.9rem; }
+.help-list li .hn {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.78rem;
+  letter-spacing: 0.05em; color: var(--race-red); font-weight: 700;
+  min-width: 48px;
+}
+.help-list li strong { color: var(--chalk); font-weight: 600; }
+.help-list li em {
+  font-style: normal; font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem; letter-spacing: 0.08em; color: var(--chalk-dim);
+  text-transform: uppercase; margin-left: auto;
+}
+
+.help-cta {
+  background: linear-gradient(135deg, var(--race-red) 0%, #a01521 100%);
+  padding: 32px 32px; text-align: center;
+  display: flex; flex-direction: column; gap: 14px; align-items: center;
+}
+.help-btn {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700;
+  background: var(--asphalt); color: var(--sodium);
+  padding: 16px 28px; text-decoration: none; border: 2px solid var(--asphalt);
+  transition: all 0.2s;
+}
+.help-btn:hover { background: var(--sodium); color: var(--asphalt); border-color: var(--sodium); }
+.help-note {
+  color: rgba(244, 237, 225, 0.9); font-size: 0.9rem;
+  max-width: 600px; line-height: 1.5;
+}
+.help-note a { color: var(--sodium); text-decoration: none; border-bottom: 1px solid currentColor; }
+
+.racer-card {
+  position: relative;
+  background: #050507;
+  border: 1px solid var(--grease);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.25s ease, border-color 0.2s ease, box-shadow 0.25s ease;
+  outline: none;
+  display: block;
+}
+.racer-card:hover,
+.racer-card:focus-visible {
+  transform: translateY(-3px);
+  border-color: var(--sodium);
+  box-shadow: 0 12px 26px -10px rgba(255, 179, 25, 0.28);
+}
+.racer-card[hidden] { display: none; }
+
+.racer-photo {
+  position: relative;
+  background: #000;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+.racer-photo img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease, filter 0.25s ease;
+}
+.racer-card:hover .racer-photo img {
+  transform: scale(1.04);
+  filter: saturate(1.1) contrast(1.04);
+}
+/* Corner brackets — echo cinematic treatment from homepage */
+.racer-photo .brackets span {
+  position: absolute; width: 16px; height: 16px;
+  border-color: var(--sodium);
+  border-style: solid; border-width: 0;
+  opacity: 0.9;
+  z-index: 3;
+}
+.racer-photo .brackets span:nth-child(1) { top: 10px; left: 10px; border-top-width: 2px; border-left-width: 2px; }
+.racer-photo .brackets span:nth-child(2) { top: 10px; right: 10px; border-top-width: 2px; border-right-width: 2px; }
+.racer-photo .brackets span:nth-child(3) { bottom: 10px; left: 10px; border-bottom-width: 2px; border-left-width: 2px; }
+.racer-photo .brackets span:nth-child(4) { bottom: 10px; right: 10px; border-bottom-width: 2px; border-right-width: 2px; }
+
+/* Tag pill (top-left HUD) */
+.racer-tag {
+  position: absolute; top: 14px; left: 14px; z-index: 4;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--chalk); font-weight: 700;
+  background: rgba(0,0,0,0.7);
+  padding: 4px 8px;
+  border-left: 2px solid var(--race-red);
+}
+.racer-tag.on-track { border-left-color: var(--sodium); }
+
+/* Card footer */
+.racer-meta {
+  padding: 14px 16px 14px;
+  background: linear-gradient(180deg, var(--asphalt-2) 0%, #131316 100%);
+  border-top: 1px solid var(--grease);
+  display: flex; align-items: baseline; gap: 14px;
+}
+.racer-num {
+  font-family: 'Anton', sans-serif;
+  font-size: 2.4rem; line-height: 0.85;
+  color: var(--chalk); letter-spacing: -0.03em;
+  text-shadow: 2px 2px 0 var(--race-red);
+  min-width: 48px;
+}
+.racer-card.is-vince .racer-num { text-shadow: 2px 2px 0 var(--engine-blue); }
+.racer-info { display: flex; flex-direction: column; gap: 3px; flex: 1; min-width: 0; }
+.racer-name {
+  font-family: 'Anton', sans-serif;
+  font-size: 1rem; line-height: 1.05;
+  text-transform: uppercase; letter-spacing: 0.02em;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.racer-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--chalk-dim);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+/* Spotlight Vince's #72 card (featured) */
+.racer-card.is-featured {
+  grid-column: span 2;
+  border-color: var(--sodium);
+}
+.racer-card.is-featured .racer-photo { aspect-ratio: 16 / 9; }
+.racer-card.is-featured::before {
+  content: "FOUNDER-DRIVER"; position: absolute; top: 14px; right: 14px; z-index: 5;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.58rem; letter-spacing: 0.2em; font-weight: 700;
+  color: var(--asphalt); background: var(--sodium);
+  padding: 4px 8px;
+}
+@media (max-width: 620px) {
+  .racer-card.is-featured { grid-column: span 1; }
+  .racer-card.is-featured .racer-photo { aspect-ratio: 4 / 3; }
+}
+
+/* ===== LIGHTBOX ===== */
+.lightbox {
+  position: fixed; inset: 0;
+  background: rgba(5,5,7,0.92);
+  display: none; align-items: center; justify-content: center;
+  z-index: 100; padding: 4vw;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.lightbox[aria-hidden="false"] { display: flex; }
+.lightbox-inner {
+  max-width: 1280px; max-height: 90vh;
+  display: flex; flex-direction: column; gap: 10px;
+  width: 100%;
+}
+.lightbox-img-wrap {
+  position: relative;
+  background: #000;
+  border: 1px solid var(--grease);
+  overflow: hidden;
+  max-height: 78vh;
+}
+.lightbox-img-wrap img {
+  width: 100%; height: auto; max-height: 78vh;
+  object-fit: contain;
+  display: block;
+}
+.lightbox-caption {
+  display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--chalk-dim);
+}
+.lightbox-caption .left { color: var(--sodium); font-weight: 700; }
+.lightbox-close {
+  position: absolute; top: 12px; right: 12px; z-index: 110;
+  background: rgba(0,0,0,0.7); color: var(--chalk);
+  border: 1px solid var(--sodium);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem; letter-spacing: 0.14em;
+  padding: 7px 12px;
+  cursor: pointer;
+}
+.lightbox-close:hover { background: var(--sodium); color: var(--asphalt); }
+.lightbox-nav {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: rgba(0,0,0,0.7); color: var(--chalk);
+  border: 1px solid var(--grease);
+  padding: 14px 14px;
+  font-family: 'JetBrains Mono', monospace; font-size: 1.1rem;
+  cursor: pointer;
+  line-height: 1;
+}
+.lightbox-nav:hover { border-color: var(--sodium); color: var(--sodium); }
+.lightbox-prev { left: 14px; }
+.lightbox-next { right: 14px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  .racer-card:hover { transform: none; }
+  .racer-card:hover .racer-photo img { transform: none; }
+}
+
+
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<!-- ===== 40TH ANNIVERSARY BANNER ===== -->
+<section class="anniversary-banner" aria-label="40th Anniversary 1986 to 2026">
+  <a href="/" class="ab-link">
+    <picture>
+      <source type="image/avif"
+              srcset="/media/anniversary-banner-480.avif 480w, /media/anniversary-banner-800.avif 800w, /media/anniversary-banner-1200.avif 1200w, /media/anniversary-banner-1600.avif 1600w"
+              sizes="(max-width: 720px) 92vw, (max-width: 1200px) 84vw, 1100px">
+      <source type="image/webp"
+              srcset="/media/anniversary-banner-480.webp 480w, /media/anniversary-banner-800.webp 800w, /media/anniversary-banner-1200.webp 1200w, /media/anniversary-banner-1600.webp 1600w"
+              sizes="(max-width: 720px) 92vw, (max-width: 1200px) 84vw, 1100px">
+      <img src="/media/anniversary-banner-1200.png"
+           srcset="/media/anniversary-banner-480.png 480w, /media/anniversary-banner-800.png 800w, /media/anniversary-banner-1200.png 1200w, /media/anniversary-banner-1600.png 1600w"
+           sizes="(max-width: 720px) 92vw, (max-width: 1200px) 84vw, 1100px"
+           alt="Northwest Vintage Modifieds — 40th Anniversary, 1986 to 2026"
+           width="1100" height="427"
+           loading="eager" fetchpriority="high" decoding="async">
+    </picture>
+  </a>
+</section>
+
+<nav class="main">
+  <div class="nav-inner">
+    <a href="/" class="logo-lockup" aria-label="VMRA — home">
+      <div class="logo-mark" aria-hidden="true">VM</div>
+      <div class="logo-text">Vintage Modified<small>VMRA · NW · EST 1986</small></div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/schedule/">Schedule</a></li>
+      <li><a href="/racers/" class="active">Drivers</a></li>
+      <li><a href="/standings/">Standings</a></li>
+      <li><a href="/rules/">Rules</a></li>
+      <li><a href="/classifieds/">Classifieds</a></li>
+      <li><a href="/contact/">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="/contact/" class="nav-cta">Become a Sponsor <span class="arr">→</span></a>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+  <nav class="mobile-menu-inner" aria-label="Mobile navigation">
+    <a href="/" class="mm-link">Home</a>
+    <a href="/schedule/" class="mm-link">Schedule</a>
+    <a href="/racers/" class="mm-link">Drivers</a>
+    <a href="/standings/" class="mm-link">Standings</a>
+    <a href="/rules/" class="mm-link">Rules</a>
+    <a href="/classifieds/" class="mm-link">Classifieds</a>
+    <a href="/contact/" class="mm-link">Contact</a>
+    <div class="mm-divider"></div>
+    <a href="mailto:board@vmra.club" class="mm-secondary">board@vmra.club</a>
+    <a href="https://www.facebook.com/NWVMRA/" rel="me noopener" target="_blank" class="mm-secondary">VMRA on Facebook →</a>
+  </nav>
+</div>
+
+
+<!-- ===== HERO ===== -->
+<section class="roster-hero">
+  <div class="marker">§ The Roster · 2026 Season</div>
+  <h1>The Cars.<br>The <span class="accent">Drivers.</span><br>The Field.</h1>
+  <p class="lede">These cars don't roll off a truck. They get built. Tube chassis. Fiberglass body. Small-block V8. Nothing on it that didn't get put there by the owner or someone who owed the owner a favor. <strong>This is what 40 years of vintage modified racing actually looks like</strong> — a car in a shop, a sponsor on the door, a number on the roof, a memory on the deck.</p>
+  <div class="roster-stats">
+    <span><strong id="countTotal">15</strong> photos</span>
+    <span><strong id="countPaddock">11</strong> paddock</span>
+    <span><strong id="countRace">4</strong> on-track</span>
+    <span><strong>40th</strong> season</span>
+  </div>
+</section>
+
+<!-- ===== FILTER CHIPS ===== -->
+<div class="filter-bar" role="toolbar" aria-label="Filter roster photos">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-chip" data-filter="all" aria-pressed="true">All</button>
+  <button class="filter-chip" data-filter="paddock" aria-pressed="false">Paddock</button>
+  <button class="filter-chip" data-filter="track" aria-pressed="false">On Track</button>
+  <button class="filter-chip" data-filter="vince" aria-pressed="false">Vince #72 & #82</button>
+  <button class="filter-chip" data-filter="modified" aria-pressed="false">Modified</button>
+  <button class="filter-chip" data-filter="legends" aria-pressed="false">Legends</button>
+  <span class="filter-count"><strong id="visibleCount">15</strong> shown</span>
+</div>
+
+<!-- ===== ROSTER GRID ===== -->
+<ul class="roster-grid" id="rosterGrid" role="list">
+  <!-- Cards injected by script below -->
+</ul>
+
+<!-- ===== HELP US BUILD THE ROSTER ===== -->
+<section class="help-roster" aria-label="Drivers we still need photos of">
+  <div class="help-inner">
+    <div class="help-head">
+      <span class="marker">§ Help Us Finish the Wall</span>
+      <h2>Drivers We Still Need on the Page.</h2>
+      <p class="help-lede">Forty years of VMRA, and the website doesn't have everybody yet. If you race one of these numbers — or you've got a phone full of paddock shots from past seasons — send us what you've got. One paddock photo and one on-track shot, that's it. We'll handle the rest.</p>
+    </div>
+
+    <div class="help-block">
+      <h3>Top of the Standings</h3>
+      <ul class="help-list">
+        <li><span class="hn">#30</span> <strong>Kyten Jones</strong> <em>2025 leader · 539 pts</em></li>
+        <li><span class="hn">#23</span> <strong>Kahl Cheth</strong> <em>3rd · 488 pts</em></li>
+        <li><span class="hn">#65</span> <strong>Randy Adams</strong> <em>5th · 448 pts</em></li>
+        <li><span class="hn">#7</span> <strong>Mike Clother</strong> <em>8th · 302 pts</em></li>
+        <li><span class="hn">#8</span> <strong>Jason Quatsoe</strong> <em>10th · 177 pts</em></li>
+        <li><span class="hn">#37</span> <strong>Mitchell Woods</strong> <em>10th · 177 pts</em></li>
+      </ul>
+    </div>
+
+    <div class="help-block">
+      <h3>Mid-Pack Regulars</h3>
+      <ul class="help-list">
+        <li><span class="hn">#23x</span> <strong>Chad Broom</strong></li>
+        <li><span class="hn">#18</span> <strong>Dom Hunter</strong></li>
+        <li><span class="hn">#10</span> <strong>B. Cottrell / G. Scott</strong></li>
+        <li><span class="hn">#69</span> <strong>B. Ohler</strong></li>
+      </ul>
+    </div>
+
+    <div class="help-block">
+      <h3>The Rest of the 2025 Bios List</h3>
+      <ul class="help-list">
+        <li><span class="hn">#2</span> <strong>Rick Villyard</strong></li>
+        <li><span class="hn">#3</span> <strong>Jim Jones</strong></li>
+        <li><span class="hn">#15</span> <strong>Ed Beck</strong></li>
+        <li><span class="hn">#54</span> <strong>Aaron Clother</strong></li>
+        <li><span class="hn">#77</span> <strong>Vern Huson</strong></li>
+        <li><span class="hn">#88</span> <strong>Robert Rux</strong></li>
+        <li><span class="hn">#92</span> <strong>Todd McCartney</strong></li>
+      </ul>
+    </div>
+
+    <div class="help-block">
+      <h3>Cars on the Page, Driver Not Confirmed</h3>
+      <p class="help-sub">Photos are up, but we don't know who drives them. Recognize one? Tell us.</p>
+      <ul class="help-list compact">
+        <li><span class="hn">#02</span> V Construction &amp; Remodel</li>
+        <li><span class="hn">#08</span> Stars-&amp;-Stripes Legend</li>
+        <li><span class="hn">#25</span> Johnson Electric Northwest</li>
+        <li><span class="hn">#29</span> Side-by-side with Cheater Dave</li>
+        <li><span class="hn">#68</span> Maroon &amp; yellow modified</li>
+        <li><span class="hn">#79</span> Red/white/blue legend</li>
+        <li><span class="hn">—</span> White Sportsman · Central Rescue Supply</li>
+      </ul>
+    </div>
+
+    <div class="help-cta">
+      <a href="mailto:board@vmra.club?subject=Roster%20Photo%20Submission&body=Car%20Number:%20%0ADriver%20Name:%20%0ASponsors:%20%0AHometown:%20%0AYears%20Racing:%20%0AOne-line%20bio:%20%0A%0A%5BAttach%20one%20paddock%20photo%20and%20one%20on-track%20photo%5D" class="help-btn">Send Us Your Photos →</a>
+      <p class="help-note">Phone shots are fine. Put the car number in the subject. We'll resize, crop, and post within a few days. Email <a href="mailto:board@vmra.club">board@vmra.club</a>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LIGHTBOX ===== -->
+<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Enlarged photograph">
+  <div class="lightbox-inner">
+    <div class="lightbox-img-wrap">
+      <button class="lightbox-close" id="lbClose" aria-label="Close lightbox">✕ Close</button>
+      <button class="lightbox-nav lightbox-prev" id="lbPrev" aria-label="Previous photo">‹</button>
+      <button class="lightbox-nav lightbox-next" id="lbNext" aria-label="Next photo">›</button>
+      <img id="lbImg" src="" alt="">
+    </div>
+    <div class="lightbox-caption">
+      <span class="left" id="lbTitle">#72 · Vince Conwell</span>
+      <span id="lbSub">Paddock · Northwest Concrete Cutting</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="shell">
+  <div class="foot-inner">
+    <div class="foot-brand">
+      <a href="/" class="logo-lockup" aria-label="VMRA — home">
+        <div class="logo-mark" aria-hidden="true">VM</div>
+        <div class="logo-text">Vintage Modified<small>VMRA · NW · EST 1986</small></div>
+      </a>
+      <p>Vintage Modified Racing Association. Est. 1986. Keeping the spirit of 1950s–'70s circle-track racing alive across the Pacific Northwest. Non-profit racing club, driven by its members.</p>
+    </div>
+    <div>
+      <h5>The Club</h5>
+      <ul>
+        <li><a href="/contact/">About</a></li>
+        <li><a href="mailto:board@vmra.club">Board of Directors</a></li>
+        <li><a href="/contact/">Join VMRA</a></li>
+        <li><a href="/contact/">History</a></li>
+        <li><a href="/contact/">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Racing</h5>
+      <ul>
+        <li><a href="/schedule/">Schedule</a></li>
+        <li><a href="/racers/">Drivers</a></li>
+        <li><a href="/standings/">Standings</a></li>
+        <li><a href="/rules/">Rules (PDF)</a></li>
+        <li><a href="/racers/">Photos</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Community</h5>
+      <ul>
+        <li><a href="/news/class-of-2026">News</a></li>
+        <li><a href="/classifieds/">Classifieds</a></li>
+        <li><a href="/contact/">Sponsors</a></li>
+        <li><a href="https://www.facebook.com/NWVMRA/" rel="me noopener" target="_blank">Facebook</a></li>
+        <li><a href="/contact/">Merch</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <div><span class="chk"></span>© 1986–2026 Vintage Modified Racing Association</div>
+    <div>Pacific Northwest · Est. Spanaway Speedway</div>
+    <div>Site · Ryan Conwell × Claude Code</div>
+  </div>
+</footer>
+
+<script>
+const racers = [
+  {
+    num: "72", name: "Vince Conwell", sub: "Northwest Concrete Cutting · Pacific NW",
+    photo: "car-72-vince", tags: ["paddock","vince","modified"],
+    featured: true, isVince: true,
+    caption: "The blue #72 in the paddock — 'In Memory of Ernie Conwell' rides the roof."
+  },
+  { num: "82", name: "Vince Conwell", sub: "Second Car · Legends Class",
+    photo: "car-82-vince", tags: ["paddock","vince","legends"], isVince: true,
+    caption: "Vince's black & gold #82 — Legends class counterpart to the #72 modified."
+  },
+  { num: "02", name: "Car #02", sub: "V Construction & Remodel",
+    photo: "car-02-paddock", tags: ["paddock","modified"],
+    caption: "Red & white modified, 'V Construction & Remodel' livery — pit grid."
+  },
+  { num: "08", name: "Car #08", sub: "Stars-&-Stripes Legend",
+    photo: "car-08-paddock", tags: ["paddock","legends"],
+    caption: "Blue legend car with American-flag hood, Central Rescue Supply sponsor."
+  },
+  { num: "22", name: "Steve Woods", sub: "First Day Electric · Accu-Vac",
+    photo: "car-22-paddock", tags: ["paddock","modified"],
+    caption: "Blue & orange modified — crew hanging in the cockpit pre-race."
+  },
+  { num: "22", name: "Steve Woods", sub: "On Track · Toyota Wall",
+    photo: "car-22-race", tags: ["track","modified"],
+    caption: "On track against the Toyota signage — shooting down the backstretch."
+  },
+  { num: "25", name: "Car #25", sub: "Johnson Electric Northwest",
+    photo: "car-25-paddock", tags: ["paddock","modified"],
+    caption: "Black & red modified, Johnson Electric Northwest on the door."
+  },
+  { num: "51", name: "Dave Trapp", sub: "\"Cheater Dave\" · Vintage Green Legend",
+    photo: "car-51-paddock", tags: ["paddock","legends"],
+    caption: "Classic green legend coupe — paddock with driver working on the engine."
+  },
+  { num: "57", name: "Shane Strimple", sub: "Blue & Red Legend · Paddock",
+    photo: "car-57-paddock", tags: ["paddock","legends"],
+    caption: "Blue & red #57 legend — paddock parked shot."
+  },
+  { num: "57", name: "Shane Strimple", sub: "On Track · Toyota Wall",
+    photo: "car-57-race", tags: ["track","legends"],
+    caption: "#57 mid-lap, Toyota backdrop — paved short-track fast lane."
+  },
+  { num: "68", name: "Car #68", sub: "Paddock Profile",
+    photo: "car-68-paddock", tags: ["paddock","modified"],
+    caption: "Maroon & yellow modified in the paddock, crew standing by."
+  },
+  { num: "68", name: "Car #68", sub: "On Track · Toyota Wall",
+    photo: "car-68-race", tags: ["track","modified"],
+    caption: "#68 running down the front stretch — yellow lettering pops in the sunlight."
+  },
+  { num: "79", name: "Car #79", sub: "Stars-&-Stripes Legend",
+    photo: "car-79-paddock", tags: ["paddock","legends"],
+    caption: "Red/white/blue patriotic #79 legend — paddock pit lane."
+  },
+  { num: "51 × 29", name: "#51 & #29", sub: "On Track · Side-by-Side",
+    photo: "race-51-29", tags: ["track","legends"],
+    caption: "Green #51 racing alongside patriotic #29 — on-track action."
+  },
+  { num: "—", name: "Sportsman", sub: "Central Rescue Supply / Pomps",
+    photo: "car-white-paddock", tags: ["paddock","modified"],
+    caption: "White sportsman body in the paddock — multi-sponsor door livery."
+  }
+];
+
+// Place featured first
+racers.sort((a,b) => (b.featured?1:0) - (a.featured?1:0));
+
+const grid = document.getElementById("rosterGrid");
+racers.forEach((r, i) => {
+  const li = document.createElement("li");
+  li.className = "racer-card" + (r.featured ? " is-featured" : "") + (r.isVince ? " is-vince" : "");
+  li.dataset.tags = r.tags.join(",");
+  li.setAttribute("tabindex", "0");
+  li.setAttribute("role", "button");
+  li.setAttribute("aria-label", `Open enlarged photo of ${r.name}, ${r.sub}`);
+  li.dataset.idx = i;
+
+  const tagLabel = r.tags.includes("track") ? "On Track" : "Paddock";
+  const tagClass = r.tags.includes("track") ? " on-track" : "";
+
+  const fetchPri = i < 4 ? ' fetchpriority="high"' : '';
+  li.innerHTML = `
+    <div class="racer-photo">
+      <span class="racer-tag${tagClass}">${tagLabel} · #${r.num}</span>
+      <picture>
+        <source type="image/avif"
+                srcset="/media/racers/${r.photo}-600.avif 600w, /media/racers/${r.photo}.avif 1200w"
+                sizes="(max-width:620px) 100vw, (max-width:1024px) 50vw, 25vw">
+        <source type="image/webp"
+                srcset="/media/racers/${r.photo}-600.webp 600w, /media/racers/${r.photo}.webp 1200w"
+                sizes="(max-width:620px) 100vw, (max-width:1024px) 50vw, 25vw">
+        <img src="/media/racers/${r.photo}-600.jpg"
+             srcset="/media/racers/${r.photo}-600.jpg 600w, /media/racers/${r.photo}.jpg 1200w"
+             sizes="(max-width:620px) 100vw, (max-width:1024px) 50vw, 25vw"
+             alt="${r.caption}"
+             loading="${i < 4 ? 'eager' : 'lazy'}"
+             decoding="async"${fetchPri}
+             width="1200" height="900">
+      </picture>
+      <div class="brackets" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+    </div>
+    <div class="racer-meta">
+      <div class="racer-num">${r.num}</div>
+      <div class="racer-info">
+        <div class="racer-name">${r.name}</div>
+        <div class="racer-sub">${r.sub}</div>
+      </div>
+    </div>
+  `;
+  grid.appendChild(li);
+});
+
+// ===== Filters =====
+const chips = document.querySelectorAll(".filter-chip");
+const visibleCountEl = document.getElementById("visibleCount");
+
+chips.forEach(chip => {
+  chip.addEventListener("click", () => {
+    chips.forEach(c => c.setAttribute("aria-pressed", "false"));
+    chip.setAttribute("aria-pressed", "true");
+    const filter = chip.dataset.filter;
+    let visible = 0;
+    document.querySelectorAll(".racer-card").forEach(card => {
+      const tags = card.dataset.tags.split(",");
+      const show = filter === "all" || tags.includes(filter);
+      card.hidden = !show;
+      if (show) visible++;
+    });
+    visibleCountEl.textContent = visible;
+  });
+});
+
+// ===== Lightbox =====
+const lb = document.getElementById("lightbox");
+const lbImg = document.getElementById("lbImg");
+const lbTitle = document.getElementById("lbTitle");
+const lbSub = document.getElementById("lbSub");
+
+// Detect best image format once for lightbox (AVIF > WebP > JPG)
+const lbBestExt = (() => {
+  const c = document.createElement("canvas");
+  if (c.toDataURL("image/avif").startsWith("data:image/avif")) return "avif";
+  if (c.toDataURL("image/webp").startsWith("data:image/webp")) return "webp";
+  return "jpg";
+})();
+let currentIdx = 0;
+
+function openLightbox(idx) {
+  const r = racers[idx];
+  currentIdx = idx;
+  // Pick smallest available format the browser supports
+  const ext = lbBestExt;
+  lbImg.src = `/media/racers/${r.photo}.${ext}`;
+  lbImg.alt = r.caption;
+  lbTitle.textContent = `#${r.num} · ${r.name}`;
+  lbSub.textContent = r.caption;
+  lb.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+}
+function closeLightbox() {
+  lb.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+}
+function stepLightbox(dir) {
+  // Walk through only currently-visible cards
+  const visibleCards = Array.from(document.querySelectorAll(".racer-card:not([hidden])"));
+  const visibleIdxs = visibleCards.map(c => parseInt(c.dataset.idx, 10));
+  const pos = visibleIdxs.indexOf(currentIdx);
+  const nextPos = (pos + dir + visibleIdxs.length) % visibleIdxs.length;
+  openLightbox(visibleIdxs[nextPos]);
+}
+
+document.addEventListener("click", (e) => {
+  const card = e.target.closest(".racer-card");
+  if (card) openLightbox(parseInt(card.dataset.idx, 10));
+});
+document.addEventListener("keydown", (e) => {
+  if (lb.getAttribute("aria-hidden") === "false") {
+    if (e.key === "Escape") closeLightbox();
+    if (e.key === "ArrowRight") stepLightbox(1);
+    if (e.key === "ArrowLeft") stepLightbox(-1);
+  }
+});
+document.querySelectorAll(".racer-card").forEach(c => {
+  c.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      openLightbox(parseInt(c.dataset.idx, 10));
+    }
+  });
+});
+document.getElementById("lbClose").addEventListener("click", closeLightbox);
+document.getElementById("lbPrev").addEventListener("click", (e) => { e.stopPropagation(); stepLightbox(-1); });
+document.getElementById("lbNext").addEventListener("click", (e) => { e.stopPropagation(); stepLightbox(1); });
+lb.addEventListener("click", (e) => { if (e.target === lb) closeLightbox(); });
+</script>
+
+
+</body>
+</html>

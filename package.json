@@ -1,0 +1,9 @@
+{
+  "name": "vmra-preview",
+  "version": "0.1.0",
+  "description": "VMRA 40th Anniversary website — preview build for board review",
+  "private": true,
+  "scripts": {
+    "build": "echo 'Static site — no build step needed'"
+  }
+}

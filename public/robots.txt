@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /
+
+# This is a preview build hosted at vercel.app for internal board review.
+# Do not index. The production site will launch at vmra.club on Big Mountain Mail hosting.
