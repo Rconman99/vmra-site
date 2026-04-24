@@ -67,16 +67,21 @@ function vmra_classified_add_deny_metabox( $post ) {
 function vmra_classified_deny_metabox_render( $post ) {
 	$seller_email = (string) get_post_meta( $post->ID, 'seller_email', true );
 	$seller_name  = (string) get_post_meta( $post->ID, 'seller_name', true );
-	// Self-contained form that posts to admin-post.php. Gutenberg dropped the
-	// legacy <form id="post"> wrapper, so meta-box <button type="submit"> no
-	// longer has anywhere to submit. Our own <form> + admin_post_ hook is the
-	// canonical fix and keeps the deny action isolated from normal post saves.
+	$post_id      = (int) $post->ID;
+	$nonce        = wp_create_nonce( 'vmra_classified_deny_' . $post_id );
+	$ajax_url     = admin_url( 'admin-post.php' );
+	$redirect_url = add_query_arg(
+		array( 'post_type' => 'vmra_classified', 'post_status' => 'pending', 'vmra_denied' => 1 ),
+		admin_url( 'edit.php' )
+	);
+	// NOTE: We can't wrap this in its own <form> — meta boxes render inside
+	// WP's legacy <form id="post">, and HTML5 parsers silently drop nested
+	// <form> tags (v1.4.2 shipped exactly that bug). Instead we use a plain
+	// button + JS click handler that POSTs to admin-post.php via fetch and
+	// then navigates to the pending queue on success. No form element = no
+	// nested-form problem.
 	?>
-	<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
-		<input type="hidden" name="action"  value="vmra_classified_deny">
-		<input type="hidden" name="post_ID" value="<?php echo (int) $post->ID; ?>">
-		<?php wp_nonce_field( 'vmra_classified_deny_' . $post->ID, 'vmra_classified_deny_nonce' ); ?>
-
+	<div class="vmra-deny-box" data-post-id="<?php echo $post_id; ?>">
 		<p style="font-size:12px;color:#646970;margin:4px 0 8px">
 			Type a short reason. The submitter
 			<?php echo $seller_name ? '<strong>(' . esc_html( $seller_name ) . ')</strong>' : ''; ?>
@@ -85,24 +90,74 @@ function vmra_classified_deny_metabox_render( $post ) {
 			this listing moves to Trash.
 		</p>
 		<textarea
-			name="vmra_classified_deny_reason"
+			id="vmra-deny-reason-<?php echo $post_id; ?>"
 			rows="4"
 			style="width:100%;font-family:monospace;font-size:12px"
 			placeholder="E.g. Item is outside the vintage-modified scope. Or: listing looks like spam. Or: please resubmit with a clearer photo."
 		></textarea>
 		<p>
 			<button
-				type="submit"
+				type="button"
+				id="vmra-deny-btn-<?php echo $post_id; ?>"
 				class="button button-secondary"
-				style="background:#d11a2a;color:#fff;border-color:#a01521;width:100%;margin-top:6px"
-				onclick="return confirm('Deny this listing and email the reason to the submitter?');"
+				style="background:#d11a2a;color:#fff;border-color:#a01521;width:100%;margin-top:6px;cursor:pointer"
 			>Deny &amp; Notify Submitter</button>
 		</p>
+		<p id="vmra-deny-status-<?php echo $post_id; ?>" style="display:none;font-size:12px;margin:6px 0 0"></p>
 		<p style="font-size:11px;color:#646970;margin:8px 0 0">
 			To <em>approve</em> instead, just hit the blue <strong>Publish</strong> button —
 			the submitter gets an auto-email when it goes live.
 		</p>
-	</form>
+	</div>
+	<script>
+	(function(){
+		var postId = <?php echo $post_id; ?>;
+		var btn    = document.getElementById('vmra-deny-btn-' + postId);
+		var area   = document.getElementById('vmra-deny-reason-' + postId);
+		var status = document.getElementById('vmra-deny-status-' + postId);
+		if ( ! btn || ! area ) return;
+
+		btn.addEventListener('click', async function(){
+			if ( ! confirm('Deny this listing and email the reason to the submitter?') ) return;
+
+			btn.disabled = true;
+			var origLabel = btn.textContent;
+			btn.textContent = 'Denying…';
+			status.style.display = 'none';
+
+			var fd = new FormData();
+			fd.append('action',                    'vmra_classified_deny');
+			fd.append('post_ID',                   String(postId));
+			fd.append('vmra_classified_deny_nonce', '<?php echo esc_js( $nonce ); ?>');
+			fd.append('vmra_classified_deny_reason', area.value);
+
+			try {
+				var res = await fetch('<?php echo esc_js( $ajax_url ); ?>', {
+					method:      'POST',
+					body:        fd,
+					credentials: 'same-origin',
+					redirect:    'manual'
+				});
+				// Handler always wp_safe_redirect()s on success, which fetch surfaces
+				// as type='opaqueredirect' when redirect:'manual' is set. Anything
+				// else means the server wp_die'd (auth/nonce/post-type error).
+				if ( res.type === 'opaqueredirect' || (res.status >= 300 && res.status < 400) ) {
+					window.location.href = '<?php echo esc_js( $redirect_url ); ?>';
+					return;
+				}
+				var errText = 'HTTP ' + res.status;
+				try { errText = ((await res.text()) || errText).substring(0, 200); } catch (e) {}
+				throw new Error(errText);
+			} catch (err) {
+				status.style.display = 'block';
+				status.style.color   = '#d11a2a';
+				status.textContent   = 'Deny failed: ' + err.message;
+				btn.disabled = false;
+				btn.textContent = origLabel;
+			}
+		});
+	})();
+	</script>
 	<?php
 }
 
