@@ -372,7 +372,7 @@ $body = <<<'VMRA_BODY_EOT'
       </div>
 
       <div class="vmra-note">
-        One of the longest-running homes for Pacific Northwest vintage modified racing. The 2026 <strong>VMRA 40th Anniversary Bash</strong> (Jul 25, Round 6) is the feature event on the calendar — directly honoring the club's 40th season.
+        One of the longest-running homes for Northwest vintage modified racing. The 2026 <strong>VMRA 40th Anniversary Bash</strong> (Jul 25, Round 6) is the feature event on the calendar — directly honoring the club's 40th season.
       </div>
 
       <div class="track-links">

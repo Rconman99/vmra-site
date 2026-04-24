@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<p><?php
 				$brand_blurb = get_theme_mod(
 					'vmra_footer_brand_blurb',
-					__( "Pacific Northwest vintage modified stock car racing. Founded 1986 at Spanaway Speedway. Forty seasons of grassroots oval racing, still running on the same handshake rules.", 'vmra' )
+					__( "Northwest vintage modified stock car racing. Founded 1986 at Spanaway Speedway. Forty seasons of grassroots oval racing, still running on the same handshake rules.", 'vmra' )
 				);
 				echo esc_html( $brand_blurb );
 			?></p>

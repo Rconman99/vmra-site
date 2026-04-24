@@ -59,7 +59,7 @@ ul.specs li .v{color:var(--chalk)}
 $body = <<<'VMRA_BODY_EOT'
 <section class="hero"><div class="hero-inner">
   <span class="eyebrow">§ Rulebook · 2026 Season</span>
-  <h1>Build It Right.</h1>
+  <h1>Vintage Modified Run Packages for 2026.</h1>
   <p class="lede">VMRA cars are American-made pre-1970 modified stock cars — same body styles you saw running the bullrings in the '50s and '60s, with a handful of 1970-77 compacts allowed. Below is the short version of how we score, what we require for safety, what makes a car legal, and what happens when somebody protests one. The two PDFs are the actual rulebooks. Print them, mark them up, bring them to tech.</p>
 </div></section>
 

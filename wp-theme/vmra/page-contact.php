@@ -110,7 +110,7 @@ $body = <<<'VMRA_BODY_EOT'
   <section>
     <span class="marker">§ About VMRA</span>
     <h2>Founded 1986. Nonprofit.</h2>
-    <p>The Vintage Modified Racing Association is a Pacific Northwest 501(c)(7) nonprofit racing club. We organize circle-track races for vintage modified stock cars across Washington, Oregon, and Idaho. Founding location: Spanaway Speedway, 1986. The 40th anniversary season runs in 2026.</p>
+    <p>The Vintage Modified Racing Association is a Northwest 501(c)(7) nonprofit racing club. We organize circle-track races for vintage modified stock cars across Washington, Oregon, and Idaho. Founding location: Spanaway Speedway, 1986. The 40th anniversary season runs in 2026.</p>
     <p>Membership: <strong>$50 per year</strong>. <a href="/downloads/vmra-2026-membership-form.pdf" target="_blank" rel="noopener" style="color:var(--sodium);text-decoration:none;border-bottom:1px solid currentColor">Download the 2026 Membership Application (PDF)</a>, print, sign, bring to the next race with cash or check made out to VMRA. The board operates with a $200 spending cap before requiring a full-membership vote — every dollar gets accounted for.</p>
   </section>
 

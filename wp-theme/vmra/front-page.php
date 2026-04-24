@@ -109,12 +109,12 @@ get_header(); ?>
 				<span><?php esc_html_e( '2026 Season · 40th Anniversary', 'vmra' ); ?></span>
 			</div>
 			<h1>
-				<span class="ln1"><?php esc_html_e( 'Forty Years.', 'vmra' ); ?></span>
-				<span class="ln2"><?php esc_html_e( 'Still Modified', 'vmra' ); ?><span class="dot" aria-hidden="true"></span></span>
+				<span class="ln1"><?php esc_html_e( 'Forty Years', 'vmra' ); ?></span>
+				<span class="ln2" style="font-size: 0.6em; display: block; margin-top: 0.1em;"><?php esc_html_e( 'of vintage modified racing', 'vmra' ); ?><span class="dot" aria-hidden="true"></span></span>
 			</h1>
 			<div class="hero-rule" aria-hidden="true"></div>
 			<p class="hero-lede">
-				<?php esc_html_e( 'Vintage modifieds running the tracks of the Northwest since 1986. Real cars. Real drivers. The spirit of 1950s through early \'70s circle-track racing — kept alive by the crews who refuse to let it die.', 'vmra' ); ?>
+				<?php esc_html_e( 'Vintage modifieds running the tracks of the Northwest since 1986. Real cars, real drivers. The spirit of 1950s through early \'70s circle-track racing — kept alive by the crews who refuse to let it die.', 'vmra' ); ?>
 			</p>
 			<div class="hero-actions">
 				<a href="<?php echo esc_url( home_url( '/schedule/' ) ); ?>" class="hero-link primary"><?php esc_html_e( '2026 Schedule', 'vmra' ); ?> <span class="arr">→</span></a>
@@ -188,9 +188,9 @@ get_header(); ?>
 <!-- ===================== ABOUT STRIP (AEO) ===================== -->
 <section class="about-strip" aria-label="<?php esc_attr_e( 'About the Vintage Modified Racing Association', 'vmra' ); ?>">
 	<div class="about-inner">
-		<div class="about-label"><?php esc_html_e( 'About VMRA', 'vmra' ); ?><br><?php esc_html_e( 'Est. 1986 · Pacific Northwest', 'vmra' ); ?></div>
+		<div class="about-label"><?php esc_html_e( 'About VMRA', 'vmra' ); ?><br><?php esc_html_e( 'Est. 1986 · Northwest', 'vmra' ); ?></div>
 		<div class="about-copy">
-			<p><strong><?php esc_html_e( 'The Vintage Modified Racing Association (VMRA)', 'vmra' ); ?></strong> <?php esc_html_e( 'is a non-profit Pacific Northwest racing club founded in 1986 at Spanaway Speedway, Washington. We organize vintage modified circle-track races across Washington, Oregon, and Idaho — preserving the spirit of 1950s through early 1970s modified stock car racing through a rulebook built for authenticity and integrity.', 'vmra' ); ?></p>
+			<p><strong><?php esc_html_e( 'The Vintage Modified Racing Association (VMRA)', 'vmra' ); ?></strong> <?php esc_html_e( 'is a non-profit Northwest racing club founded in 1986 at Spanaway Speedway, Washington. We organize vintage modified circle-track races across Washington, Oregon, and Idaho — preserving the spirit of 1950s through early 1970s modified stock car racing through a rulebook built for authenticity and integrity.', 'vmra' ); ?></p>
 			<p><?php esc_html_e( 'The', 'vmra' ); ?> <strong><?php esc_html_e( '2026 season is our 40th Anniversary', 'vmra' ); ?></strong><?php esc_html_e( ', running at Evergreen Speedway (Monroe WA), Tri-City Raceway (West Richland WA), Wenatchee Valley Super Oval (East Wenatchee WA), South Sound Speedway (Rochester WA), and Stateline Speedway (Post Falls ID).', 'vmra' ); ?></p>
 			<div class="about-meta">
 				<div><span class="k"><?php esc_html_e( 'Founded', 'vmra' ); ?></span><span class="v">1986 · Spanaway WA</span></div>
@@ -298,7 +298,7 @@ get_header(); ?>
 		<div class="cars-head">
 			<span class="marker"><?php esc_html_e( '§ The Cars · 40th Season', 'vmra' ); ?></span>
 			<h2><?php esc_html_e( 'Built In a Shop. Raced For Four Decades.', 'vmra' ); ?></h2>
-			<span class="meta"><?php esc_html_e( 'Filmed April 4, 2026 · Pacific Northwest', 'vmra' ); ?></span>
+			<span class="meta"><?php esc_html_e( 'Filmed April 4, 2026 · Northwest', 'vmra' ); ?></span>
 		</div>
 
 		<div class="cars-stage">
@@ -333,7 +333,7 @@ get_header(); ?>
 				<div class="car-tag"><?php esc_html_e( 'Driver Spotlight · Founding-Era', 'vmra' ); ?></div>
 				<div class="num-plate">72</div>
 				<h3><?php esc_html_e( 'Vince Conwell', 'vmra' ); ?></h3>
-				<div class="driver-loc"><?php esc_html_e( 'Pacific Northwest · Owner-Driver since 1986', 'vmra' ); ?></div>
+				<div class="driver-loc"><?php esc_html_e( 'Northwest · Owner-Driver since 1986', 'vmra' ); ?></div>
 
 				<div class="memorial">
 					<?php echo wp_kses_post( __( 'Car #72 carries <strong>"In Memory of Ernie Conwell"</strong> on the roof — the family\'s quiet way of putting Ernie in every race the car runs in 2026, the club\'s 40th season.', 'vmra' ) ); ?>
@@ -361,7 +361,7 @@ get_header(); ?>
 					src="<?php echo esc_url( VMRA_THEME_URI . '/assets/media/vmra-72-heritage.jpg' ); ?>"
 					srcset="<?php echo esc_url( VMRA_THEME_URI . '/assets/media/vmra-72-heritage-1200.jpg' ); ?> 1200w, <?php echo esc_url( VMRA_THEME_URI . '/assets/media/vmra-72-heritage.jpg' ); ?> 2000w"
 					sizes="(max-width: 920px) 100vw, min(62vw, 800px)"
-					alt="<?php esc_attr_e( "Archive photograph of the original #72 modified — blue with white front clip, Northwest Concrete Cutting and Goodyear on the fenders, mid-corner on a Pacific Northwest paved short track in the founding era.", 'vmra' ); ?>"
+					alt="<?php esc_attr_e( "Archive photograph of the original #72 modified — blue with white front clip, Northwest Concrete Cutting and Goodyear on the fenders, mid-corner on a Northwest paved short track in the founding era.", 'vmra' ); ?>"
 					width="2000" height="1048"
 					loading="lazy" decoding="async">
 				<div class="cars-video-frame" aria-hidden="true">
@@ -377,7 +377,7 @@ get_header(); ?>
 				<h3><?php esc_html_e( 'Forty Years on the Door', 'vmra' ); ?></h3>
 				<p><?php echo wp_kses_post( __( "This is the car that started it — <strong>Ernie Conwell's original #72</strong>, the same number, the same Northwest Concrete Cutting sponsor, the same club. The blue paint and white front clip in this photograph is why Vince's modern #72 wears the colors it does today.", 'vmra' ) ); ?></p>
 				<p><?php echo wp_kses_post( __( "When Car #72 rolls out this season with <strong>&ldquo;In Memory of Ernie Conwell&rdquo;</strong> on the roof, <em>this</em> is who it's for.", 'vmra' ) ); ?></p>
-				<div class="meta"><?php esc_html_e( 'Pacific Northwest · Founding-Era · Photographer unknown', 'vmra' ); ?></div>
+				<div class="meta"><?php esc_html_e( 'Northwest · Founding-Era · Photographer unknown', 'vmra' ); ?></div>
 			</figcaption>
 		</figure>
 
@@ -484,7 +484,7 @@ get_header(); ?>
 	<div class="milestone-inner">
 		<div class="milestone-40">40</div>
 		<div class="milestone-copy">
-			<h3><?php esc_html_e( "Four Decades of the Pacific Northwest's Vintage Modifieds", 'vmra' ); ?></h3>
+			<h3><?php esc_html_e( "Four Decades of the Northwest's Vintage Modifieds", 'vmra' ); ?></h3>
 			<p><?php esc_html_e( "From Spanaway Speedway in '86 to Evergreen, Tri-City, Wenatchee, South Sound, and Stateline today — explore forty years of champions, cars, and stories. The 40th Anniversary Archive is live.", 'vmra' ); ?></p>
 		</div>
 		<a href="<?php echo esc_url( home_url( '/standings/' ) ); ?>" class="milestone-btn"><?php esc_html_e( 'Current Standings →', 'vmra' ); ?></a>
@@ -683,7 +683,7 @@ get_header(); ?>
 	<div class="faq-wrap">
 		<article class="faq-item">
 			<h3><?php esc_html_e( 'What is the Vintage Modified Racing Association?', 'vmra' ); ?></h3>
-			<p><?php esc_html_e( "VMRA is a non-profit racing club out of the Pacific Northwest. We started in 1986 at Spanaway Speedway with a small group of guys who wanted to keep 1950s through early '70s modified stock car racing alive. Forty years later we're still at it — running circle-track races at Evergreen, Tri-City, Wenatchee, South Sound, and Stateline. American-made pre-1970 cars (with a few specific exceptions), small-block V8s, fiberglass bodies, hand-built in members' shops.", 'vmra' ); ?></p>
+			<p><?php esc_html_e( "VMRA is a non-profit racing club out of the Northwest. We started in 1986 at Spanaway Speedway with a small group of guys who wanted to keep 1950s through early '70s modified stock car racing alive. Forty years later we're still at it — running circle-track races at Evergreen, Tri-City, Wenatchee, South Sound, and Stateline. American-made pre-1970 cars (with a few specific exceptions), small-block V8s, fiberglass bodies, hand-built in members' shops.", 'vmra' ); ?></p>
 		</article>
 		<article class="faq-item">
 			<h3><?php esc_html_e( 'How do I join VMRA or race a vintage modified?', 'vmra' ); ?></h3>

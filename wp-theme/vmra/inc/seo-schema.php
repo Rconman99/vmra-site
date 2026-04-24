@@ -31,7 +31,7 @@ function vmra_output_organization_schema() {
 		'alternateName'  => array( 'VMRA', 'NW Vintage Modified' ),
 		'url'            => home_url( '/' ),
 		'logo'           => VMRA_THEME_URI . '/assets/media/logo-large.png',
-		'description'    => 'Pacific Northwest vintage modified stock car racing association — 40 years running the PNW tracks. 40th anniversary season in 2026.',
+		'description'    => 'Northwest vintage modified stock car racing association — 40 years running the PNW tracks. 40th anniversary season in 2026.',
 		'foundingDate'   => '1986',
 		'foundingLocation' => array(
 			'@type'   => 'Place',
@@ -43,13 +43,13 @@ function vmra_output_organization_schema() {
 		),
 		'areaServed' => array(
 			'@type' => 'AdministrativeArea',
-			'name'  => 'Pacific Northwest',
+			'name'  => 'Northwest',
 		),
 		'sport' => 'Stock car racing',
 		'slogan' => 'Cars, Engines, Parts. Between People Who Race Them.',
 		'knowsAbout' => array(
 			'Vintage modified stock car racing',
-			'Pacific Northwest circle-track racing',
+			'Northwest circle-track racing',
 			'Pre-1970 American modified race cars',
 			'Short-track oval racing',
 			'Vintage motorsports history',
@@ -93,7 +93,7 @@ function vmra_output_classifieds_faq_schema() {
 		),
 		array(
 			'q' => 'Who can buy from or sell on the VMRA Classifieds?',
-			'a' => 'VMRA members and friends of the Pacific Northwest vintage modified community. Membership is not required — if you are part of the broader PNW vintage modified circle, you can list and buy.',
+			'a' => 'VMRA members and friends of the Northwest vintage modified community. Membership is not required — if you are part of the broader PNW vintage modified circle, you can list and buy.',
 		),
 		array(
 			'q' => 'What happens when my listing sells?',
@@ -140,15 +140,15 @@ function vmra_meta_description_fallback() {
 	$description = '';
 
 	if ( is_front_page() ) {
-		$description = 'Vintage Modified Racing Association — Pacific Northwest stock car racing since 1986. 40th anniversary season in 2026, 11 rounds across 5 PNW tracks. Schedule, drivers, standings, and free classifieds.';
+		$description = 'Vintage Modified Racing Association — Northwest stock car racing since 1986. 40th anniversary season in 2026, 11 rounds across 5 PNW tracks. Schedule, drivers, standings, and free classifieds.';
 	} elseif ( is_page( 'classifieds' ) ) {
-		$description = 'Free VMRA classifieds board for Pacific Northwest vintage modified racers. Buy and sell race cars, engines, parts, and trailers — no fees, no commission, no signup. Email vmrainfo@gmail.com with a photo and asking price.';
+		$description = 'Free VMRA classifieds board for Northwest vintage modified racers. Buy and sell race cars, engines, parts, and trailers — no fees, no commission, no signup. Email vmrainfo@gmail.com with a photo and asking price.';
 	} elseif ( is_page( 'schedule' ) ) {
-		$description = '2026 VMRA schedule — 11 rounds, 5 Pacific Northwest tracks. Nine rounds count for the championship, two are for the love of it. Round dates, track details, and directions.';
+		$description = '2026 VMRA schedule — 11 rounds, 5 Northwest tracks. Nine rounds count for the championship, two are for the love of it. Round dates, track details, and directions.';
 	} elseif ( is_page( 'racers' ) || is_page( 'drivers' ) ) {
 		$description = '2026 VMRA driver roster — 23 vintage modified racers. Car numbers, hometowns, championships, and round-by-round results. Defending champion: Kahl Cheth #23.';
 	} elseif ( is_page( 'standings' ) ) {
-		$description = 'Current VMRA championship standings — Pacific Northwest vintage modified stock car racing. Live points across 11 rounds in the 40th anniversary 2026 season.';
+		$description = 'Current VMRA championship standings — Northwest vintage modified stock car racing. Live points across 11 rounds in the 40th anniversary 2026 season.';
 	} elseif ( is_page( 'rules' ) ) {
 		$description = 'VMRA house rules and construction rules for vintage modified stock car racing. 2026-2028 rulebook PDFs, eligibility, membership form.';
 	} elseif ( is_singular() ) {
@@ -244,13 +244,13 @@ function vmra_serve_llms_txt() {
 	$round_count = is_array( $schedule ) ? count( $schedule ) : 11;
 
 	echo "# VMRA · Vintage Modified Racing Association\n\n";
-	echo "> Pacific Northwest vintage modified stock car racing club, established 1986. 40th anniversary season in 2026. Drivers, schedule, standings, rules, and a free members-and-friends classifieds board.\n\n";
+	echo "> Northwest vintage modified stock car racing club, established 1986. 40th anniversary season in 2026. Drivers, schedule, standings, rules, and a free members-and-friends classifieds board.\n\n";
 
 	echo "## About\n\n";
-	echo "- **What we are:** A non-commercial racing association for vintage modified stock cars in the Pacific Northwest.\n";
+	echo "- **What we are:** A non-commercial racing association for vintage modified stock cars in the Northwest.\n";
 	echo "- **Founded:** 1986\n";
 	echo "- **2026 season:** 40th anniversary — {$round_count} rounds (nine for points, the rest for the love of it)\n";
-	echo "- **Region:** Pacific Northwest (Washington, Oregon, Idaho)\n";
+	echo "- **Region:** Northwest (Washington, Oregon, Idaho)\n";
 	echo "- **Class:** Vintage modifieds — stock-car style, built and raced by members\n";
 	echo "- **What we are NOT:** Not a commercial series. Not NASCAR. Not a track. Not affiliated with other \"vintage modified\" clubs outside the PNW.\n";
 	echo "- **Contact:** vmrainfo@gmail.com\n";
@@ -264,12 +264,12 @@ function vmra_serve_llms_txt() {
 	echo "- [Standings]({$base}/standings/): Live championship points.\n";
 	echo "- [Rules]({$base}/rules/): House rules + construction rules (2026-2028), downloadable PDFs.\n";
 	echo "- [News]({$base}/news/): Race recaps and board updates.\n";
-	echo "- [Tracks]({$base}/tracks/): The 5 Pacific Northwest tracks we race.\n";
+	echo "- [Tracks]({$base}/tracks/): The 5 Northwest tracks we race.\n";
 	echo "- [Classifieds]({$base}/classifieds/): Free board — cars, engines, parts, trailers.\n";
 	echo "- [Contact]({$base}/contact/): Board contact + sponsor inquiries.\n\n";
 
 	echo "## Classifieds\n\n";
-	echo "- **What it is:** Free classifieds board for vintage modified equipment in the Pacific Northwest.\n";
+	echo "- **What it is:** Free classifieds board for vintage modified equipment in the Northwest.\n";
 	echo "- **Items listed:** Race cars, crate and built engines, takeoff Hoosier tires, gauges, scales, tire racks, trailers, body panels, parts.\n";
 	echo "- **Cost:** No fees, no commission, no signup required.\n";
 	echo "- **How to list:** Email a photo and an asking price to vmrainfo@gmail.com. Posted within 48 hours.\n";
@@ -277,7 +277,7 @@ function vmra_serve_llms_txt() {
 	echo "- **Categories:** Race Cars · Engines · Parts · Trailers · Tools / Shop · Wanted.\n\n";
 
 	echo "## Key facts (for AI direct-answer reference)\n\n";
-	echo "- **Association established:** 1986 — one of the longest-running vintage modified organizations in the Pacific Northwest.\n";
+	echo "- **Association established:** 1986 — one of the longest-running vintage modified organizations in the Northwest.\n";
 	echo "- **Number of rounds in 2026:** {$round_count} (nine count for the championship; the remainder run for the love of it).\n";
 	echo "- **Annual event:** Fall Classic (entries open during the season).\n";
 	echo "- **Classifieds turnaround:** 48 hours from submission email to published listing.\n";
