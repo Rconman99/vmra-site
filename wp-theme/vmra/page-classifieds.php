@@ -121,11 +121,25 @@ main.cl-main{max-width:1280px;margin:0 auto;padding:40px 5vw}
 </style>
 
 <main id="main-content" class="cl-main-wrap">
+
+<?php if ( isset( $_GET['submitted'] ) && $_GET['submitted'] === '1' ) : ?>
+<div class="cl-submit-success" role="status" aria-live="polite" style="background:linear-gradient(135deg,#1f6b2a 0%,#0f3a17 100%);border-top:1px solid #2a2a30;border-bottom:3px solid var(--sodium,#ffb319);padding:22px 5vw;color:#f4ede1;">
+	<div style="max-width:1080px;margin:0 auto;display:flex;gap:20px;align-items:center;flex-wrap:wrap">
+		<div style="font-family:'Anton',sans-serif;font-size:2.2rem;line-height:1;color:var(--sodium,#ffb319)">✓</div>
+		<div style="flex:1;min-width:260px">
+			<div style="font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--sodium,#ffb319);margin-bottom:6px">§ Submitted for Board Approval</div>
+			<div style="font-family:'Anton',sans-serif;font-size:1.4rem;line-height:1.1;margin-bottom:4px">Thanks — your listing is in the queue.</div>
+			<div style="font-size:.95rem;color:#d8cfbd">The VMRA board reviews every submission before it goes live (usually within 24 hours). You will get an email at the address you provided the moment it is approved. Check your spam folder if you don't see it.</div>
+		</div>
+	</div>
+</div>
+<?php endif; ?>
+
 <section class="hero"><div class="hero-inner">
 	<div>
 		<span class="eyebrow">§ Classifieds · Members &amp; Friends</span>
 		<h1>Cars, Engines, Parts.<br>Between People Who Race Them.</h1>
-		<p class="lede">The VMRA Classifieds is a free, no-signup board where Pacific Northwest vintage modified racers buy and sell directly — no fees, no commission, no middleman. List a car, engine, or part in 60 seconds. Your listing goes live instantly.</p>
+		<p class="lede">The VMRA Classifieds is a free, no-signup board where Pacific Northwest vintage modified racers buy and sell directly — no fees, no commission, no middleman. List a car, engine, or part in 60 seconds. Every submission is reviewed by the VMRA board before going live, typically within 24 hours.</p>
 	</div>
 	<a class="hero-cta" href="#list-item">List an Item →</a>
 </div></section>
@@ -207,7 +221,7 @@ main.cl-main{max-width:1280px;margin:0 auto;padding:40px 5vw}
 <?php else : ?>
 	<div class="empty-state">
 		<h3>No active listings yet.</h3>
-		<p>Be the first to post a car, engine, or part. Use the form below — your listing goes live in seconds, no signup, no fees.</p>
+		<p>Be the first to post a car, engine, or part. Use the form below — the board reviews each submission before it goes live (usually within 24 hours). You get an email the moment it is approved.</p>
 		<a class="hero-cta" href="#list-item">List an Item →</a>
 	</div>
 <?php endif; ?>
@@ -218,7 +232,7 @@ main.cl-main{max-width:1280px;margin:0 auto;padding:40px 5vw}
 <section class="list-section" id="list-item"><div class="list-inner">
 	<div class="list-header">
 		<h2>List an Item · 60 Seconds · Free</h2>
-		<p>Goes live instantly. No signup, no fees, no commission. Board is notified and can remove listings that break rules — but you don't wait for approval.</p>
+		<p>Every submission is reviewed by the VMRA board before it goes public — typically within 24 hours. You will get an email the moment your listing is approved. No signup, no fees, no commission.</p>
 	</div>
 	<form class="cl-form" id="vmraClassifiedForm" enctype="multipart/form-data" novalidate>
 		<div class="honeypot" aria-hidden="true">
@@ -300,7 +314,7 @@ main.cl-main{max-width:1280px;margin:0 auto;padding:40px 5vw}
 				<label><input type="checkbox" name="show_email" value="1"> Show my email publicly</label>
 				<label><input type="checkbox" name="show_phone" value="1"> Show my phone publicly</label>
 			</div>
-			<div class="hint">If you leave both unchecked, buyers email board@vmra.club and we forward their message to you.</div>
+			<div class="hint">If you leave both unchecked, buyers email vmrainfo@gmail.com and we forward their message to you.</div>
 		</div>
 
 		<div class="full">
@@ -315,10 +329,10 @@ main.cl-main{max-width:1280px;margin:0 auto;padding:40px 5vw}
 	<span class="eyebrow">§ Questions, Answered</span>
 	<h2>Frequently Asked Questions</h2>
 	<div class="faq-grid">
-		<div class="faq-item"><h3>How much does it cost to list?</h3><p>Nothing. No listing fee, no commission when it sells, no signup. Fill out the form, your listing goes live instantly.</p></div>
+		<div class="faq-item"><h3>How much does it cost to list?</h3><p>Nothing. No listing fee, no commission when it sells, no signup. Fill out the form — the VMRA board reviews each submission and you get an email when yours is approved (usually within 24 hours).</p></div>
 		<div class="faq-item"><h3>What can I sell?</h3><p>Anything that lives in a race shop: complete race cars, crate and built engines, takeoff Hoosiers, gauges, scales, tire racks, trailers, spares, body panels, parts. Vintage modified equipment is the focus; related stock-car gear is welcome.</p></div>
 		<div class="faq-item"><h3>Who can buy or sell?</h3><p>VMRA members and friends of the Pacific Northwest vintage modified community. Membership is not required — if you're part of the broader PNW vintage modified circle, you can list and buy.</p></div>
-		<div class="faq-item"><h3>What happens when it sells?</h3><p>Email <a href="mailto:board@vmra.club?subject=SOLD">board@vmra.club</a> with SOLD in the subject and we flip the badge on your listing. Sold listings stay visible so buyers can see recent comparables.</p></div>
+		<div class="faq-item"><h3>What happens when it sells?</h3><p>Email <a href="mailto:vmrainfo@gmail.com?subject=SOLD">vmrainfo@gmail.com</a> with SOLD in the subject and we flip the badge on your listing. Sold listings stay visible so buyers can see recent comparables.</p></div>
 		<div class="faq-item"><h3>Does VMRA handle payment or shipping?</h3><p>No. VMRA doesn't broker sales, handle payment, or arrange shipping. Buyer and seller deal directly — inspect items in person when possible.</p></div>
 		<div class="faq-item"><h3>Why can't I include a link in my description?</h3><p>Links get stripped automatically to keep the board free of spam. If you have photos or docs to share, upload the photos to the listing directly or include them in your buyer's email reply.</p></div>
 	</div>
@@ -431,8 +445,11 @@ main.cl-main{max-width:1280px;margin:0 auto;padding:40px 5vw}
 			return r.json().then(function(data){ return { ok: r.ok, status: r.status, data: data }; });
 		}).then(function(res){
 			if (res.ok && res.data && res.data.ok) {
-				showMsg('ok', 'Listed! Redirecting to your listing…');
-				setTimeout(function(){ window.location.href = res.data.permalink; }, 1200);
+				showMsg('ok', res.data.message || 'Submitted for board approval. You will get an email when it is live.');
+				// Redirect to /classifieds/?submitted=1 — the pending post has no
+				// public permalink yet, so land the user on the confirmation banner.
+				var target = (res.data.redirect) || ('<?php echo esc_url( home_url( '/classifieds/?submitted=1' ) ); ?>');
+				setTimeout(function(){ window.location.href = target; }, 1500);
 			} else {
 				var errText = (res.data && (res.data.message || res.data.code)) || ('Error ' + res.status);
 				showMsg('err', errText);

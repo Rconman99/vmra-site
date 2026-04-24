@@ -72,14 +72,14 @@ $body = <<<'VMRA_BODY_EOT'
       <div class="contact-tag">General · Board</div>
       <div class="contact-title">Email the Board</div>
       <p class="contact-desc">Tech questions, race-day logistics, anything else.</p>
-      <a class="contact-link" href="mailto:board@vmra.club">board@vmra.club →</a>
+      <a class="contact-link" href="mailto:vmrainfo@gmail.com">vmrainfo@gmail.com →</a>
     </div>
 
     <div class="contact-card">
       <div class="contact-tag">Sponsorship</div>
       <div class="contact-title">Put Your Logo on the Half-Mile</div>
       <p class="contact-desc">Title-sponsor the season, back a single race, or get on a car's hood. Tiered packages for businesses of any size.</p>
-      <a class="contact-link" href="mailto:board@vmra.club?subject=Sponsorship%20Inquiry%20-%20VMRA%202026">board@vmra.club →</a>
+      <a class="contact-link" href="mailto:vmrainfo@gmail.com?subject=Sponsorship%20Inquiry%20-%20VMRA%202026">vmrainfo@gmail.com →</a>
     </div>
 
     <div class="contact-card">
@@ -103,7 +103,7 @@ $body = <<<'VMRA_BODY_EOT'
     <div class="classifieds">
       <p><strong>Free for members and supporters.</strong> Selling a vintage modified, a spare engine, takeoff tires, or trailer space? Email the webmaster with photos, asking price, and your best contact number — we'll post it on this page.</p>
       <p>No fees, no commission, no signup. Just real cars and parts moving between people who actually race them.</p>
-      <a class="contact-link" href="/classifieds/" style="margin-right:18px">Browse Classifieds →</a><a class="contact-link" href="mailto:board@vmra.club?subject=Classified%20Listing%20Submission">Submit a listing →</a>
+      <a class="contact-link" href="/classifieds/" style="margin-right:18px">Browse Classifieds →</a><a class="contact-link" href="mailto:vmrainfo@gmail.com?subject=Classified%20Listing%20Submission">Submit a listing →</a>
     </div>
   </section>
 

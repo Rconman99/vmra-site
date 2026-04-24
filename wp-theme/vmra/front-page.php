@@ -114,7 +114,7 @@ get_header(); ?>
 			</h1>
 			<div class="hero-rule" aria-hidden="true"></div>
 			<p class="hero-lede">
-				<?php esc_html_e( 'Vintage modifieds running the tracks of the Pacific Northwest since 1986. Real cars. Real drivers. Real dirt — kept alive by the crews who refuse to let it die.', 'vmra' ); ?>
+				<?php esc_html_e( 'Vintage modifieds running the tracks of the Northwest since 1986. Real cars. Real drivers. The spirit of 1950s through early \'70s circle-track racing — kept alive by the crews who refuse to let it die.', 'vmra' ); ?>
 			</p>
 			<div class="hero-actions">
 				<a href="<?php echo esc_url( home_url( '/schedule/' ) ); ?>" class="hero-link primary"><?php esc_html_e( '2026 Schedule', 'vmra' ); ?> <span class="arr">→</span></a>
@@ -399,7 +399,7 @@ get_header(); ?>
 			<h3>Cheth Rolls Into Evergreen as the Points Leader — the Chasers Have Some Math to Do</h3>
 			<p>Kahl Cheth took the Apple Cup opener at Tri-City and walked out 64 points rich with the #23 on top of the board. Saturday he heads to Evergreen's half-mile paved oval for Grocery Outlet Night — where <strong>Steve Woods has historically found speed</strong>. Woods sits third, seven back, and if there's a track where he closes the gap, this is it. <strong>Jason Quatsoe #8</strong> is the one between them — four off Cheth, three up on Woods — and Evergreen's a track he can run.</p>
 			<p>The big subplot: defending champ <strong>Kyten Jones #30</strong> never unloaded at Tri-City. He sits on zero points heading into Round 2 on his home track. Every round he waits, the hill gets steeper — but Evergreen has been a Jones track. If he shows up, he's the one to beat Saturday night.</p>
-			<p>Rookie-of-the-Year watch: <strong>B. Hector Sr #68</strong> is the early class leader at 35 rookie points, with <strong>C. Forney #72</strong> (29) and <strong>J. Boczar #79</strong> (12) chasing.</p>
+			<p>Rookie-of-the-Year watch: <strong>Bart Hecter Sr./Jr. #68</strong> (father-son sharing a car) are the early class leaders at 35 rookie points, with <strong>C. Forney #72</strong> (29) and <strong>J. Boczar #79</strong> (12) chasing.</p>
 			<p class="preview-byline">By <span class="byline-strong">The VMRA Desk</span> · April 23, 2026 · <a href="<?php echo esc_url( home_url( '/news/class-of-2026' ) ); ?>" style="color: var(--race-red); text-decoration: none;">Full preview →</a></p>
 		</article>
 	</div>
@@ -687,7 +687,7 @@ get_header(); ?>
 		</article>
 		<article class="faq-item">
 			<h3><?php esc_html_e( 'How do I join VMRA or race a vintage modified?', 'vmra' ); ?></h3>
-			<p>Annual membership is $50. Download the <a href="<?php echo esc_url( VMRA_THEME_URI . '/assets/downloads/vmra-2026-membership-form.pdf' ); ?>" target="_blank" rel="noopener">2026 Membership Application (PDF)</a>, print it, fill it out, sign it, and bring it to the next race weekend with cash or a check made out to VMRA. Or email the board at <a href="mailto:board@vmra.club">board@vmra.club</a> with questions. Your car needs to pass tech against the construction rules — pre-1970 American body, 2,950 lb minimum, 370 cubic inches max, no fuel injection, no blowers, no coil-overs. Tires are 10-inch-wide Hoosier take-offs (ST1 left, ST2/ST3 right), procured by VMRA.</p>
+			<p>Annual membership is $50. Download the <a href="<?php echo esc_url( VMRA_THEME_URI . '/assets/downloads/vmra-2026-membership-form.pdf' ); ?>" target="_blank" rel="noopener">2026 Membership Application (PDF)</a>, print it, fill it out, sign it, and bring it to the next race weekend with cash or a check made out to VMRA. Or email the board at <a href="mailto:vmrainfo@gmail.com">vmrainfo@gmail.com</a> with questions. Your car needs to pass tech against the construction rules — pre-1970 American body, 2,950 lb minimum, 370 cubic inches max, no fuel injection, no blowers, no coil-overs. Tires are 10-inch-wide Hoosier take-offs (ST1 left, ST2/ST3 right), procured by VMRA.</p>
 		</article>
 		<article class="faq-item">
 			<h3><?php esc_html_e( 'What type of cars race in VMRA?', 'vmra' ); ?></h3>
@@ -737,7 +737,7 @@ get_header(); ?>
 				<h3><?php esc_html_e( 'Put Your Logo on the Fast Half-Mile', 'vmra' ); ?></h3>
 				<p><?php esc_html_e( '908 Facebook followers. 23 drivers across 5 tracks. 40 years of brand equity. Download the 2026 Sponsorship Media Kit — tiers, pricing, reach, and why the 40th is the season to jump in.', 'vmra' ); ?></p>
 			</div>
-			<a href="mailto:board@vmra.club?subject=2026%20Sponsorship%20Media%20Kit%20Request" class="btn-media-kit"><?php esc_html_e( 'Request Media Kit →', 'vmra' ); ?></a>
+			<a href="mailto:vmrainfo@gmail.com?subject=2026%20Sponsorship%20Media%20Kit%20Request" class="btn-media-kit"><?php esc_html_e( 'Request Media Kit →', 'vmra' ); ?></a>
 		</div>
 	</div>
 </section>
@@ -749,12 +749,67 @@ get_header(); ?>
 			<h2><?php esc_html_e( 'Race Day Alerts', 'vmra' ); ?><br><?php esc_html_e( 'Straight to Your Inbox', 'vmra' ); ?></h2>
 			<p><?php esc_html_e( "Weekend recaps Monday morning. Next-round previews Thursday night. Rule changes the day they're posted. No spam, no ads, just racing.", 'vmra' ); ?></p>
 		</div>
-		<form class="sub-form" onsubmit="event.preventDefault(); var e=this.querySelector('input').value; if(e){window.location.href='mailto:board@vmra.club?subject=Subscribe%20to%20VMRA%20Updates&body=Please%20add%20'+encodeURIComponent(e)+'%20to%20the%20VMRA%20mailing%20list.';}">
+		<form class="sub-form" onsubmit="event.preventDefault(); var e=this.querySelector('input').value; if(e){window.location.href='mailto:vmrainfo@gmail.com?subject=Subscribe%20to%20VMRA%20Updates&body=Please%20add%20'+encodeURIComponent(e)+'%20to%20the%20VMRA%20mailing%20list.';}">
 			<input type="email" placeholder="<?php esc_attr_e( 'Your email address', 'vmra' ); ?>" aria-label="<?php esc_attr_e( 'Email address', 'vmra' ); ?>" required>
 			<button type="submit"><?php esc_html_e( 'Subscribe →', 'vmra' ); ?></button>
 		</form>
 	</div>
 </section>
+
+<script>
+/* v1.3.10.1 HOTFIX · Countdown tower tick — ports the missing block from static index.html. */
+(function(){
+	var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+	var dayNames = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+	fetch('<?php echo esc_url( $data_base . '/schedule.json' ); ?>').then(function(r){ return r.json(); }).then(function(data){
+		var today = new Date(); today.setHours(0,0,0,0);
+		var next = null;
+		for (var i = 0; i < data.races.length; i++) {
+			var rd = new Date(data.races[i].date + 'T12:00:00-07:00');
+			rd.setHours(0,0,0,0);
+			if (rd >= today) { next = data.races[i]; break; }
+		}
+		if (!next) { var tower = document.getElementById('countdownTower'); if (tower) tower.style.display = 'none'; return; }
+		var totalRounds = data.races.length;
+		var roundDisplay = next.round === 'TBD' ? 'TBD' : 'Round ' + String(next.round).padStart(2,'0') + ' / ' + totalRounds;
+		var set = function(id, text){ var el = document.getElementById(id); if (el) el.textContent = text; };
+		set('towerRound', roundDisplay);
+		set('towerTrack', next.track);
+		set('towerLocation', next.location);
+		set('towerEvent', next.event_name || next.tag_label);
+		var raceDateTime = new Date(next.date + 'T19:30:00-07:00');
+		set('towerGreenFlag', dayNames[raceDateTime.getDay()] + ' ' + months[raceDateTime.getMonth()] + ' ' + raceDateTime.getDate() + ' · 7:30 PM');
+		var trackInfo = (data.tracks && data.tracks[next.track]) || null;
+		var distEl = document.getElementById('towerDistance');
+		if (distEl) distEl.textContent = (trackInfo && trackInfo.shape) ? trackInfo.shape : '—';
+		var carsRow = document.getElementById('towerCarsRow');
+		var carsEl  = document.getElementById('towerCars');
+		if (next.carCount && carsEl) { carsEl.textContent = next.carCount; }
+		else if (carsRow) { carsRow.style.display = 'none'; }
+		var target = raceDateTime.getTime();
+		var cells = document.querySelectorAll('.count-num');
+		function tick(){
+			var now = Date.now();
+			var diff = Math.max(0, target - now);
+			var d = Math.floor(diff / 86400000); diff -= d * 86400000;
+			var h = Math.floor(diff / 3600000);  diff -= h * 3600000;
+			var m = Math.floor(diff / 60000);    diff -= m * 60000;
+			var s = Math.floor(diff / 1000);
+			if (cells.length >= 4) {
+				cells[0].textContent = String(d).padStart(2,'0');
+				cells[1].textContent = String(h).padStart(2,'0');
+				cells[2].textContent = String(m).padStart(2,'0');
+				cells[3].textContent = String(s).padStart(2,'0');
+			}
+		}
+		tick();
+		setInterval(tick, 1000);
+	}).catch(function(){
+		var te = document.getElementById('towerTrack'); if (te) te.textContent = 'Schedule unavailable';
+	});
+})();
+</script>
+
 
 <?php
 get_footer();

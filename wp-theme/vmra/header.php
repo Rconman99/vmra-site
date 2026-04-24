@@ -79,7 +79,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php endif; ?>
 
 		<div class="nav-right">
-			<a href="mailto:board@vmra.club?subject=Sponsorship%20Inquiry%20-%20VMRA%202026" class="nav-cta">
+			<a href="mailto:vmrainfo@gmail.com?subject=Sponsorship%20Inquiry%20-%20VMRA%202026" class="nav-cta">
 				<?php esc_html_e( 'Sponsor', 'vmra' ); ?> <span class="arr">›</span>
 			</a>
 			<button class="nav-toggle" id="navToggle"
@@ -117,7 +117,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php endif; ?>
 
 		<div class="mm-divider"></div>
-		<a href="mailto:board@vmra.club" class="mm-secondary">board@vmra.club</a>
+		<a href="mailto:vmrainfo@gmail.com" class="mm-secondary">vmrainfo@gmail.com</a>
 		<a href="https://www.facebook.com/NWVMRA/" rel="me noopener" target="_blank" class="mm-secondary"><?php esc_html_e( 'VMRA on Facebook →', 'vmra' ); ?></a>
 	</nav>
 </div>

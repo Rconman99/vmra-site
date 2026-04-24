@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'VMRA_THEME_VERSION', '1.4.0' );
+define( 'VMRA_THEME_VERSION', '1.4.1' );
 define( 'VMRA_THEME_DIR',     get_template_directory() );
 define( 'VMRA_THEME_URI',     get_template_directory_uri() );
 
@@ -74,8 +74,9 @@ require_once VMRA_THEME_DIR . '/inc/cpt-driver.php';   // Driver CPT
 require_once VMRA_THEME_DIR . '/inc/cpt-race.php';     // Race CPT
 require_once VMRA_THEME_DIR . '/inc/cpt-track.php';    // Track CPT
 require_once VMRA_THEME_DIR . '/inc/cpt-news.php';     // News CPT
-require_once VMRA_THEME_DIR . '/inc/cpt-classified.php';    // Classifieds CPT
-require_once VMRA_THEME_DIR . '/inc/classified-submit.php'; // Classifieds REST endpoint
+require_once VMRA_THEME_DIR . '/inc/cpt-classified.php';        // Classifieds CPT
+require_once VMRA_THEME_DIR . '/inc/classified-submit.php';     // Classifieds REST endpoint
+require_once VMRA_THEME_DIR . '/inc/classified-moderation.php'; // Pending→Publish + Deny & Notify admin UX
 require_once VMRA_THEME_DIR . '/inc/admin-notices.php'; // Plugin-dependency warnings
 require_once VMRA_THEME_DIR . '/inc/acf-field-groups.php'; // ACF field groups (no-op if ACF not active)
 require_once VMRA_THEME_DIR . '/inc/race-update-admin.php'; // Board's weekly race-update parser page

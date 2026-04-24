@@ -130,7 +130,7 @@ $photos  = array_filter( array_merge(
 			<?php else : ?>
 				<div class="cl-contact">
 					<h3>Contact the Seller</h3>
-					<p>The seller chose to keep their info private. Email <a href="mailto:board@vmra.club?subject=<?php echo rawurlencode( 'Classified inquiry: ' . $m['title'] ); ?>">board@vmra.club</a> and we'll forward your message.</p>
+					<p>The seller chose to keep their info private. Email <a href="mailto:vmrainfo@gmail.com?subject=<?php echo rawurlencode( 'Classified inquiry: ' . $m['title'] ); ?>">vmrainfo@gmail.com</a> and we'll forward your message.</p>
 					<p class="hint">Include your name, phone or email, and what you're asking about.</p>
 				</div>
 			<?php endif; ?>

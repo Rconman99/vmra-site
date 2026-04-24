@@ -132,10 +132,10 @@ main.race-body{max-width:1080px;margin:0 auto;padding:60px 5vw}
 				<?php esc_html_e( 'Tri-City Raceway uses an online sign-up — head to', 'vmra' ); ?>
 				<a href="https://tricityraceway.com/drivers.html" target="_blank" rel="noopener">tricityraceway.com/drivers.html</a>
 				<?php esc_html_e( 'for the form. Questions: contact the board at', 'vmra' ); ?>
-				<a href="mailto:board@vmra.club">board@vmra.club</a>.
+				<a href="mailto:vmrainfo@gmail.com">vmrainfo@gmail.com</a>.
 			<?php else : ?>
 				<?php esc_html_e( 'Contact the board to register for this round at', 'vmra' ); ?>
-				<a href="mailto:board@vmra.club">board@vmra.club</a>.
+				<a href="mailto:vmrainfo@gmail.com">vmrainfo@gmail.com</a>.
 				<?php if ( $track_website ) : ?>
 					<?php esc_html_e( 'Track gate info and pit pass details on the', 'vmra' ); ?>
 					<a href="<?php echo esc_url( $track_website ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'track website', 'vmra' ); ?></a>.

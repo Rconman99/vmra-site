@@ -55,11 +55,11 @@ function vmra_output_organization_schema() {
 			'Vintage motorsports history',
 			'Hoosier ST1 / ST2 / ST3 tire spec',
 		),
-		'email' => 'board@vmra.club',
+		'email' => 'vmrainfo@gmail.com',
 		'contactPoint' => array(
 			'@type'        => 'ContactPoint',
 			'contactType'  => 'Board of Directors',
-			'email'        => 'board@vmra.club',
+			'email'        => 'vmrainfo@gmail.com',
 			'areaServed'   => array( 'US-WA', 'US-OR', 'US-ID' ),
 			'availableLanguage' => 'English',
 		),
@@ -85,7 +85,7 @@ function vmra_output_classifieds_faq_schema() {
 	$faqs = array(
 		array(
 			'q' => 'How much does it cost to list on the VMRA Classifieds?',
-			'a' => 'Nothing. No listing fee, no commission when it sells, no signup. Fill out the form on the Classifieds page and your listing goes live instantly.',
+			'a' => 'Nothing. No listing fee, no commission when it sells, no signup. Fill out the form on the Classifieds page and the VMRA board reviews each submission before it goes live — typically within 24 hours. You get an email the moment your listing is approved.',
 		),
 		array(
 			'q' => 'What can I sell on the VMRA Classifieds?',
@@ -97,7 +97,7 @@ function vmra_output_classifieds_faq_schema() {
 		),
 		array(
 			'q' => 'What happens when my listing sells?',
-			'a' => 'Email board@vmra.club with SOLD in the subject and we flip the badge on your listing so it shows as sold. Sold listings stay visible for a period so buyers can see recent comparables.',
+			'a' => 'Email vmrainfo@gmail.com with SOLD in the subject and we flip the badge on your listing so it shows as sold. Sold listings stay visible for a period so buyers can see recent comparables.',
 		),
 		array(
 			'q' => 'Does VMRA handle payment, shipping, or the sale itself?',
@@ -142,7 +142,7 @@ function vmra_meta_description_fallback() {
 	if ( is_front_page() ) {
 		$description = 'Vintage Modified Racing Association — Pacific Northwest stock car racing since 1986. 40th anniversary season in 2026, 11 rounds across 5 PNW tracks. Schedule, drivers, standings, and free classifieds.';
 	} elseif ( is_page( 'classifieds' ) ) {
-		$description = 'Free VMRA classifieds board for Pacific Northwest vintage modified racers. Buy and sell race cars, engines, parts, and trailers — no fees, no commission, no signup. Email board@vmra.club with a photo and asking price.';
+		$description = 'Free VMRA classifieds board for Pacific Northwest vintage modified racers. Buy and sell race cars, engines, parts, and trailers — no fees, no commission, no signup. Email vmrainfo@gmail.com with a photo and asking price.';
 	} elseif ( is_page( 'schedule' ) ) {
 		$description = '2026 VMRA schedule — 11 rounds, 5 Pacific Northwest tracks. Nine rounds count for the championship, two are for the love of it. Round dates, track details, and directions.';
 	} elseif ( is_page( 'racers' ) || is_page( 'drivers' ) ) {
@@ -253,7 +253,7 @@ function vmra_serve_llms_txt() {
 	echo "- **Region:** Pacific Northwest (Washington, Oregon, Idaho)\n";
 	echo "- **Class:** Vintage modifieds — stock-car style, built and raced by members\n";
 	echo "- **What we are NOT:** Not a commercial series. Not NASCAR. Not a track. Not affiliated with other \"vintage modified\" clubs outside the PNW.\n";
-	echo "- **Contact:** board@vmra.club\n";
+	echo "- **Contact:** vmrainfo@gmail.com\n";
 	echo "- **Facebook:** https://www.facebook.com/NWVMRA/\n\n";
 
 	echo "## Core pages\n\n";
@@ -272,7 +272,7 @@ function vmra_serve_llms_txt() {
 	echo "- **What it is:** Free classifieds board for vintage modified equipment in the Pacific Northwest.\n";
 	echo "- **Items listed:** Race cars, crate and built engines, takeoff Hoosier tires, gauges, scales, tire racks, trailers, body panels, parts.\n";
 	echo "- **Cost:** No fees, no commission, no signup required.\n";
-	echo "- **How to list:** Email a photo and an asking price to board@vmra.club. Posted within 48 hours.\n";
+	echo "- **How to list:** Email a photo and an asking price to vmrainfo@gmail.com. Posted within 48 hours.\n";
 	echo "- **How listings close:** Reply with \"SOLD\" and we flip the badge.\n";
 	echo "- **Categories:** Race Cars · Engines · Parts · Trailers · Tools / Shop · Wanted.\n\n";
 
@@ -285,7 +285,7 @@ function vmra_serve_llms_txt() {
 	echo "- **Glossary term:** \"takeoff Hoosiers\" — used tires taken off after a race, commonly listed in VMRA classifieds.\n\n";
 
 	echo "## Sponsorship\n\n";
-	echo "Sponsor slots open for the 2026 season — contact board@vmra.club.\n\n";
+	echo "Sponsor slots open for the 2026 season — contact vmrainfo@gmail.com.\n\n";
 
 	echo "## Editorial style\n\n";
 	echo "- Eleven dates total. Nine for points. Two for the love of it.\n";

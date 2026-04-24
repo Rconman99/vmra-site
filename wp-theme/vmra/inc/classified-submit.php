@@ -4,7 +4,11 @@
  *
  *   POST /wp-json/vmra/v1/classified   (multipart/form-data)
  *
- * Anti-abuse layers (we auto-publish, so the floor is load-bearing):
+ * Submissions land as POST STATUS "pending" — the board reviews each one
+ * from /wp-admin/edit.php?post_type=vmra_classified and either Publishes
+ * (approves) or hits the Deny & Notify button (see inc/classified-moderation.php).
+ * Nothing goes public without board approval. Anti-abuse layers still apply
+ * — they keep the moderation queue small:
  *   1. Honeypot "website" field — invisible to humans, bots fill it.
  *   2. Per-IP rate limit — 2 submissions / hour, transient-based.
  *   3. Content validation — length bounds, required fields, email format,
@@ -13,7 +17,8 @@
  *      deny SEO backlink spam while keeping seller_email/phone readable.
  *   5. Photo policy — JPEG / PNG / WebP only, 5MB each, max 3 total.
  *
- * On success: returns 201 with { ok, id, permalink } and notifies the board.
+ * On success: returns 201 with { ok, id, status:'pending', redirect } and
+ * notifies the board with an admin review link.
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -102,10 +107,10 @@ function vmra_classified_submit( WP_REST_Request $req ) {
 	$description = preg_replace( '#\b\w+\.(com|net|org|io|biz|info|co|us|app)\S*#i', '[link removed]', $description );
 	$description = trim( $description );
 
-	// 5. Create the post (auto-publish).
+	// 5. Create the post as PENDING — board approval required before public.
 	$post_id = wp_insert_post( array(
 		'post_type'    => 'vmra_classified',
-		'post_status'  => 'publish',
+		'post_status'  => 'pending',
 		'post_title'   => $title,
 		'post_content' => $description,
 		'post_author'  => 0,
@@ -146,26 +151,38 @@ function vmra_classified_submit( WP_REST_Request $req ) {
 	// 7. Rate limit increment
 	set_transient( $rlkey, $count + 1, HOUR_IN_SECONDS );
 
-	// 8. Notify board (fire-and-forget; don't block response).
-	$body  = "A new classified listing just went live:\n\n";
-	$body .= get_permalink( $post_id ) . "\n\n";
+	// 8. Notify board — this is moderation-gated so the email links to the
+	//    admin review screen, not the public permalink (which won't work yet).
+	$admin_edit_url = admin_url( 'post.php?action=edit&post=' . $post_id );
+	$admin_list_url = admin_url( 'edit.php?post_status=pending&post_type=vmra_classified' );
+
+	$body  = "New classified listing submitted — pending your approval.\n\n";
+	$body .= "Review & approve:\n{$admin_edit_url}\n\n";
+	$body .= "Listing details:\n";
+	$body .= "Title: {$title}\n";
+	$body .= "Category: {$category}\n";
+	$body .= "Price: {$price}\n";
+	$body .= "Location: {$location}\n\n";
 	$body .= "Seller: {$seller_name} <{$seller_email}>";
 	if ( $seller_phone ) { $body .= " · {$seller_phone}"; }
 	$body .= "\nShow email public: " . ( $show_email ? 'YES' : 'no' );
 	$body .= "\nShow phone public: " . ( $show_phone ? 'YES' : 'no' );
-	$body .= "\nCategory: {$category}";
-	$body .= "\nPrice: {$price}";
-	$body .= "\nLocation: {$location}";
-	$body .= "\nIP: {$ip}\n\n";
-	$body .= "When it sells, the seller will email you SOLD and you flip the badge in /wp-admin/.";
-	$body .= "\nIf it violates rules, delete it from /wp-admin/edit.php?post_type=vmra_classified.";
+	$body .= "\nSubmit IP: {$ip}\n\n";
+	$body .= "How to moderate:\n";
+	$body .= "• Approve: open the edit link above, click Publish. Seller gets an auto-email.\n";
+	$body .= "• Deny: open the edit link, use the 'Deny & Notify Submitter' meta box\n";
+	$body .= "   on the right side — type a reason, click the button. Listing is trashed\n";
+	$body .= "   and the seller gets a polite email with your reason.\n\n";
+	$body .= "Full pending queue:\n{$admin_list_url}";
 
-	wp_mail( 'board@vmra.club', '[VMRA Classifieds] New listing: ' . $title, $body );
+	wp_mail( 'vmrainfo@gmail.com', '[VMRA Classifieds · PENDING] ' . $title, $body );
 
 	return new WP_REST_Response( array(
-		'ok'        => true,
-		'id'        => $post_id,
-		'permalink' => get_permalink( $post_id ),
+		'ok'       => true,
+		'id'       => $post_id,
+		'status'   => 'pending',
+		'redirect' => home_url( '/classifieds/?submitted=1' ),
+		'message'  => 'Thanks! Your listing is submitted for board approval. You will get an email when it is live.',
 	), 201 );
 }
 

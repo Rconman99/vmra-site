@@ -77,7 +77,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				) ); ?>
 			<?php else : ?>
 				<ul>
-					<li><a href="mailto:board@vmra.club">board@vmra.club</a></li>
+					<li><a href="mailto:vmrainfo@gmail.com">vmrainfo@gmail.com</a></li>
 					<li><a href="https://www.facebook.com/NWVMRA/" rel="me noopener" target="_blank"><?php esc_html_e( 'Facebook', 'vmra' ); ?></a></li>
 					<li><a href="<?php echo esc_url( home_url( '/news/' ) ); ?>"><?php esc_html_e( 'News', 'vmra' ); ?></a></li>
 				</ul>

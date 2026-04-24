@@ -59,7 +59,7 @@ ul.specs li .v{color:var(--chalk)}
 $body = <<<'VMRA_BODY_EOT'
 <section class="hero"><div class="hero-inner">
   <span class="eyebrow">§ Rulebook · 2026 Season</span>
-  <h1>Run What You Brought.<br>Build It Right.</h1>
+  <h1>Build It Right.</h1>
   <p class="lede">VMRA cars are American-made pre-1970 modified stock cars — same body styles you saw running the bullrings in the '50s and '60s, with a handful of 1970-77 compacts allowed. Below is the short version of how we score, what we require for safety, what makes a car legal, and what happens when somebody protests one. The two PDFs are the actual rulebooks. Print them, mark them up, bring them to tech.</p>
 </div></section>
 
@@ -87,18 +87,7 @@ $body = <<<'VMRA_BODY_EOT'
 <main id="main-content" tabindex="-1">
 
 <section>
-  <span class="marker">§ 01 · Awards &amp; Numbers</span>
-  <h2>Honoring the People Who Built This.</h2>
-  <ul class="specs">
-    <li><span class="k">Sportsman of the Year</span><span class="v">Awarded annually in honor of <strong>Don Wilhite</strong></span></li>
-    <li><span class="k">Rookie of the Year</span><span class="v">Awarded annually in honor of <strong>Doug Matheny</strong></span></li>
-    <li><span class="k">Car #1</span><span class="v">Reserved for the previous year's champion. Champ's old number gets reserved that year.</span></li>
-    <li><span class="k">Retired Numbers</span><span class="v">Two-year limit on all retired car numbers</span></li>
-  </ul>
-</section>
-
-<section>
-  <span class="marker">§ 02 · Points Scoring</span>
+  <span class="marker">§ 01 · Points Scoring</span>
   <h2>How a Race Adds Up.</h2>
   <p>Points go with the car number, not the driver. If a driver swap happens, the car starts at the back of any race it had already qualified for. Substitutions are allowed twice per season — but not back-to-back.</p>
   <ul class="specs">
@@ -113,7 +102,7 @@ $body = <<<'VMRA_BODY_EOT'
 </section>
 
 <section>
-  <span class="marker">§ 03 · Membership &amp; Money</span>
+  <span class="marker">§ 02 · Membership &amp; Money</span>
   <h2>Where the Dues Go.</h2>
   <ul class="specs">
     <li><span class="k">Annual Membership</span><span class="v">$50 per year (form linked above)</span></li>
@@ -126,7 +115,7 @@ $body = <<<'VMRA_BODY_EOT'
 </section>
 
 <section>
-  <span class="marker">§ 04 · Meetings &amp; Voting</span>
+  <span class="marker">§ 03 · Meetings &amp; Voting</span>
   <h2>How the Club Runs.</h2>
   <ul class="specs">
     <li><span class="k">General Meeting</span><span class="v">Third Tuesday of every month</span></li>
@@ -139,7 +128,7 @@ $body = <<<'VMRA_BODY_EOT'
 </section>
 
 <section>
-  <span class="marker">§ 05 · Track Procedures &amp; Safety</span>
+  <span class="marker">§ 04 · Track Procedures &amp; Safety</span>
   <h2>Non-Negotiable.</h2>
   <ul class="specs">
     <li><span class="k">Driver Suit</span><span class="v">Fire-retardant, full coverage. Nomex underwear, gloves, and hoods recommended.</span></li>
@@ -154,7 +143,7 @@ $body = <<<'VMRA_BODY_EOT'
 </section>
 
 <section>
-  <span class="marker">§ 06 · Protests &amp; Penalties</span>
+  <span class="marker">§ 05 · Protests &amp; Penalties</span>
   <h2>If You Think a Car's Over the Line.</h2>
   <p>Formal protests require <strong>$150 cash</strong> within 15 minutes after VMRA's last race of the event being protested. Submit to the Club President (or in their absence, another board member) in writing — must be specific (engine, top end, bottom end, clutch, flywheel, etc.). If the protest is upheld, the $150 returns to the protester. If not, it goes to the protested car. Refusing a protest = automatically considered illegal.</p>
   <ul class="specs">
@@ -165,7 +154,7 @@ $body = <<<'VMRA_BODY_EOT'
 </section>
 
 <section>
-  <span class="marker">§ 07 · Shock Claims</span>
+  <span class="marker">§ 06 · Shock Claims</span>
   <h2>Claim a Shock at the Trailer.</h2>
   <p>Driver must be a current paid VMRA member in good standing. Shocks must be claimed within <strong>15 minutes</strong> of the end of the Main Event, and removed within 15 minutes of the claim. <strong>$150 per claimed shock</strong>, paid to the board's Sgt. of Arms (or another board member if absent). Any driver who started the Main can claim. No limit on number of claims per car per season.</p>
   <ul class="specs">
@@ -175,7 +164,7 @@ $body = <<<'VMRA_BODY_EOT'
 </section>
 
 <section>
-  <span class="marker">§ 08 · Vehicle Construction</span>
+  <span class="marker">§ 07 · Vehicle Construction</span>
   <h2>What Counts as "Vintage Modified."</h2>
   <p>The full construction rulebook (2026-2027-2028 cycle) is the binding spec — download it above for chapter and verse. Below is the high-level shape:</p>
   <ul class="specs">
@@ -198,15 +187,15 @@ $body = <<<'VMRA_BODY_EOT'
 </section>
 
 <section>
-  <span class="marker">§ 09 · Unsportsmanlike Conduct</span>
+  <span class="marker">§ 08 · Unsportsmanlike Conduct</span>
   <h2>How We Handle Bad Behavior.</h2>
   <p>Members can be disciplined by the board for behavior that reflects negatively on VMRA. Standard fine: <strong>$50</strong>, paid before the next scheduled race. Suspension (temporary or permanent) is on the table depending on the offense. Car owners and drivers are responsible for their pit crew's actions — if a crew member acts up, the car number can be disciplined. Track incidents are handled case-by-case.</p>
 </section>
 
 <section>
-  <span class="marker">§ 10 · The Fine Print</span>
+  <span class="marker">§ 09 · The Fine Print</span>
   <h2>Read the Source Document.</h2>
-  <p>This page is a summary. The two source documents above — the 2026 House Rules and the 2026-2028 Construction Rules — are the binding text. Download them for committee assignments, exact procedural language, every spec, and the edge cases. If a question isn't answered there, email <a href="mailto:board@vmra.club" style="color:var(--sodium);text-decoration:none;border-bottom:1px solid currentColor">board@vmra.club</a> before race day, not after tech. Tech Committee has final say on whether a build is in the spirit of the rules.</p>
+  <p>This page is a summary. The two source documents above — the 2026 House Rules and the 2026-2028 Construction Rules — are the binding text. Download them for committee assignments, exact procedural language, every spec, and the edge cases. If a question isn't answered there, email <a href="mailto:vmrainfo@gmail.com" style="color:var(--sodium);text-decoration:none;border-bottom:1px solid currentColor">vmrainfo@gmail.com</a> before race day, not after tech. Tech Committee has final say on whether a build is in the spirit of the rules.</p>
 </section>
 
 </main>

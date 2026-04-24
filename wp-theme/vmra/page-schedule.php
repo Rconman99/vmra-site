@@ -435,7 +435,7 @@ $body = <<<'VMRA_BODY_EOT'
   })();
   </script>
 
-  <div class="note"><strong>Pre-registration:</strong> The Apple Cup uses Tri-City Raceway's online sign-up — head to <a href="https://tricityraceway.com/drivers.html" style="color:var(--sodium);text-decoration:none;border-bottom:1px solid currentColor" target="_blank" rel="noopener">tricityraceway.com/drivers.html</a> for the form. For all other rounds, contact the board at <a href="mailto:board@vmra.club" style="color:var(--sodium);text-decoration:none;border-bottom:1px solid currentColor">board@vmra.club</a>.</div>
+  <div class="note"><strong>Pre-registration:</strong> The Apple Cup uses Tri-City Raceway's online sign-up — head to <a href="https://tricityraceway.com/drivers.html" style="color:var(--sodium);text-decoration:none;border-bottom:1px solid currentColor" target="_blank" rel="noopener">tricityraceway.com/drivers.html</a> for the form. For all other rounds, contact the board at <a href="mailto:vmrainfo@gmail.com" style="color:var(--sodium);text-decoration:none;border-bottom:1px solid currentColor">vmrainfo@gmail.com</a>.</div>
 </main>
 VMRA_BODY_EOT;
 
