@@ -416,7 +416,8 @@ $body = <<<'VMRA_BODY_EOT'
                   '<div class="address">' + escHtml(addr) + '</div>' +
                   (info.shape ? '<div class="shape">' + escHtml(info.shape) + '</div>' : '') +
                   '<div class="race-btns">' +
-                    '<a class="race-btn primary" href="' + escAttr(dirHref) + '" target="_blank" rel="noopener">Get Directions <span class="arrow">→</span></a>' +
+                    (race.round !== 'TBD' ? '<a class="race-btn primary" href="/races/round-' + roundNum + '/">View Round ' + roundNum + ' Details <span class="arrow">→</span></a>' : '') +
+                    '<a class="race-btn" href="' + escAttr(dirHref) + '" target="_blank" rel="noopener">Get Directions <span class="arrow">↗</span></a>' +
                     (siteHref ? '<a class="race-btn" href="' + escAttr(siteHref) + '" target="_blank" rel="noopener">Track Website <span class="arrow">↗</span></a>' : '') +
                   '</div>' +
                 '</div>' +

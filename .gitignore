@@ -19,3 +19,7 @@ yarn-debug.log*
 yarn-error.log*
 .env
 .env.local
+
+# Stray mktemp/curl temp files that landed in wp-theme/ during deploy dry-runs.
+# Named like zii1WHgx (random 8-char, no extension). Safe to delete from disk.
+wp-theme/[A-Za-z0-9][A-Za-z0-9][A-Za-z0-9][A-Za-z0-9][A-Za-z0-9][A-Za-z0-9][A-Za-z0-9][A-Za-z0-9]

@@ -105,7 +105,7 @@ get_header(); ?>
 		<div class="hero-copy">
 			<div class="badge">
 				<span class="pulse" aria-hidden="true"></span>
-				<span class="ix">§ 040</span>
+				<span class="ix">EST 1986</span>
 				<span><?php esc_html_e( '2026 Season · 40th Anniversary', 'vmra' ); ?></span>
 			</div>
 			<h1>
@@ -155,6 +155,35 @@ get_header(); ?>
 		</aside>
 	</div>
 </header>
+
+<!-- ===================== TRUST STACK ===================== -->
+<section class="trust-stack" aria-label="<?php esc_attr_e( 'VMRA at a glance — years, rounds, drivers, tracks', 'vmra' ); ?>">
+	<div class="trust-inner">
+		<div class="trust-eyebrow"><?php esc_html_e( '§ At a Glance', 'vmra' ); ?></div>
+		<div class="trust-grid">
+			<div class="trust-cell">
+				<div class="trust-num">40</div>
+				<div class="trust-label"><?php esc_html_e( 'Years', 'vmra' ); ?></div>
+				<div class="trust-sub"><?php esc_html_e( 'Since 1986', 'vmra' ); ?></div>
+			</div>
+			<div class="trust-cell">
+				<div class="trust-num"><?php echo esc_html( str_pad( (string) count( $schedule['races'] ?? array() ), 2, '0', STR_PAD_LEFT ) ); ?></div>
+				<div class="trust-label"><?php esc_html_e( 'Rounds', 'vmra' ); ?></div>
+				<div class="trust-sub"><?php esc_html_e( '2026 Season', 'vmra' ); ?></div>
+			</div>
+			<div class="trust-cell">
+				<div class="trust-num"><?php echo esc_html( (int) count( $standings['drivers'] ?? array() ) ); ?></div>
+				<div class="trust-label"><?php esc_html_e( 'Drivers', 'vmra' ); ?></div>
+				<div class="trust-sub"><?php esc_html_e( 'On the Grid', 'vmra' ); ?></div>
+			</div>
+			<div class="trust-cell">
+				<div class="trust-num">05</div>
+				<div class="trust-label"><?php esc_html_e( 'Tracks', 'vmra' ); ?></div>
+				<div class="trust-sub"><?php esc_html_e( 'WA · OR · ID', 'vmra' ); ?></div>
+			</div>
+		</div>
+	</div>
+</section>
 
 <!-- ===================== ABOUT STRIP (AEO) ===================== -->
 <section class="about-strip" aria-label="<?php esc_attr_e( 'About the Vintage Modified Racing Association', 'vmra' ); ?>">

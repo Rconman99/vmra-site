@@ -105,7 +105,7 @@ $body = <<<'VMRA_BODY_EOT'
   <div>
     <span class="eyebrow">§ Classifieds · Members &amp; Friends</span>
     <h1>Cars, Engines, Parts.<br>Between People Who Race Them.</h1>
-    <p class="lede">Free classifieds board for vintage modified equipment in the Pacific Northwest — cars, crate motors, takeoff Hoosiers, gauges, scales, anything that lives in a race shop. No fees, no commission, no signup. Email a photo and an asking price. We'll post it within 48 hours. When it sells, reply with "SOLD" and we'll flip the badge.</p>
+    <p class="lede">The VMRA Classifieds is a free, no-signup board where Pacific Northwest vintage modified racers buy and sell cars, engines, and parts directly — no fees, no commission, no middleman. Listings include crate motors, takeoff Hoosiers, gauges, scales, trailers, and anything else that lives in a race shop. Email a photo and an asking price to <a href="mailto:board@vmra.club" style="color:var(--sodium);text-decoration:none;border-bottom:1px solid currentColor">board@vmra.club</a> — we post it within 48 hours. When it sells, reply with "SOLD" and we flip the badge.</p>
   </div>
   <a class="hero-cta" href="mailto:board@vmra.club?subject=Classified%20Listing%20Submission&body=Title:%20%0AAsking%20Price:%20%0ALocation:%20%0ACondition:%20%0ADescription:%20%0AContact%20number:%20%0A%0A%5BAttach%201-3%20photos%20to%20this%20email%5D">Submit a Listing →</a>
 </div></section>
@@ -143,8 +143,7 @@ $body = <<<'VMRA_BODY_EOT'
     <!-- Listings injected by JS below -->
     <div class="empty-state" id="emptyState">
       <h3>No active listings match that filter.</h3>
-      <p>Be the first to post a car, engine, or part. Email <a href="mailto:board@vmra.club" style="color:var(--sodium)">board@vmra.club</a> with your listing details and photos — we'll get it up within 48 hours.</p>
-      <a class="hero-cta" style="background:var(--race-red);color:var(--chalk);border-color:var(--race-red)" href="mailto:board@vmra.club?subject=Classified%20Listing%20Submission">Submit a Listing →</a>
+      <p>Be the first to post a car, engine, or part. Email <a href="mailto:board@vmra.club" style="color:var(--sodium);text-decoration:none;border-bottom:1px solid currentColor">board@vmra.club</a> with your listing details and photos — we'll get it up within 48 hours. Scroll down for the full submission template.</p>
     </div>
   </div>
 </main>
@@ -182,6 +181,58 @@ $body = <<<'VMRA_BODY_EOT'
     </div>
   </div>
 </div></section>
+
+<section class="faq"><div class="faq-inner">
+  <span class="eyebrow">§ Questions, Answered</span>
+  <h2>Frequently Asked Questions</h2>
+
+  <div class="faq-grid">
+    <div class="faq-item">
+      <h3>How much does it cost to list?</h3>
+      <p>Nothing. No listing fee, no commission when it sells, no signup. Email <a href="mailto:board@vmra.club">board@vmra.club</a> with a photo and asking price — we post within 48 hours.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>What can I sell?</h3>
+      <p>Anything that lives in a race shop: complete race cars, crate and built engines, takeoff Hoosiers, gauges, scales, tire racks, trailers, spares, body panels, parts. Vintage modified equipment is the focus; related stock-car gear is welcome.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Who can buy or sell?</h3>
+      <p>VMRA members and friends of the Pacific Northwest vintage modified community. Membership is not required — if you're part of the broader PNW vintage modified circle, you can list and buy.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>What happens when it sells?</h3>
+      <p>Reply to your original submission email with "SOLD" and we flip the badge on the listing. Sold listings stay visible for a period so buyers can see recent comparables.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Does VMRA handle payment or shipping?</h3>
+      <p>No. VMRA doesn't broker sales, handle payment, or arrange shipping. Buyer and seller deal directly — inspect items in person when possible.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Can I list something that isn't vintage modified equipment?</h3>
+      <p>If it's race-shop equipment used in stock-car racing, yes. Unrelated gear (non-racing vehicles, non-motorsport items) we may decline to keep the board focused.</p>
+    </div>
+  </div>
+</div></section>
+
+<style>
+.faq { padding: 60px 5vw; border-top: 1px solid var(--grease); background: var(--asphalt-2); }
+.faq-inner { max-width: 1280px; margin: 0 auto; }
+.faq .eyebrow { font-family: 'JetBrains Mono', monospace; color: var(--sodium); font-size: .78rem; letter-spacing: .2em; text-transform: uppercase; margin-bottom: 14px; display: block; }
+.faq h2 { font-family: 'Anton', sans-serif; font-size: clamp(1.8rem, 4vw, 2.6rem); letter-spacing: .02em; line-height: 1.05; margin-bottom: 36px; }
+.faq-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+@media (max-width: 760px) { .faq-grid { grid-template-columns: 1fr; gap: 22px; } }
+.faq-item { background: var(--asphalt-3); border: 1px solid var(--grease); padding: 24px 26px; transition: border-color .2s; }
+.faq-item:hover { border-color: var(--race-red); }
+.faq-item h3 { font-family: 'Anton', sans-serif; font-size: 1.15rem; letter-spacing: .02em; line-height: 1.15; margin-bottom: 10px; color: var(--chalk); }
+.faq-item p { font-size: .98rem; line-height: 1.55; color: var(--chalk-dim); }
+.faq-item a { color: var(--sodium); text-decoration: none; border-bottom: 1px solid currentColor; }
+.faq-item a:hover { color: var(--race-red); border-bottom-color: currentColor; }
+</style>
 VMRA_BODY_EOT;
 
 // Retarget /data/*.json fetches at the theme's data dir.

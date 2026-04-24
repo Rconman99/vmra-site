@@ -1965,4 +1965,96 @@ section.block {
   padding-top: 10px;
 }
 
+/* =========================================================
+   TRUST STACK — 4 stat cells below the hero
+   40 Years · 11 Rounds · 23 Drivers · 5 Tracks
+   ========================================================= */
+.trust-stack {
+  background: var(--asphalt);
+  border-top: 1px solid var(--race-red);
+  border-bottom: 1px solid var(--grease);
+  padding: 36px 5vw 40px;
+  position: relative;
+}
+.trust-stack::before {
+  content: "";
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--race-red) 0%, var(--sodium) 50%, var(--race-red) 100%);
+}
+.trust-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.trust-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--sodium);
+  margin-bottom: 22px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed var(--grease);
+}
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+.trust-cell {
+  padding: 18px 28px 18px 0;
+  border-right: 1px solid var(--grease);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  transition: transform 0.25s ease;
+}
+.trust-cell:last-child { border-right: none; padding-right: 0; }
+.trust-cell:hover { transform: translateY(-2px); }
+.trust-num {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(2.8rem, 6vw, 4.4rem);
+  line-height: 0.95;
+  color: var(--sodium);
+  text-shadow: 3px 3px 0 rgba(209,26,42,0.18);
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+}
+.trust-cell:hover .trust-num { color: var(--race-red); text-shadow: 3px 3px 0 rgba(255,176,46,0.18); }
+.trust-label {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.05rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--chalk);
+  margin-bottom: 4px;
+}
+.trust-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--chalk-dim);
+}
+@media (max-width: 900px) {
+  .trust-grid { grid-template-columns: repeat(2, 1fr); gap: 0; }
+  .trust-cell {
+    padding: 18px 20px;
+    border-bottom: 1px solid var(--grease);
+  }
+  .trust-cell:nth-child(2n) { border-right: none; }
+  .trust-cell:nth-child(3),
+  .trust-cell:nth-child(4) { border-bottom: none; padding-bottom: 0; }
+  .trust-cell:nth-child(1),
+  .trust-cell:nth-child(2) { padding-top: 0; }
+}
+@media (max-width: 520px) {
+  .trust-grid { grid-template-columns: 1fr; }
+  .trust-cell {
+    padding: 16px 0;
+    border-right: none;
+    border-bottom: 1px solid var(--grease);
+  }
+  .trust-cell:last-child { border-bottom: none; padding-bottom: 0; }
+}
 
