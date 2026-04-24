@@ -46,6 +46,28 @@ while ( have_posts() ) : the_post();
 		}
 	endwhile;
 	wp_reset_postdata();
+
+	// Fallback — if no WP race-update entries exist yet for this driver,
+	// pull the current point total from data/standings.json by car number.
+	// Keeps driver pages accurate between race night and the board entering
+	// the round via the race-update admin tool.
+	$rounds_raced = count( $race_rows );
+	if ( $season_total === 0 && $car && function_exists( 'vmra_seed_data' ) ) {
+		$standings = vmra_seed_data( 'standings' );
+		if ( is_array( $standings ) && ! empty( $standings['drivers'] ) ) {
+			foreach ( $standings['drivers'] as $row ) {
+				if ( isset( $row['car'] ) && (string) $row['car'] === (string) $car ) {
+					$season_total = (int) ( $row['points'] ?? 0 );
+					// If they scored any points, they raced at least the
+					// rounds_completed count. Zero-point entries are no-shows.
+					if ( $season_total > 0 ) {
+						$rounds_raced = (int) ( $standings['rounds_completed'] ?? 1 );
+					}
+					break;
+				}
+			}
+		}
+	}
 ?>
 <style>
 .driver-hero{padding:0 0 40px;border-bottom:2px solid var(--race-red);background:linear-gradient(135deg,var(--oxblood-deep),var(--asphalt) 60%)}
@@ -83,7 +105,7 @@ main.driver-body{max-width:1080px;margin:0 auto;padding:60px 5vw}
 		<?php if ( $home ) : ?><div class="home"><?php echo esc_html( $home ); ?></div><?php endif; ?>
 		<div class="driver-stats">
 			<div class="stat"><span class="n"><?php echo $season_total; ?></span><span class="l">2026 Points</span></div>
-			<div class="stat"><span class="n"><?php echo count( $race_rows ); ?></span><span class="l">Rounds Raced</span></div>
+			<div class="stat"><span class="n"><?php echo (int) $rounds_raced; ?></span><span class="l">Rounds Raced</span></div>
 			<div class="stat"><span class="n"><?php echo $titles; ?></span><span class="l">Championships</span></div>
 		</div>
 	</div>
