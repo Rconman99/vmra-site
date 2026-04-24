@@ -65,58 +65,71 @@ function vmra_classified_add_deny_metabox( $post ) {
 }
 
 function vmra_classified_deny_metabox_render( $post ) {
-	wp_nonce_field( 'vmra_classified_deny_' . $post->ID, 'vmra_classified_deny_nonce' );
 	$seller_email = (string) get_post_meta( $post->ID, 'seller_email', true );
 	$seller_name  = (string) get_post_meta( $post->ID, 'seller_name', true );
+	// Self-contained form that posts to admin-post.php. Gutenberg dropped the
+	// legacy <form id="post"> wrapper, so meta-box <button type="submit"> no
+	// longer has anywhere to submit. Our own <form> + admin_post_ hook is the
+	// canonical fix and keeps the deny action isolated from normal post saves.
 	?>
-	<p style="font-size:12px;color:#646970;margin:4px 0 8px">
-		Type a short reason. The submitter
-		<?php echo $seller_name ? '<strong>(' . esc_html( $seller_name ) . ')</strong>' : ''; ?>
-		gets it emailed to
-		<strong><?php echo esc_html( $seller_email ?: 'their address' ); ?></strong>,
-		this listing moves to Trash.
-	</p>
-	<textarea
-		name="vmra_classified_deny_reason"
-		rows="4"
-		style="width:100%;font-family:monospace;font-size:12px"
-		placeholder="E.g. Item is outside the vintage-modified scope. Or: listing looks like spam. Or: please resubmit with a clearer photo."
-	></textarea>
-	<p>
-		<button
-			type="submit"
-			name="vmra_classified_deny_action"
-			value="1"
-			class="button button-secondary"
-			style="background:#d11a2a;color:#fff;border-color:#a01521;width:100%;margin-top:6px"
-			onclick="return confirm('Deny this listing and email the reason to the submitter?');"
-		>Deny &amp; Notify Submitter</button>
-	</p>
-	<p style="font-size:11px;color:#646970;margin:8px 0 0">
-		To <em>approve</em> instead, just hit the blue <strong>Publish</strong> button —
-		the submitter gets an auto-email when it goes live.
-	</p>
+	<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+		<input type="hidden" name="action"  value="vmra_classified_deny">
+		<input type="hidden" name="post_ID" value="<?php echo (int) $post->ID; ?>">
+		<?php wp_nonce_field( 'vmra_classified_deny_' . $post->ID, 'vmra_classified_deny_nonce' ); ?>
+
+		<p style="font-size:12px;color:#646970;margin:4px 0 8px">
+			Type a short reason. The submitter
+			<?php echo $seller_name ? '<strong>(' . esc_html( $seller_name ) . ')</strong>' : ''; ?>
+			gets it emailed to
+			<strong><?php echo esc_html( $seller_email ?: 'their address' ); ?></strong>,
+			this listing moves to Trash.
+		</p>
+		<textarea
+			name="vmra_classified_deny_reason"
+			rows="4"
+			style="width:100%;font-family:monospace;font-size:12px"
+			placeholder="E.g. Item is outside the vintage-modified scope. Or: listing looks like spam. Or: please resubmit with a clearer photo."
+		></textarea>
+		<p>
+			<button
+				type="submit"
+				class="button button-secondary"
+				style="background:#d11a2a;color:#fff;border-color:#a01521;width:100%;margin-top:6px"
+				onclick="return confirm('Deny this listing and email the reason to the submitter?');"
+			>Deny &amp; Notify Submitter</button>
+		</p>
+		<p style="font-size:11px;color:#646970;margin:8px 0 0">
+			To <em>approve</em> instead, just hit the blue <strong>Publish</strong> button —
+			the submitter gets an auto-email when it goes live.
+		</p>
+	</form>
 	<?php
 }
 
 
 // ---------------------------------------------------------------------------
-// 3. Handle the deny submit. Runs on save_post (before post_updated hooks).
+// 3. Handle the deny submit via admin-post.php. Isolated from save_post so
+//    normal post updates don't accidentally trigger the deny flow.
 // ---------------------------------------------------------------------------
-add_action( 'save_post_vmra_classified', 'vmra_classified_maybe_deny', 5, 2 );
-function vmra_classified_maybe_deny( $post_id, $post ) {
-	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
-		return;
+add_action( 'admin_post_vmra_classified_deny', 'vmra_classified_handle_deny' );
+function vmra_classified_handle_deny() {
+	$post_id = isset( $_POST['post_ID'] ) ? (int) $_POST['post_ID'] : 0;
+	if ( ! $post_id ) {
+		wp_die( 'Missing post ID.', 'VMRA Classifieds', array( 'response' => 400 ) );
 	}
-	if ( empty( $_POST['vmra_classified_deny_action'] ) ) {
-		return;
-	}
+
 	if ( ! current_user_can( 'edit_post', $post_id ) ) {
-		return;
+		wp_die( 'You do not have permission to moderate this listing.', 'VMRA Classifieds', array( 'response' => 403 ) );
 	}
+
 	if ( empty( $_POST['vmra_classified_deny_nonce'] ) ||
 	     ! wp_verify_nonce( $_POST['vmra_classified_deny_nonce'], 'vmra_classified_deny_' . $post_id ) ) {
-		return;
+		wp_die( 'Security check failed. Refresh the page and try again.', 'VMRA Classifieds', array( 'response' => 403 ) );
+	}
+
+	$post = get_post( $post_id );
+	if ( ! $post || $post->post_type !== 'vmra_classified' ) {
+		wp_die( 'Listing not found.', 'VMRA Classifieds', array( 'response' => 404 ) );
 	}
 
 	$reason = trim( sanitize_textarea_field( (string) ( $_POST['vmra_classified_deny_reason'] ?? '' ) ) );
@@ -130,12 +143,8 @@ function vmra_classified_maybe_deny( $post_id, $post ) {
 
 	vmra_classified_email_submitter_denial( $post, $reason );
 
-	// Move to Trash so it's out of the way but recoverable.
-	remove_action( 'save_post_vmra_classified', 'vmra_classified_maybe_deny', 5 );
 	wp_trash_post( $post_id );
-	add_action( 'save_post_vmra_classified', 'vmra_classified_maybe_deny', 5, 2 );
 
-	// Redirect back to the pending queue with a notice.
 	wp_safe_redirect( add_query_arg(
 		array( 'post_type' => 'vmra_classified', 'post_status' => 'pending', 'vmra_denied' => 1 ),
 		admin_url( 'edit.php' )
