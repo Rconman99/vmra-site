@@ -85,7 +85,7 @@ function vmra_output_classifieds_faq_schema() {
 	$faqs = array(
 		array(
 			'q' => 'How much does it cost to list on the VMRA Classifieds?',
-			'a' => 'Nothing. No listing fee, no commission when it sells, no signup. VMRA members and friends email a photo and asking price to board@vmra.club and we post the listing within 48 hours.',
+			'a' => 'Nothing. No listing fee, no commission when it sells, no signup. Fill out the form on the Classifieds page and your listing goes live instantly.',
 		),
 		array(
 			'q' => 'What can I sell on the VMRA Classifieds?',
@@ -96,20 +96,16 @@ function vmra_output_classifieds_faq_schema() {
 			'a' => 'VMRA members and friends of the Pacific Northwest vintage modified community. Membership is not required — if you are part of the broader PNW vintage modified circle, you can list and buy.',
 		),
 		array(
-			'q' => 'How do I submit a listing?',
-			'a' => 'Email board@vmra.club with 1-3 photos, a short description, your asking price, and your contact info or preferred contact method. We review and post the listing within 48 hours.',
-		),
-		array(
 			'q' => 'What happens when my listing sells?',
-			'a' => 'Reply to your original submission email with "SOLD" and we flip the badge on the listing so it shows as sold. Sold listings stay visible for a period so buyers can see recent comparables.',
+			'a' => 'Email board@vmra.club with SOLD in the subject and we flip the badge on your listing so it shows as sold. Sold listings stay visible for a period so buyers can see recent comparables.',
 		),
 		array(
 			'q' => 'Does VMRA handle payment, shipping, or the sale itself?',
 			'a' => 'No. VMRA does not broker sales, handle payment, or arrange shipping. Buyers and sellers deal directly with each other. Inspect items in person when possible.',
 		),
 		array(
-			'q' => 'Can I list something that is not vintage modified equipment?',
-			'a' => 'If it is race-shop equipment used in stock-car racing, yes. If it is unrelated (non-racing vehicles, non-motorsport gear), we may decline the listing to keep the board focused.',
+			'q' => 'Why can\'t I include a link in my description?',
+			'a' => 'Links get stripped automatically from descriptions to keep the board free of spam. Use the photo upload to show what you are selling. Buyers will reach you via your posted contact info or a relay email.',
 		),
 	);
 

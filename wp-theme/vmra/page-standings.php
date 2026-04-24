@@ -13,6 +13,33 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 $vmra_data_base = esc_url( VMRA_THEME_URI . '/data' );
 
+// Pre-render the standings rows + build a car→URL map for the JS hydrator
+// so both the no-JS fallback and the JS render link driver names to bios.
+$vmra_standings = function_exists( 'vmra_seed_data' ) ? vmra_seed_data( 'standings' ) : null;
+$vmra_driver_url_map = array();
+$vmra_standings_rows_html = '';
+if ( is_array( $vmra_standings ) && ! empty( $vmra_standings['drivers'] ) ) {
+	foreach ( $vmra_standings['drivers'] as $row ) {
+		$car  = (string) ( $row['car']  ?? '' );
+		$name = (string) ( $row['name'] ?? '' );
+		$pos  = (int)    ( $row['position'] ?? 0 );
+		$pts  = (int)    ( $row['points']   ?? 0 );
+		$url  = $car ? vmra_driver_url_by_car( $car ) : '';
+		if ( $url ) {
+			$vmra_driver_url_map[ $car ] = $url;
+		}
+		$name_cell = $url
+			? '<a href="' . esc_url( $url ) . '" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--grease)">' . esc_html( $name ) . '</a>'
+			: esc_html( $name );
+		$vmra_standings_rows_html .= '<tr>'
+			. '<td class="pos">' . $pos . '</td>'
+			. '<td class="car">#' . esc_html( $car ) . '</td>'
+			. '<td class="name">' . $name_cell . '</td>'
+			. '<td class="pts">' . $pts . '</td>'
+			. '</tr>';
+	}
+}
+
 get_header(); ?>
 
 <style>
@@ -70,44 +97,26 @@ $body = <<<'VMRA_BODY_EOT'
         <th class="pts">Points</th>
       </tr>
     </thead>
-    <tbody id="standingsBody">
-      <tr><td class="pos">1</td><td class="car">#23</td><td class="name">Kahl Cheth</td><td class="pts">64</td></tr>
-      <tr><td class="pos">2</td><td class="car">#8</td><td class="name">Jason Quatsoe</td><td class="pts">60</td></tr>
-      <tr><td class="pos">3</td><td class="car">#22</td><td class="name">Steve Woods</td><td class="pts">57</td></tr>
-      <tr><td class="pos">4</td><td class="car">#68</td><td class="name">B. Hector Sr</td><td class="pts">55</td></tr>
-      <tr><td class="pos">5</td><td class="car">#57</td><td class="name">Shane Strimple</td><td class="pts">53</td></tr>
-      <tr><td class="pos">6</td><td class="car">#25B</td><td class="name">B. Greiner</td><td class="pts">52</td></tr>
-      <tr><td class="pos">7</td><td class="car">#82</td><td class="name">Vince Conwell</td><td class="pts">50</td></tr>
-      <tr><td class="pos">8</td><td class="car">#72</td><td class="name">C. Forney</td><td class="pts">49</td></tr>
-      <tr><td class="pos">9</td><td class="car">#2</td><td class="name">Rick Villyard</td><td class="pts">47</td></tr>
-      <tr><td class="pos">10</td><td class="car">#77</td><td class="name">G. Chamber</td><td class="pts">45</td></tr>
-      <tr><td class="pos">11</td><td class="car">#51</td><td class="name">Dave Trapp</td><td class="pts">43</td></tr>
-      <tr><td class="pos">12</td><td class="car">#79</td><td class="name">J. Boczar</td><td class="pts">32</td></tr>
-      <tr><td class="pos">13</td><td class="car">#25RT</td><td class="name">RT Greiner</td><td class="pts">20</td></tr>
-      <tr><td class="pos">14</td><td class="car">#6</td><td class="name">R. Learch</td><td class="pts">0</td></tr>
-      <tr><td class="pos">15</td><td class="car">#7</td><td class="name">Mike Clother</td><td class="pts">0</td></tr>
-      <tr><td class="pos">16</td><td class="car">#10</td><td class="name">B. Cottrell</td><td class="pts">0</td></tr>
-      <tr><td class="pos">17</td><td class="car">#11</td><td class="name">B. Cole</td><td class="pts">0</td></tr>
-      <tr><td class="pos">18</td><td class="car">#30</td><td class="name">Kyten Jones</td><td class="pts">0</td></tr>
-      <tr><td class="pos">19</td><td class="car">#37</td><td class="name">Mitch Woods</td><td class="pts">0</td></tr>
-      <tr><td class="pos">20</td><td class="car">#65</td><td class="name">Randy Adams</td><td class="pts">0</td></tr>
-      <tr><td class="pos">21</td><td class="car">#66</td><td class="name">G. Nash</td><td class="pts">0</td></tr>
-      <tr><td class="pos">22</td><td class="car">#92</td><td class="name">T. McCartney</td><td class="pts">0</td></tr>
-      <tr><td class="pos">23</td><td class="car">#23x</td><td class="name">Chad Broom</td><td class="pts">0</td></tr>
-    </tbody>
+    <tbody id="standingsBody">VMRA_STANDINGS_ROWS</tbody>
   </table>
   <p id="standingsUpdated" style="font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.12em;color:var(--chalk-dim);text-transform:uppercase;margin-top:14px;text-align:right">Updated Apr 23, 2026 · 1 round completed</p>
 
   <script>
   (function(){
+    var urlMap = window.vmraDriverUrls || {};
+    function escapeHtml(s){ return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
     fetch('/data/standings.json')
       .then(function(r){ return r.json(); })
       .then(function(data){
         var rows = data.drivers.map(function(d){
+          var name = escapeHtml(d.name);
+          var nameCell = urlMap[d.car]
+            ? '<a href="' + urlMap[d.car] + '" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--grease)">' + name + '</a>'
+            : name;
           return '<tr>' +
             '<td class="pos">' + d.position + '</td>' +
-            '<td class="car">#' + d.car + '</td>' +
-            '<td class="name">' + d.name + '</td>' +
+            '<td class="car">#' + escapeHtml(d.car) + '</td>' +
+            '<td class="name">' + nameCell + '</td>' +
             '<td class="pts">' + d.points + '</td>' +
             '</tr>';
         }).join('');
@@ -134,6 +143,12 @@ VMRA_BODY_EOT;
 // Retarget /data/*.json fetches at the theme's data dir.
 $body = str_replace( "'/data/", "'" . $vmra_data_base . "/", $body );
 $body = str_replace( '"/data/', '"' . $vmra_data_base . '/', $body );
+// Substitute the pre-rendered standings rows (with driver-bio links baked in).
+$body = str_replace( 'VMRA_STANDINGS_ROWS', $vmra_standings_rows_html, $body );
+// Publish the car→URL map so the JS hydrator links names the same way.
+echo '<script id="vmra-driver-urls">window.vmraDriverUrls = '
+	. wp_json_encode( $vmra_driver_url_map, JSON_UNESCAPED_SLASHES )
+	. ';</script>';
 echo $body;
 ?>
 

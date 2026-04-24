@@ -435,8 +435,11 @@ get_header(); ?>
 			foreach ( array_slice( $standings['drivers'], 0, 5 ) as $i => $d ) :
 				$pos_class   = $i === 0 ? 'p1' : ( $i === 1 ? 'p2' : ( $i === 2 ? 'p3' : '' ) );
 				$plate_class = $i === 0 ? 'leader' : '';
+				$driver_url  = vmra_driver_url_by_car( $d['car'] );
+				$row_tag     = $driver_url ? 'a' : 'div';
+				$row_href    = $driver_url ? ' href="' . esc_url( $driver_url ) . '"' : '';
 			?>
-				<div class="standings-row">
+				<<?php echo $row_tag; ?> class="standings-row"<?php echo $row_href; ?>>
 					<div class="pos <?php echo esc_attr( $pos_class ); ?>"><?php printf( '%02d', (int) $d['position'] ); ?></div>
 					<div><div class="car-plate <?php echo esc_attr( $plate_class ); ?>"><?php echo esc_html( $d['car'] ); ?></div></div>
 					<div>
@@ -445,7 +448,7 @@ get_header(); ?>
 					</div>
 					<div class="wins hide-sm"><?php echo esc_html( $finish_labels[ $i ] ?? '—' ); ?></div>
 					<div class="points"><?php echo esc_html( $d['points'] ); ?></div>
-				</div>
+				</<?php echo $row_tag; ?>>
 			<?php endforeach; ?>
 		</div>
 
@@ -541,14 +544,17 @@ get_header(); ?>
 			array( 'town' => 'Rookie',         'rank' => 'P4' ),
 		);
 		foreach ( array_slice( $standings['drivers'] ?? array(), 0, 4 ) as $i => $d ) :
+			$driver_url = vmra_driver_url_by_car( $d['car'] );
+			$card_tag   = $driver_url ? 'a' : 'div';
+			$card_href  = $driver_url ? ' href="' . esc_url( $driver_url ) . '"' : '';
 		?>
-			<div class="driver-card">
+			<<?php echo $card_tag; ?> class="driver-card"<?php echo $card_href; ?>>
 				<div class="driver-head"><div class="driver-num"><?php echo esc_html( $d['car'] ); ?></div></div>
 				<div class="driver-body">
 					<h4><?php echo esc_html( $d['name'] ); ?></h4>
 					<div class="meta"><span><?php echo esc_html( $roster_meta[ $i ]['town'] ); ?></span><span class="rank"><?php echo esc_html( $roster_meta[ $i ]['rank'] ); ?></span></div>
 				</div>
-			</div>
+			</<?php echo $card_tag; ?>>
 		<?php endforeach; ?>
 	</div>
 	<p style="font-family:'JetBrains Mono',monospace;font-size:.78rem;letter-spacing:.12em;color:var(--chalk-dim);text-transform:uppercase;text-align:center;margin-top:22px">Top of the 2026 book after Round 01 · <a href="<?php echo esc_url( home_url( '/racers/' ) ); ?>" style="color:var(--sodium);text-decoration:none;border-bottom:1px solid var(--race-red);padding-bottom:2px">See all 23 drivers →</a></p>

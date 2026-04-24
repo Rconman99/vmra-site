@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'VMRA_THEME_VERSION', '1.3.11' );
+define( 'VMRA_THEME_VERSION', '1.3.12' );
 define( 'VMRA_THEME_DIR',     get_template_directory() );
 define( 'VMRA_THEME_URI',     get_template_directory_uri() );
 
@@ -124,6 +124,35 @@ function vmra_seed_data( $name ) {
 	$raw = file_get_contents( $file );
 	$cache[ $name ] = json_decode( $raw, true );
 	return $cache[ $name ];
+}
+
+/**
+ * Look up the permalink for a driver CPT by car number.
+ * Returns '' if no matching driver exists (e.g. roster not yet migrated).
+ * Cached per-request so a standings render with 23 rows hits WP once.
+ *
+ * @param string|int $car Car number (e.g. "23", "25RT", "23x").
+ * @return string         Permalink to the vmra_driver post, or ''.
+ */
+function vmra_driver_url_by_car( $car ) {
+	static $cache = null;
+	if ( $cache === null ) {
+		$cache = array();
+		$drivers = get_posts( array(
+			'post_type'      => 'vmra_driver',
+			'posts_per_page' => -1,
+			'post_status'    => 'publish',
+			'no_found_rows'  => true,
+			'meta_query'     => array( array( 'key' => 'car_number' ) ),
+		) );
+		foreach ( $drivers as $d ) {
+			$key = (string) get_post_meta( $d->ID, 'car_number', true );
+			if ( $key !== '' ) {
+				$cache[ $key ] = get_permalink( $d->ID );
+			}
+		}
+	}
+	return $cache[ (string) $car ] ?? '';
 }
 
 /**
