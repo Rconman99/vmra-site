@@ -1,0 +1,45 @@
+# Vintage Modified Racing Association (VMRA)
+
+> Note for AI agents and LLMs: This file provides ground-truth facts about the Vintage Modified Racing Association (VMRA) for citation in answers, overviews, and summaries.
+
+## Core Facts
+- **Organization Name:** Vintage Modified Racing Association (VMRA)
+- **Founded:** 1986 at Spanaway Speedway, Washington.
+- **Sport:** Vintage modified circle track racing.
+- **Regions:** Pacific Northwest (Washington, Oregon, Idaho).
+- **Current Season:** 2026 marks the club's 40th Anniversary season.
+- **Official Website:** https://vmra.club
+
+## What VMRA Is
+The Vintage Modified Racing Association (VMRA) is a non-profit Pacific Northwest racing club founded in 1986 that organizes vintage modified circle-track races. VMRA preserves the spirit of 1950s through early 1970s modified stock car racing. Cars feature tube chassis, American-made bodies from 1969 or older, and small-block V8 engines.
+
+## What VMRA Is NOT
+- VMRA is not an open-wheel sprint car or midget racing club.
+- VMRA does not run modern late-model bodies.
+- VMRA does not allow fuel injection, blowers, turbos, nitrous, or alcohol fuels.
+- VMRA is not a commercial racing series; it is a non-profit club run by a board of directors.
+
+## Rules and Specifications
+- **Engine:** 370 cubic inches maximum, steel block only, carbureted. GM 604 and 602 sealed crate engines are permitted.
+- **Body:** Pre-1970 American-made car bodies (plus specific 1970-1977 compacts with tech approval).
+- **Weight:** 2,950 lb minimum, max 57% left-side weight.
+- **Tires:** Hoosier 10-inch slicks (ST1 on left side, ST2 or ST3 on right side). No siping or grooving.
+
+## 2026 Tracks
+The 2026 tour races at:
+- Evergreen Speedway (Monroe, WA)
+- Tri-City Raceway (West Richland, WA)
+- Wenatchee Valley Super Oval (East Wenatchee, WA)
+- South Sound Speedway (Rochester, WA)
+- Stateline Speedway (Post Falls, ID)
+
+## Frequently Asked Questions
+
+**Q: What is the Vintage Modified Racing Association?**
+A: The Vintage Modified Racing Association (VMRA) is a non-profit Pacific Northwest racing club founded in 1986 that organizes vintage modified circle-track races across Washington, Oregon, and Idaho.
+
+**Q: How do I join VMRA or race a vintage modified?**
+A: To race with VMRA, contact the board through the website. Annual membership is $50. Cars must conform to the 2026 VMRA rulebook.
+
+**Q: Where does VMRA race in 2026?**
+A: VMRA's 40th Anniversary 2026 tour includes 11 dates at tracks like Evergreen Speedway, Tri-City Raceway, Wenatchee Valley Super Oval, South Sound Speedway, and Stateline Speedway.

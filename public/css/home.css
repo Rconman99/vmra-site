@@ -189,16 +189,17 @@
 }
 
 .hero-rule {
-  width: 96px; height: 1px;
-  background: var(--gold-rule);
+  width: 180px; height: 1px;
+  background: linear-gradient(90deg, var(--gold-rule) 0%, transparent 100%);
   margin: 40px 0 30px;
   position: relative;
 }
 .hero-rule::after {
   content: ""; position: absolute;
   left: 0; top: -2px;
-  width: 22px; height: 5px;
+  width: 32px; height: 5px;
   background: var(--sodium);
+  box-shadow: 0 0 12px rgba(255, 179, 25, 0.6);
 }
 
 .hero-lede {
