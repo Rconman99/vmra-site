@@ -263,6 +263,102 @@ get_header(); ?>
 	</div>
 </section>
 
+<!-- ===================== THE CARS · Vince #72 video + Ernie heritage ===================== -->
+<section class="cars-block" id="cars" aria-label="<?php esc_attr_e( 'VMRA cars · #72 walk-around', 'vmra' ); ?>">
+	<div class="cars-inner">
+		<div class="cars-head">
+			<span class="marker"><?php esc_html_e( '§ The Cars · 40th Season', 'vmra' ); ?></span>
+			<h2><?php esc_html_e( 'Built In a Shop. Raced For Four Decades.', 'vmra' ); ?></h2>
+			<span class="meta"><?php esc_html_e( 'Filmed April 4, 2026 · Pacific Northwest', 'vmra' ); ?></span>
+		</div>
+
+		<div class="cars-stage">
+			<!-- VIDEO COLUMN -->
+			<div class="cars-video-wrap">
+				<video
+					id="vinceCar"
+					poster="<?php echo esc_url( VMRA_THEME_URI . '/assets/media/vmra-vince-72-poster.jpg' ); ?>"
+					preload="metadata"
+					playsinline muted loop autoplay
+					aria-label="<?php esc_attr_e( 'Walk-around of the #72 Northwest Concrete Cutting vintage modified, built and driven by Vince Conwell, in memory of Ernie Conwell.', 'vmra' ); ?>">
+					<source src="<?php echo esc_url( VMRA_THEME_URI . '/assets/media/vmra-vince-72-opt.mp4' ); ?>" type="video/mp4">
+					<?php esc_html_e( "Your browser doesn't support inline video.", 'vmra' ); ?>
+				</video>
+
+				<div class="cars-video-frame" aria-hidden="true">
+					<span></span><span></span><span></span><span></span>
+				</div>
+				<div class="cars-hud" aria-hidden="true">
+					<span class="rec-dot"></span>
+					<span>VMRA · #72 · 04.04.26</span>
+				</div>
+				<button class="cars-sound-btn" id="vinceCarSoundBtn" type="button"
+				        aria-label="<?php esc_attr_e( 'Toggle cinematic score', 'vmra' ); ?>" aria-pressed="false">
+					<span class="icon" aria-hidden="true">♪</span>
+					<span class="lbl"><?php esc_html_e( 'Play Score', 'vmra' ); ?></span>
+				</button>
+			</div>
+
+			<!-- STORY SIDEBAR -->
+			<aside class="cars-story">
+				<div class="car-tag"><?php esc_html_e( 'Driver Spotlight · Founding-Era', 'vmra' ); ?></div>
+				<div class="num-plate">72</div>
+				<h3><?php esc_html_e( 'Vince Conwell', 'vmra' ); ?></h3>
+				<div class="driver-loc"><?php esc_html_e( 'Pacific Northwest · Owner-Driver since 1986', 'vmra' ); ?></div>
+
+				<div class="memorial">
+					<?php echo wp_kses_post( __( 'Car #72 carries <strong>"In Memory of Ernie Conwell"</strong> on the roof — the family\'s quiet way of putting Ernie in every race the car runs in 2026, the club\'s 40th season.', 'vmra' ) ); ?>
+				</div>
+
+				<p class="copy"><?php echo wp_kses_post( __( 'A modified is a hand-built thing. Tube chassis. Fiberglass body. A small-block V8. Nothing on it that didn\'t get put there by the owner or someone who owed the owner a favor. <strong>This is what 40 years of vintage modified racing actually looks like</strong> — a car in a shop, a sponsor on the door, a number on the roof, a memory on the deck.', 'vmra' ) ); ?></p>
+
+				<div class="cars-spec-row">
+					<div class="spec"><div class="k"><?php esc_html_e( 'Class', 'vmra' ); ?></div><div class="v"><?php esc_html_e( 'Vintage Modified', 'vmra' ); ?></div></div>
+					<div class="spec"><div class="k"><?php esc_html_e( 'Tires', 'vmra' ); ?></div><div class="v">Hoosier Slicks</div></div>
+					<div class="spec"><div class="k"><?php esc_html_e( 'Season', 'vmra' ); ?></div><div class="v hot">40th · 2026</div></div>
+					<div class="spec"><div class="k"><?php esc_html_e( 'First Race', 'vmra' ); ?></div><div class="v">Apple Cup · Apr 12</div></div>
+				</div>
+
+				<div class="cars-sponsor">
+					<?php esc_html_e( 'Primary sponsor · ', 'vmra' ); ?><strong>Northwest Concrete Cutting LLC</strong>
+				</div>
+			</aside>
+		</div>
+
+		<!-- ========== Heritage diptych: the original #72 (Ernie Conwell's car) ========== -->
+		<figure class="cars-heritage" aria-label="<?php esc_attr_e( 'Archive photograph of the original #72 vintage modified', 'vmra' ); ?>">
+			<div class="cars-heritage-wrap">
+				<img
+					src="<?php echo esc_url( VMRA_THEME_URI . '/assets/media/vmra-72-heritage.jpg' ); ?>"
+					srcset="<?php echo esc_url( VMRA_THEME_URI . '/assets/media/vmra-72-heritage-1200.jpg' ); ?> 1200w, <?php echo esc_url( VMRA_THEME_URI . '/assets/media/vmra-72-heritage.jpg' ); ?> 2000w"
+					sizes="(max-width: 920px) 100vw, min(62vw, 800px)"
+					alt="<?php esc_attr_e( "Archive photograph of the original #72 modified — blue with white front clip, Northwest Concrete Cutting and Goodyear on the fenders, mid-corner on a Pacific Northwest paved short track in the founding era.", 'vmra' ); ?>"
+					width="2000" height="1048"
+					loading="lazy" decoding="async">
+				<div class="cars-video-frame" aria-hidden="true">
+					<span></span><span></span><span></span><span></span>
+				</div>
+				<div class="cars-hud" aria-hidden="true">
+					<span class="rec-dot"></span>
+					<span>ARCHIVE · #72 · EST. 1986</span>
+				</div>
+			</div>
+			<figcaption class="cars-heritage-caption">
+				<div class="tag"><?php esc_html_e( 'Heritage · The Original #72', 'vmra' ); ?></div>
+				<h3><?php esc_html_e( 'Forty Years on the Door', 'vmra' ); ?></h3>
+				<p><?php echo wp_kses_post( __( "This is the car that started it — <strong>Ernie Conwell's original #72</strong>, the same number, the same Northwest Concrete Cutting sponsor, the same club. The blue paint and white front clip in this photograph is why Vince's modern #72 wears the colors it does today.", 'vmra' ) ); ?></p>
+				<p><?php echo wp_kses_post( __( "When Car #72 rolls out this season with <strong>&ldquo;In Memory of Ernie Conwell&rdquo;</strong> on the roof, <em>this</em> is who it's for.", 'vmra' ) ); ?></p>
+				<div class="meta"><?php esc_html_e( 'Pacific Northwest · Founding-Era · Photographer unknown', 'vmra' ); ?></div>
+			</figcaption>
+		</figure>
+
+		<div class="cars-caption">
+			<span class="left"><?php echo wp_kses_post( __( '▶ Auto-playing muted · tap <strong>♪ Play Score</strong> for the cinematic rock soundtrack', 'vmra' ) ); ?></span>
+			<span><?php esc_html_e( 'iPhone 15 Pro · 1080p · 40s', 'vmra' ); ?></span>
+		</div>
+	</div>
+</section>
+
 <!-- ===================== PREVIEW · What To Watch ===================== -->
 <section class="preview-strip" aria-label="<?php esc_attr_e( 'Pre-race preview', 'vmra' ); ?>">
 	<div class="preview-inner">

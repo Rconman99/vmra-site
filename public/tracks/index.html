@@ -262,12 +262,53 @@ main{padding:60px 5vw 80px;max-width:1200px;margin:0 auto}
   .track-visual{border:none;border-bottom:1px solid var(--grease);min-height:240px}
 }
 
-/* Unique treatments per track for identity */
+/* Unique color fallbacks per track (visible only if image/iframe fails to load) */
 .track-visual.evergreen{background:linear-gradient(160deg,#1a2d3a 0%,var(--asphalt) 80%)}
 .track-visual.south-sound{background:linear-gradient(160deg,#2d4a3a 0%,var(--asphalt) 80%)}
 .track-visual.tri-cities{background:linear-gradient(160deg,#4a2d1e 0%,var(--asphalt) 80%)}
 .track-visual.wenatchee{background:linear-gradient(160deg,#3d4a1e 0%,var(--asphalt) 80%)}
 .track-visual.stateline{background:linear-gradient(160deg,#2a2e4a 0%,var(--asphalt) 80%)}
+
+/* Real photos (Wikimedia Commons) — fill the visual block, dim with editorial gradient */
+.track-visual.has-photo,.track-visual.has-map{padding:0}
+.track-visual .track-photo{position:absolute;inset:0;width:100%;height:100%;line-height:0}
+.track-visual .track-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.track-visual .track-photo::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(160deg,rgba(0,0,0,.10) 0%,rgba(14,14,16,.45) 60%,rgba(14,14,16,.85) 100%);
+  pointer-events:none
+}
+.track-visual.has-photo .oval-stats,
+.track-visual.has-map .oval-stats,
+.track-visual.has-photo .track-num-plate,
+.track-visual.has-map .track-num-plate{z-index:2;color:var(--chalk)}
+.track-visual.has-photo .oval-stats .big,
+.track-visual.has-map .oval-stats .big{color:var(--sodium);text-shadow:0 1px 8px rgba(0,0,0,.6)}
+.track-visual.has-photo .track-num-plate,
+.track-visual.has-map .track-num-plate{color:rgba(244,237,225,.18);text-shadow:0 2px 12px rgba(0,0,0,.5)}
+
+/* Photo-credit microtype (Wikimedia attribution) */
+.track-photo-credit{
+  position:absolute;bottom:8px;left:14px;z-index:3;
+  font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.12em;
+  color:rgba(244,237,225,.55);text-transform:uppercase
+}
+.track-photo-credit a{color:inherit;text-decoration:none;border-bottom:1px dotted rgba(244,237,225,.30)}
+.track-photo-credit a:hover{color:var(--sodium);border-bottom-color:var(--sodium)}
+
+/* Live satellite map (for tracks without Wikimedia photos) */
+.track-visual.has-map .track-map{position:absolute;inset:0;line-height:0;background:var(--asphalt-2)}
+.track-visual.has-map iframe{display:block;width:100%;height:100%;border:0;filter:saturate(.85) contrast(1.05)}
+.track-visual.has-map::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(160deg,transparent 0%,rgba(14,14,16,.20) 65%,rgba(14,14,16,.55) 100%)
+}
+.track-map-label{
+  position:absolute;top:10px;right:12px;z-index:3;
+  font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.18em;
+  color:var(--sodium);text-transform:uppercase;
+  padding:3px 8px;background:rgba(8,8,10,.7);border:1px solid rgba(255,179,25,.3)
+}
 
 /* The oval "diagram" — a stylized track shape */
 .oval-diagram{
@@ -507,10 +548,15 @@ main{padding:60px 5vw 80px;max-width:1200px;margin:0 auto}
 
   <!-- TRACK 01 · EVERGREEN -->
   <article class="track" id="evergreen">
-    <div class="track-visual evergreen">
+    <div class="track-visual evergreen has-photo">
+      <picture class="track-photo">
+        <source type="image/avif" srcset="/media/tracks/evergreen-800.avif 800w, /media/tracks/evergreen-1600.avif 1600w" sizes="(max-width: 880px) 100vw, 45vw">
+        <source type="image/webp" srcset="/media/tracks/evergreen-800.webp 800w, /media/tracks/evergreen-1600.webp 1600w" sizes="(max-width: 880px) 100vw, 45vw">
+        <img src="/media/tracks/evergreen-800.jpg" srcset="/media/tracks/evergreen-800.jpg 800w, /media/tracks/evergreen-1600.jpg 1600w" sizes="(max-width: 880px) 100vw, 45vw" alt="Evergreen Speedway action — race night, Monroe WA" loading="lazy" decoding="async" width="1600" height="1200">
+      </picture>
       <div class="oval-stats"><span>OVAL LENGTH</span><span class="big">0.625</span><span>MI · PAVED</span></div>
-      <div class="oval-diagram"></div>
       <div class="track-num-plate">01</div>
+      <div class="track-photo-credit">Photo · Wikimedia · <a href="https://commons.wikimedia.org/wiki/File:Formula_D_2008_event_5_-_9_August_Evergreen_Speedway_(10).jpg" target="_blank" rel="noopener">CC BY 2.0</a></div>
     </div>
     <div class="track-body">
       <div class="track-num-marker">§ Track 01 · Washington</div>
@@ -570,18 +616,26 @@ main{padding:60px 5vw 80px;max-width:1200px;margin:0 auto}
         <a href="#" class="track-link">VMRA Results History</a>
       </div>
     </div>
-    <div class="track-visual south-sound">
+    <div class="track-visual south-sound has-photo">
+      <picture class="track-photo">
+        <source type="image/avif" srcset="/media/tracks/south-sound-grandstands-800.avif 800w, /media/tracks/south-sound-grandstands-1600.avif 1600w" sizes="(max-width: 880px) 100vw, 45vw">
+        <source type="image/webp" srcset="/media/tracks/south-sound-grandstands-800.webp 800w, /media/tracks/south-sound-grandstands-1600.webp 1600w" sizes="(max-width: 880px) 100vw, 45vw">
+        <img src="/media/tracks/south-sound-grandstands-800.jpg" srcset="/media/tracks/south-sound-grandstands-800.jpg 800w, /media/tracks/south-sound-grandstands-1600.jpg 1600w" sizes="(max-width: 880px) 100vw, 45vw" alt="South Sound Speedway grandstands viewed from Turn 4, Rochester WA" loading="lazy" decoding="async" width="1600" height="1067">
+      </picture>
       <div class="oval-stats right"><span>OVAL LENGTH</span><span class="big">0.375</span><span>MI · PAVED</span></div>
-      <div class="oval-diagram figure8"></div>
       <div class="track-num-plate">02</div>
+      <div class="track-photo-credit">Photo · Wikimedia · <a href="https://commons.wikimedia.org/wiki/File:South_Sound_Speedway_Grandstands_from_Turn_4.jpg" target="_blank" rel="noopener">CC BY-SA 4.0</a></div>
     </div>
   </article>
 
   <!-- TRACK 03 · TRI-CITIES -->
   <article class="track" id="tri-cities">
-    <div class="track-visual tri-cities">
+    <div class="track-visual tri-cities has-map">
+      <div class="track-map">
+        <iframe src="https://maps.google.com/maps?q=8280%20W%20Van%20Giesen%20St%2C%20West%20Richland%2C%20WA%2099353&t=k&z=17&ie=UTF8&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Tri-City Raceway satellite map"></iframe>
+      </div>
+      <div class="track-map-label">Live Satellite</div>
       <div class="oval-stats"><span>OVAL LENGTH</span><span class="big">3/8</span><span>MI · PAVED</span></div>
-      <div class="oval-diagram"></div>
       <div class="track-num-plate">03</div>
     </div>
     <div class="track-body">
@@ -642,18 +696,24 @@ main{padding:60px 5vw 80px;max-width:1200px;margin:0 auto}
         <a href="#" class="track-link">VMRA Results History</a>
       </div>
     </div>
-    <div class="track-visual wenatchee">
+    <div class="track-visual wenatchee has-map">
+      <div class="track-map">
+        <iframe src="https://maps.google.com/maps?q=2850%20Gun%20Club%20Rd%2C%20East%20Wenatchee%2C%20WA%2098802&t=k&z=18&ie=UTF8&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Wenatchee Valley Super Oval satellite map"></iframe>
+      </div>
+      <div class="track-map-label">Live Satellite</div>
       <div class="oval-stats right"><span>OVAL LENGTH</span><span class="big">1/4</span><span>MI · PAVED</span></div>
-      <div class="oval-diagram tight"></div>
       <div class="track-num-plate">04</div>
     </div>
   </article>
 
   <!-- TRACK 05 · STATELINE -->
   <article class="track" id="stateline">
-    <div class="track-visual stateline">
+    <div class="track-visual stateline has-map">
+      <div class="track-map">
+        <iframe src="https://maps.google.com/maps?q=1349%20N%20Beck%20Rd%2C%20Post%20Falls%2C%20ID%2083854&t=k&z=18&ie=UTF8&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Stateline Speedway satellite map"></iframe>
+      </div>
+      <div class="track-map-label">Live Satellite</div>
       <div class="oval-stats"><span>OVAL LENGTH</span><span class="big">1/4</span><span>MI · PAVED</span></div>
-      <div class="oval-diagram tight"></div>
       <div class="track-num-plate">05</div>
     </div>
     <div class="track-body">

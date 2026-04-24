@@ -27,8 +27,12 @@ function vmra_render_seed_data_page() {
 	}
 
 	$result = null;
+	$photo_result = null;
 	if ( ! empty( $_POST['vmra_seed_go'] ) && check_admin_referer( 'vmra_seed_data' ) ) {
 		$result = vmra_run_seed();
+	}
+	if ( ! empty( $_POST['vmra_photos_go'] ) && check_admin_referer( 'vmra_seed_data' ) ) {
+		$photo_result = vmra_attach_driver_photos();
 	}
 	?>
 	<div class="wrap">
@@ -46,10 +50,26 @@ function vmra_render_seed_data_page() {
 			</p></div>
 		<?php endif; ?>
 
+		<?php if ( $photo_result ) : ?>
+			<div class="notice notice-success"><p>
+				<strong><?php esc_html_e( 'Driver photos attached.', 'vmra' ); ?></strong><br>
+				<?php echo esc_html( $photo_result['matched'] ); ?> drivers updated with photos · <?php echo esc_html( $photo_result['skipped'] ); ?> no matching photo found.
+				<?php if ( ! empty( $photo_result['log'] ) ) : ?>
+					<br><small><?php echo esc_html( implode( ' · ', array_slice( $photo_result['log'], 0, 10 ) ) ); ?></small>
+				<?php endif; ?>
+			</p></div>
+		<?php endif; ?>
+
 		<form method="post">
 			<?php wp_nonce_field( 'vmra_seed_data' ); ?>
-			<p><button type="submit" name="vmra_seed_go" value="1" class="button button-primary button-large"><?php esc_html_e( 'Seed Drivers + Tracks + Races + News from JSON', 'vmra' ); ?></button></p>
+			<p><button type="submit" name="vmra_seed_go" value="1" class="button button-primary button-large"><?php esc_html_e( '1. Seed Drivers + Tracks + Races + News from JSON', 'vmra' ); ?></button></p>
 			<p class="description"><?php esc_html_e( 'Reads wp-content/themes/vmra/data/{schedule,standings,news,results}.json.', 'vmra' ); ?></p>
+		</form>
+
+		<form method="post" style="margin-top:24px">
+			<?php wp_nonce_field( 'vmra_seed_data' ); ?>
+			<p><button type="submit" name="vmra_photos_go" value="1" class="button button-primary button-large"><?php esc_html_e( '2. Attach Driver Photos to CPT posts', 'vmra' ); ?></button></p>
+			<p class="description"><?php esc_html_e( 'Scans /assets/media/racers/, imports images matching each driver\'s car number into the Media Library, and sets them as the featured image + ACF car_photo.', 'vmra' ); ?></p>
 		</form>
 
 		<h2 style="margin-top:30px"><?php esc_html_e( 'What gets created', 'vmra' ); ?></h2>
@@ -198,4 +218,83 @@ function vmra_run_seed() {
 	}
 
 	return $stats;
+}
+
+/**
+ * Scan /assets/media/racers/ and attach a matching photo to each driver post
+ * based on car number extracted from the filename. Imports the file into the
+ * WP Media Library (so it survives theme updates), sets it as the post's
+ * featured image AND the ACF car_photo field.
+ */
+function vmra_attach_driver_photos() {
+	require_once ABSPATH . 'wp-admin/includes/file.php';
+	require_once ABSPATH . 'wp-admin/includes/media.php';
+	require_once ABSPATH . 'wp-admin/includes/image.php';
+
+	$out = array( 'matched' => 0, 'skipped' => 0, 'log' => array() );
+	$dir = get_template_directory() . '/assets/media/racers/';
+	if ( ! is_dir( $dir ) ) {
+		$out['log'][] = 'racers/ dir not found';
+		return $out;
+	}
+
+	// Index photos by car number. Accept both structured (car-23-*) and legacy names.
+	$files = glob( $dir . '*.{jpg,jpeg,png,webp}', GLOB_BRACE );
+	$by_car = array();
+	foreach ( $files as $file ) {
+		$name = basename( $file );
+		// Match "car-NN[letter]-*" patterns
+		if ( preg_match( '/^car-(\d+[a-zA-Z]?)[-.]?/', $name, $m ) ) {
+			$car = ltrim( $m[1], '0' ) ?: $m[1];
+			// Prefer -600 if we already have one indexed
+			if ( ! isset( $by_car[ $car ] ) || strpos( $name, 'vince' ) !== false ) {
+				// Favor the fresh "vince" photos
+				if ( ! isset( $by_car[ $car ] ) || strpos( $name, 'vince' ) !== false ) {
+					$by_car[ $car ] = $file;
+				}
+			}
+		}
+	}
+
+	// Walk every driver post, find a photo by car_number meta.
+	$drivers = get_posts( array( 'post_type' => 'vmra_driver', 'posts_per_page' => -1 ) );
+	foreach ( $drivers as $d ) {
+		$car = trim( (string) get_post_meta( $d->ID, 'car_number', true ) );
+		if ( ! $car ) { $out['skipped']++; continue; }
+		$normalized = ltrim( $car, '0' ) ?: $car;
+		// Strip suffix letters for matching (25B → 25), then try both
+		$base_num = preg_replace( '/[a-zA-Z]+$/', '', $normalized );
+
+		$src = $by_car[ $normalized ] ?? $by_car[ $base_num ] ?? null;
+		if ( ! $src ) { $out['skipped']++; continue; }
+
+		// Avoid re-importing if already attached
+		$existing = get_post_meta( $d->ID, '_thumbnail_id', true );
+		if ( $existing && get_post( $existing ) ) {
+			$out['log'][] = "#{$car} already has photo";
+			continue;
+		}
+
+		// Import into Media Library (copy file, not move)
+		$tmp  = wp_tempnam( basename( $src ) );
+		copy( $src, $tmp );
+		$file_array = array(
+			'name'     => basename( $src ),
+			'tmp_name' => $tmp,
+		);
+		$attach_id = media_handle_sideload( $file_array, $d->ID );
+		if ( is_wp_error( $attach_id ) ) {
+			@unlink( $tmp );
+			$out['log'][] = "#{$car}: import failed";
+			$out['skipped']++;
+			continue;
+		}
+		set_post_thumbnail( $d->ID, $attach_id );
+		if ( function_exists( 'update_field' ) ) {
+			update_field( 'car_photo', $attach_id, $d->ID );
+		}
+		$out['matched']++;
+		$out['log'][] = "#{$car} → " . basename( $src );
+	}
+	return $out;
 }
