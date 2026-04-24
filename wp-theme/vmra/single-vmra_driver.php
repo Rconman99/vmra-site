@@ -89,7 +89,7 @@ main.driver-body{max-width:1080px;margin:0 auto;padding:60px 5vw}
 	</div>
 </div></section>
 
-<main class="driver-body">
+<main id="main-content" tabindex="-1" class="driver-body">
 	<?php if ( get_the_content() ) : ?>
 		<div style="max-width:72ch;color:var(--chalk-dim);line-height:1.7;margin-bottom:50px"><?php the_content(); ?></div>
 	<?php endif; ?>

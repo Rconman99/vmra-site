@@ -84,7 +84,7 @@ $body = <<<'VMRA_BODY_EOT'
   </a>
 </div></section>
 
-<main>
+<main id="main-content" tabindex="-1">
 
 <section>
   <span class="marker">§ 01 · Awards &amp; Numbers</span>

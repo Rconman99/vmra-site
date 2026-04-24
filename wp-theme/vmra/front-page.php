@@ -92,7 +92,7 @@ get_header(); ?>
 </script>
 
 <!-- ===================== HERO ===================== -->
-<header class="hero" id="top">
+<header class="hero" id="main-content" tabindex="-1">
 	<div class="hero-marks" aria-hidden="true">
 		<span class="num l">40</span>
 		<span class="num r">VM</span>

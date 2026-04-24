@@ -314,7 +314,7 @@ $body = <<<'VMRA_BODY_EOT'
 </section>
 
 <!-- TRACKS -->
-<main>
+<main id="main-content" tabindex="-1">
 
   <!-- TRACK 01 · EVERGREEN -->
   <article class="track" id="evergreen">

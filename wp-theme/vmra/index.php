@@ -25,7 +25,7 @@ get_header(); ?>
 	</div>
 </section>
 
-<main class="fallback-main" style="max-width:1080px;margin:0 auto;padding:60px 5vw;">
+<main id="main-content" tabindex="-1" class="fallback-main" style="max-width:1080px;margin:0 auto;padding:60px 5vw;">
 	<?php if ( have_posts() ) : ?>
 		<?php while ( have_posts() ) : the_post(); ?>
 			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>

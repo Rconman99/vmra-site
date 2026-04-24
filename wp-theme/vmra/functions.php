@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'VMRA_THEME_VERSION', '1.3.9' );
+define( 'VMRA_THEME_VERSION', '1.3.10' );
 define( 'VMRA_THEME_DIR',     get_template_directory() );
 define( 'VMRA_THEME_URI',     get_template_directory_uri() );
 
@@ -123,3 +123,16 @@ function vmra_seed_data( $name ) {
 	$cache[ $name ] = json_decode( $raw, true );
 	return $cache[ $name ];
 }
+
+/**
+ * Add aria-current="page" to the active nav link for screen readers.
+ * WordPress already adds .current-menu-item to the <li> via body_class;
+ * this filter surfaces the same signal on the <a> where assistive tech expects it.
+ */
+add_filter( 'nav_menu_link_attributes', function ( $atts, $item ) {
+	if ( in_array( 'current-menu-item', (array) $item->classes, true ) ||
+	     in_array( 'current_page_item', (array) $item->classes, true ) ) {
+		$atts['aria-current'] = 'page';
+	}
+	return $atts;
+}, 10, 2 );

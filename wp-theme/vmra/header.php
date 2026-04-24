@@ -25,6 +25,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <?php wp_body_open(); ?>
 
+<a class="skip-to-main" href="#main-content"><?php esc_html_e( 'Skip to main content', 'vmra' ); ?></a>
+
 <section class="anniversary-banner" aria-label="<?php esc_attr_e( '40th Anniversary 1986 to 2026', 'vmra' ); ?>">
 	<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="ab-link">
 		<picture>

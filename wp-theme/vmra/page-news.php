@@ -48,7 +48,7 @@ $body = <<<'VMRA_BODY_EOT'
   <p class="lede">Race recaps, previews, driver profiles, and club news from VMRA's 40th Anniversary season. Every green flag, every winner, every weekend.</p>
 </div></section>
 
-<main>
+<main id="main-content" tabindex="-1">
   <div class="news-list" id="newsList">
     <a href="/news/class-of-2026" class="news-item feature">
       <span class="tag">§ Race Feature · Season Preview</span>

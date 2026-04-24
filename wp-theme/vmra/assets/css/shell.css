@@ -432,3 +432,82 @@ footer.shell .foot-bottom .chk {
 @media (max-width: 560px) {
   footer.shell .foot-inner { grid-template-columns: 1fr; }
 }
+
+/* =========================================================
+   ACCESSIBILITY — skip link, focus states, reduced motion
+   ========================================================= */
+
+/* Skip-to-main link — visually hidden until focused. Always first tab stop. */
+.skip-to-main {
+  position: absolute;
+  top: -64px;
+  left: 0;
+  z-index: 10000;
+  padding: 12px 20px;
+  background: var(--race-red, #d11a2a);
+  color: var(--chalk, #f5f2ed);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: 700;
+  transition: top 0.15s ease-out;
+}
+.skip-to-main:focus {
+  top: 0;
+  outline: 3px solid var(--sodium, #ffb02e);
+  outline-offset: -3px;
+}
+
+/* Focus-visible rings — only show for keyboard users, not mouse clicks. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[role="button"]:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--sodium, #ffb02e);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Nav toggle + CTAs get a stronger ring for visibility on dark backgrounds. */
+.nav-toggle:focus-visible,
+.nav-cta:focus-visible,
+.hero-link:focus-visible,
+.hero-cta:focus-visible,
+.submit-btn:focus-visible,
+.milestone-btn:focus-visible,
+.btn-media-kit:focus-visible {
+  outline: 3px solid var(--sodium, #ffb02e);
+  outline-offset: 3px;
+}
+
+/* aria-current — highlight the current page in the nav.
+   Also matches WordPress's default .current-menu-item class. */
+.nav-links a[aria-current="page"],
+.nav-links li.current-menu-item > a,
+.mm-link[aria-current="page"],
+.mm-menu li.current-menu-item > a {
+  color: var(--sodium, #ffb02e);
+  border-bottom: 2px solid var(--race-red, #d11a2a);
+}
+
+/* Reduced motion — kill animations for users who request it. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .hero-grain,
+  .ticker-track,
+  .pulse {
+    animation: none !important;
+  }
+}

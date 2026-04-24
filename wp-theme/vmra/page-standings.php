@@ -60,7 +60,7 @@ $body = <<<'VMRA_BODY_EOT'
   <p class="lede">One round down. Kahl Cheth #23 leads the 2026 points at 64 after taking the main at the 57th Apple Cup at Tri-City. Jason Quatsoe #8 sits four back at 60. Steve Woods #22 is another three behind at 57. Defending champ Kyten Jones #30 didn't unload on the night — the title race opens wide. Ten rounds left. Points stay with the car, not the driver.</p>
 </div></section>
 
-<main>
+<main id="main-content" tabindex="-1">
   <table class="standings">
     <thead>
       <tr>

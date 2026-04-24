@@ -224,7 +224,9 @@ function vmra_robots_txt_additions( $output, $public ) {
 // ---------------------------------------------------------------------------
 add_action( 'init', 'vmra_register_llms_endpoint' );
 function vmra_register_llms_endpoint() {
-	add_rewrite_rule( '^llms\.txt$', 'index.php?vmra_llms=1', 'top' );
+	// Match both /llms.txt and /llms.txt/ so WP's canonical redirect doesn't
+	// 301 clients to the trailing-slash form (one less hop for AI crawlers).
+	add_rewrite_rule( '^llms\.txt/?$', 'index.php?vmra_llms=1', 'top' );
 }
 
 add_filter( 'query_vars', function ( $vars ) {

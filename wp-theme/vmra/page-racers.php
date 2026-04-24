@@ -67,7 +67,7 @@ main.racers{max-width:1280px;margin:0 auto;padding:60px 5vw}
 	<p class="lede"><?php esc_html_e( 'Twenty-three vintage modifieds on the 2026 tour — defending champs, three-time title holders, rookies, owner-drivers. Every car hand-built in someone\'s shop. Click any driver to see their round-by-round results and story.', 'vmra' ); ?></p>
 </div></section>
 
-<main class="racers">
+<main id="main-content" tabindex="-1" class="racers">
 	<div class="driver-grid">
 		<?php
 		$i = 0;

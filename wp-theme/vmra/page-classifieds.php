@@ -138,7 +138,7 @@ $body = <<<'VMRA_BODY_EOT'
   <span class="count" id="resultCount"></span>
 </div></section>
 
-<main>
+<main id="main-content" tabindex="-1">
   <div class="listings" id="listingsGrid">
     <!-- Listings injected by JS below -->
     <div class="empty-state" id="emptyState">

@@ -58,7 +58,7 @@ $body = <<<'VMRA_BODY_EOT'
   <p class="lede">Tech question, want to bring a car out, looking to sponsor the 40th season — pick the channel that fits below. We try to answer emails within a couple days, but if it's a race weekend we're at the track. Worst case, message us on Facebook and we'll catch it in the trailer.</p>
 </div></section>
 
-<main>
+<main id="main-content" tabindex="-1">
 
   <div class="contact-grid">
     <div class="contact-card" style="border-color:var(--race-red)">
