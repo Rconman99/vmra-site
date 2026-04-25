@@ -44,16 +44,19 @@ get_header(); ?>
 	<div class="ticker-track" id="tickerTrack">
 		<span>40th Anniversary Season Underway</span>
 		<span class="ticker-next-race">Next Round: Sat Apr 25 · Evergreen · Grocery Outlet Night (Round 02 / 11)</span>
+		<span class="ticker-weather" data-weather-pending>Race-Day Forecast loading…</span>
 		<span>Championship Points · <?php echo ! empty( $standings['drivers'] ) ? esc_html( $standings['drivers'][0]['name'] . ' #' . $standings['drivers'][0]['car'] ) : 'TBD'; ?> leads</span>
 		<span>Fall Classic Entries Open</span>
 		<span>New Rulebook PDF Available</span>
 		<span>Sponsor Slots Open for 2026</span>
 		<span>40th Anniversary Season Underway</span>
 		<span class="ticker-next-race">Next Round: Sat Apr 25 · Evergreen · Grocery Outlet Night (Round 02 / 11)</span>
+		<span class="ticker-weather" data-weather-pending>Race-Day Forecast loading…</span>
 	</div>
 </div>
 <script>
-/* Ticker auto-updates "Next Round" items from schedule.json. */
+/* Ticker auto-updates "Next Round" items from schedule.json + pulls the
+   race-day forecast from Open-Meteo (no API key, free, ~16-day horizon). */
 (function(){
 	function fmtRace(race) {
 		var d = new Date(race.date + "T12:00:00-07:00");
@@ -78,16 +81,95 @@ get_header(); ?>
 		}
 		return null;
 	}
-	function setTicker(text) {
+	function setNextRace(text) {
 		document.querySelectorAll(".ticker-next-race").forEach(function(el){ el.textContent = text; });
+	}
+	function setWeather(text) {
+		document.querySelectorAll(".ticker-weather").forEach(function(el){
+			el.textContent = text;
+			el.removeAttribute('data-weather-pending');
+		});
+	}
+	function hideWeather() {
+		document.querySelectorAll(".ticker-weather").forEach(function(el){ el.style.display = 'none'; });
+	}
+	/* Open-Meteo WMO weather codes → short label. */
+	function wxLabel(code) {
+		if (code === 0) return "clear";
+		if (code <= 3)  return "partly cloudy";
+		if (code <= 48) return "foggy";
+		if (code <= 57) return "drizzle";
+		if (code <= 67) return "rain";
+		if (code <= 77) return "snow";
+		if (code <= 82) return "showers";
+		if (code <= 86) return "snow showers";
+		if (code <= 99) return "thunderstorms";
+		return "";
+	}
+	function fetchForecast(race, tracks) {
+		var info = tracks && tracks[race.track];
+		if (!info || typeof info.lat !== 'number' || typeof info.lon !== 'number') {
+			hideWeather();
+			return;
+		}
+		var raceDate = race.date; // YYYY-MM-DD
+		var today = new Date(); today.setHours(0,0,0,0);
+		var rd = new Date(raceDate + "T12:00:00-07:00"); rd.setHours(0,0,0,0);
+		var daysOut = Math.round((rd - today) / 86400000);
+		// Open-Meteo forecast horizon is ~16 days. Skip beyond that.
+		if (daysOut > 14) {
+			setWeather("Race-Day Forecast: available 14 days out");
+			return;
+		}
+		var url = "https://api.open-meteo.com/v1/forecast"
+			+ "?latitude="  + info.lat
+			+ "&longitude=" + info.lon
+			+ "&daily=temperature_2m_max,precipitation_probability_max,wind_speed_10m_max,weather_code"
+			+ "&temperature_unit=fahrenheit"
+			+ "&wind_speed_unit=mph"
+			+ "&timezone=America/Los_Angeles"
+			+ "&start_date=" + raceDate
+			+ "&end_date="   + raceDate;
+		fetch(url)
+			.then(function(r){ if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+			.then(function(wx){
+				var d = wx && wx.daily;
+				if (!d || !d.temperature_2m_max || !d.temperature_2m_max.length) {
+					hideWeather();
+					return;
+				}
+				var hi   = Math.round(d.temperature_2m_max[0]);
+				var pop  = Math.round((d.precipitation_probability_max && d.precipitation_probability_max[0]) || 0);
+				var wind = Math.round((d.wind_speed_10m_max && d.wind_speed_10m_max[0]) || 0);
+				var code = (d.weather_code && d.weather_code[0]) || 0;
+				var label = wxLabel(code);
+				var prefix = daysOut === 0 ? "Race-Day Weather"
+				           : daysOut === 1 ? "Tomorrow's Forecast"
+				           : "Race-Day Forecast";
+				var parts = [prefix + " · " + race.track.replace(' Speedway','').replace(' Raceway','').replace(' Super Oval','')];
+				parts.push(hi + "°F" + (label ? " · " + label : ""));
+				if (pop >= 20)   parts.push(pop + "% rain");
+				if (wind >= 10)  parts.push(wind + "mph wind");
+				setWeather(parts.join(" · "));
+			})
+			.catch(function(){ hideWeather(); });
 	}
 	fetch('<?php echo esc_url( $data_base . '/schedule.json' ); ?>')
 		.then(function(r){ return r.json(); })
 		.then(function(data){
 			var next = pickNext(data.races);
-			setTicker(next ? fmtRace(next) : data.season + " Season Complete · " + (parseInt(data.season)+1) + " Calendar TBD");
+			if (next) {
+				setNextRace(fmtRace(next));
+				fetchForecast(next, data.tracks);
+			} else {
+				setNextRace(data.season + " Season Complete · " + (parseInt(data.season)+1) + " Calendar TBD");
+				hideWeather();
+			}
 		})
-		.catch(function(){ setTicker("Next Round: see Schedule page for upcoming dates"); });
+		.catch(function(){
+			setNextRace("Next Round: see Schedule page for upcoming dates");
+			hideWeather();
+		});
 })();
 </script>
 
