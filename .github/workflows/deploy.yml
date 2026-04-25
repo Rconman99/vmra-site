@@ -1,0 +1,80 @@
+name: Deploy theme to production
+
+# Runs when wp-theme/vmra/** changes on main, OR manually from the Actions tab.
+# Pushes the theme directory to Big Mountain Mail / DirectAdmin via rsync over
+# SSH. Uses an SSH key registered in DA's User Panel → SSH Keys, with the
+# matching private key stored as a GitHub Secret.
+#
+# First-time setup: see SETUP-DEPLOY.md in repo root.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'wp-theme/vmra/**'
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Reason for manual deploy (logged to summary)'
+        required: false
+        default: 'manual deploy'
+
+# One deploy at a time — no parallel rsyncs racing on the same theme dir.
+concurrency:
+  group: vmra-prod-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: rsync theme → DirectAdmin
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Read theme version from style.css
+        id: version
+        run: |
+          VERSION=$(grep '^Version:' wp-theme/vmra/style.css | head -1 | awk '{print $2}')
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Theme version on this commit: $VERSION"
+
+      - name: Sync theme via rsync over SSH
+        uses: Burnett01/rsync-deployments@7.0.1
+        with:
+          # -a archive, -v verbose, -z compress, -h human, --delete-excluded
+          # respects ignores. NO --delete on first iteration: we don't want to
+          # accidentally wipe files we don't track yet (uploads, plugins).
+          switches: -avzh --no-perms --no-owner --no-group --exclude='.DS_Store' --exclude='._*' --exclude='*.zip'
+          path: wp-theme/vmra/
+          remote_path: /domains/temp.nwvintagemodified.com/public_html/wp-content/themes/vmra/
+          remote_host: ${{ secrets.DA_SSH_HOST }}
+          remote_port: ${{ secrets.DA_SSH_PORT }}
+          remote_user: ${{ secrets.DA_SSH_USER }}
+          remote_key: ${{ secrets.DA_SSH_PRIVATE_KEY }}
+
+      - name: Verify live theme version matches
+        run: |
+          sleep 2
+          LIVE=$(curl -s --max-time 10 https://temp.nwvintagemodified.com/wp-content/themes/vmra/style.css | grep -i '^Version:' | head -1 | awk '{print $2}')
+          echo "Live version reports: $LIVE"
+          echo "Expected: ${{ steps.version.outputs.version }}"
+          if [ "$LIVE" != "${{ steps.version.outputs.version }}" ]; then
+            echo "::warning::Live version ($LIVE) does not match deploy ($GITHUB_SHA → ${{ steps.version.outputs.version }}). Possible cache lag — check manually."
+          fi
+
+      - name: Summary
+        if: always()
+        run: |
+          {
+            echo "## Deploy result"
+            echo ""
+            echo "- Commit: \`${GITHUB_SHA:0:7}\`"
+            echo "- Theme version: \`${{ steps.version.outputs.version }}\`"
+            echo "- Trigger: ${{ github.event_name }}"
+            if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+              echo "- Reason: ${{ inputs.reason }}"
+            fi
+            echo "- Job status: ${{ job.status }}"
+          } >> "$GITHUB_STEP_SUMMARY"
