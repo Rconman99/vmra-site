@@ -8,40 +8,45 @@
       "city": "West Richland, WA",
       "shape": "3/8-mile paved oval",
       "website": "https://www.tricityraceway.com/",
-      "lat": 46.3105,
-      "lon": -119.392
+      "lat": 46.2834,
+      "lon": -119.3629,
+      "lng": -119.3931
     },
     "Evergreen Speedway": {
       "address": "14405 179th Ave SE, Monroe, WA 98272",
       "city": "Monroe, WA",
       "shape": "5/8-mile paved oval — \"The Half-Mile\"",
       "website": "https://evergreenspeedway.com/",
-      "lat": 47.855,
-      "lon": -121.9658
+      "lat": 47.8631,
+      "lon": -121.9722,
+      "lng": -121.9857
     },
     "Wenatchee Valley Super Oval": {
       "address": "2850 Gun Club Rd, East Wenatchee, WA 98802",
       "city": "East Wenatchee, WA",
       "shape": "1/4-mile paved oval",
       "website": "https://www.wvso.com/",
-      "lat": 47.4243,
-      "lon": -120.2671
+      "lat": 47.3957,
+      "lon": -120.2796,
+      "lng": -120.2764
     },
     "Stateline Speedway": {
       "address": "1349 N Beck Rd, Post Falls, ID 83854",
       "city": "Post Falls, ID",
       "shape": "1/4-mile banked paved oval",
       "website": "https://www.raceidaho.com/",
-      "lat": 47.7117,
-      "lon": -116.9626
+      "lat": 47.7275,
+      "lon": -116.9328,
+      "lng": -117.0253
     },
     "South Sound Speedway": {
       "address": "3730 183rd Ave SW, Rochester, WA 98579",
       "city": "Rochester, WA",
       "shape": "3/8-mile paved oval + figure-8",
       "website": "https://www.southsoundspeedway.com/",
-      "lat": 46.826,
-      "lon": -123.0832
+      "lat": 46.8119,
+      "lon": -122.9369,
+      "lng": -122.9649
     }
   },
   "races": [
@@ -62,8 +67,8 @@
       "track": "Evergreen Speedway",
       "short": "Evergreen · Grocery Outlet Night",
       "location": "Evergreen Speedway · Monroe, WA · The Half-Mile",
-      "tag": "weekend",
-      "tag_label": "This Weekend",
+      "tag": "completed",
+      "tag_label": "Round 2 · Complete",
       "event_name": "Grocery Outlet Night",
       "points": true,
       "carCount": "17 and counting"
@@ -74,8 +79,8 @@
       "track": "Wenatchee Valley Super Oval",
       "short": "Wenatchee · Apple Blossom Rubber Down",
       "location": "Wenatchee Valley Super Oval · East Wenatchee, WA",
-      "tag": "regular",
-      "tag_label": "Round 3",
+      "tag": "weekend",
+      "tag_label": "This Weekend",
       "event_name": "Apple Blossom Rubber Down",
       "points": true
     },
