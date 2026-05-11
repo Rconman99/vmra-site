@@ -11,7 +11,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$vmra_data_base = esc_url( VMRA_THEME_URI . '/data' );
+$vmra_data_base      = esc_url( VMRA_THEME_URI . '/data' );
+$vmra_downloads_base = esc_url( VMRA_THEME_URI . '/assets/downloads' );
 
 get_header(); ?>
 
@@ -204,6 +205,12 @@ VMRA_BODY_EOT;
 // Retarget /data/*.json fetches at the theme's data dir.
 $body = str_replace( "'/data/", "'" . $vmra_data_base . "/", $body );
 $body = str_replace( '"/data/', '"' . $vmra_data_base . '/', $body );
+
+// Retarget /downloads/* hrefs at the theme's assets/downloads dir.
+// Files live under /wp-content/themes/vmra/assets/downloads/, not at site root.
+$body = str_replace( "'/downloads/", "'" . $vmra_downloads_base . "/", $body );
+$body = str_replace( '"/downloads/', '"' . $vmra_downloads_base . '/', $body );
+
 echo $body;
 ?>
 
