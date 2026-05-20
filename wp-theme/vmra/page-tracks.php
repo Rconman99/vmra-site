@@ -319,7 +319,7 @@ $body = <<<'VMRA_BODY_EOT'
   <!-- TRACK 01 · EVERGREEN -->
   <article class="track" id="evergreen">
     <div class="track-visual evergreen">
-      <div class="oval-stats"><span>OVAL LENGTH</span><span class="big">0.625</span><span>MI · PAVED</span></div>
+      <div class="oval-stats"><span>OVAL LENGTH</span><span class="big">3/8</span><span>MI · PAVED</span></div>
       <div class="oval-diagram"></div>
       <div class="track-num-plate">01</div>
     </div>
@@ -329,12 +329,12 @@ $body = <<<'VMRA_BODY_EOT'
       <div class="track-location">Monroe, WA · Snohomish County Fairgrounds</div>
       <div class="track-nickname">"The Superspeedway of the West." — David Pearson</div>
 
-      <p>The only NASCAR-sanctioned track in Washington and the crown jewel of the VMRA calendar. Built as a horse track in 1954 and paved in 1963, Evergreen's <strong>5/8-mile outer oval</strong> is oversized for a short track — drivers describe it as the fastest half-hour of their season. Inside that 0.625-mile oval sit a 3/8-mile oval, a 1/5-mile oval, a drag strip, and the #2-ranked figure-eight track in America.</p>
+      <p>The only NASCAR-sanctioned track in Washington and the crown jewel of the VMRA calendar. Built as a horse track in 1954 and paved in 1963, Evergreen is a multi-oval complex — VMRA runs the <strong>3/8-mile inner oval</strong>, nested inside a 5/8-mile outer, alongside a 1/5-mile oval, a drag strip, and the #2-ranked figure-eight track in America.</p>
 
       <p>For VMRA, Evergreen means wide racing lines, tire-wear strategy, and heat races that genuinely sort the field. Kyten Jones has made his career here. Defending champs have won here; rookies have lost championships here.</p>
 
       <div class="specs">
-        <div class="spec"><div class="k">Configuration</div><div class="v">5/8-mile paved outer oval</div></div>
+        <div class="spec"><div class="k">Configuration</div><div class="v">3/8-mile paved inner oval</div></div>
         <div class="spec"><div class="k">Grandstand</div><div class="v">7,500 covered + 7,500 open</div></div>
         <div class="spec"><div class="k">Opened</div><div class="v hot">1954</div></div>
         <div class="spec"><div class="k">Sanctioning</div><div class="v">NASCAR Weekly Series</div></div>
@@ -391,7 +391,7 @@ $body = <<<'VMRA_BODY_EOT'
   <!-- TRACK 03 · TRI-CITIES -->
   <article class="track" id="tri-cities">
     <div class="track-visual tri-cities">
-      <div class="oval-stats"><span>OVAL LENGTH</span><span class="big">3/8</span><span>MI · PAVED</span></div>
+      <div class="oval-stats"><span>OVAL LENGTH</span><span class="big">1/2</span><span>MI · PAVED</span></div>
       <div class="oval-diagram"></div>
       <div class="track-num-plate">03</div>
     </div>
@@ -406,7 +406,7 @@ $body = <<<'VMRA_BODY_EOT'
       <p>For teams making the trip over the Cascades, the Apple Cup weekend is the season opener, and the Fall Classic is where the title is decided. Tri-City rewards mechanical consistency and patience over raw speed.</p>
 
       <div class="specs">
-        <div class="spec"><div class="k">Configuration</div><div class="v">3/8-mile paved oval</div></div>
+        <div class="spec"><div class="k">Configuration</div><div class="v">1/2-mile paved oval</div></div>
         <div class="spec"><div class="k">Region</div><div class="v">Columbia Basin</div></div>
         <div class="spec"><div class="k">VMRA Events</div><div class="v hot">Apple Cup + Fall Classic</div></div>
         <div class="spec"><div class="k">2026 Rounds</div><div class="v hot">1 · 10 · 11</div></div>
@@ -473,7 +473,7 @@ $body = <<<'VMRA_BODY_EOT'
       <div class="track-location">Post Falls, ID · On the WA/ID border</div>
       <div class="track-nickname">"Racing every Friday & Saturday, April through September."</div>
 
-      <p>The tightest track on the VMRA schedule — a 1/4-mile paved oval that rewards a completely different driving style from Evergreen's 5/8-mile. At Stateline, corner entry and patience matter more than raw horsepower. The drafts are short. The passes are usually dive-bombs.</p>
+      <p>The tightest track on the VMRA schedule — a 1/4-mile paved oval that's a step tighter than Evergreen's 3/8-mile. At Stateline, corner entry and patience matter more than raw horsepower. The drafts are short. The passes are usually dive-bombs.</p>
 
       <p>Officially branded as <strong>MØDE Stadium Stateline Speedway</strong> in recent seasons, the track sits right on the Washington-Idaho state line outside Post Falls. Part of the Tri-State Challenge Series. Family-friendly with a strong local following — kids 5 and under are free to all motorsports events.</p>
 
