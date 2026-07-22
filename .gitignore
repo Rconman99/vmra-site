@@ -1,6 +1,11 @@
 # Vercel deployment state (machine-local)
 .vercel
 
+# Auth/session artifacts — NEVER commit (repo is public)
+.wp-cookies.txt
+*.cookies.txt
+cookies.txt
+
 # macOS finder junk
 .DS_Store
 ._*
