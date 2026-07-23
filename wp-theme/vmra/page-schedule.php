@@ -124,7 +124,7 @@ $body = <<<'VMRA_BODY_EOT'
 <section class="hero"><div class="hero-inner">
   <span class="eyebrow">§ 2026 · 40th Anniversary Tour</span>
   <h1>VMRA_SCHED_H1</h1>
-  <p class="lede">Kahl Cheth #23 took the 57th running of the Apple Cup at Tri-City — main event winner by the full 25-point margin on a night the defending champ didn't unload. Up next: Grocery Outlet Night at Evergreen this Saturday, then Apple Blossom Rubber Down at Wenatchee the following weekend, the CARS Tour Mark Galloway Shootout in June, the Ron Rohde Memorial at Stateline (non-points) in July, the 40th Anniversary Bash at South Sound late July, and a four-race summer/fall sprint into the Fall Classic at Tri-City October 3-4. Eleven dates total. Nine for points. Two for the love of it.</p>
+  <p class="lede">Steve Woods #22 finally got the night he'd been chasing at the CARS Tour Mark Galloway Shootout — quick time, then the full 25 in the main, 63 points on the board and the best haul anybody's put together this year. All it bought him was one spot. That's how tight this thing is. Up front, Bart Hecter Jr #68 and Jason Quatsoe #8 traded blows all evening and finished separated by a single point on the night, which leaves ten between them in the book with five points races to go. Kahl Cheth #23 sits third, Vince Conwell #82 fourth in the Northwest Concrete Cutting car. Next up: the Ron Rohde Memorial at Stateline on July 11 — no points, all heart — then the 40th Anniversary Bash at South Sound to open the back half. Eleven dates on the card. Nine that pay. Two we run because that's what this club is.</p>
 </div></section>
 
 <main id="main-content" tabindex="-1">
