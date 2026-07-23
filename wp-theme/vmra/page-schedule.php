@@ -13,6 +13,27 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 $vmra_data_base = esc_url( VMRA_THEME_URI . '/data' );
 
+// Round counters come from the data so the header can't drift from the list.
+$vmra_sched_standings = function_exists( 'vmra_seed_data' ) ? vmra_seed_data( 'standings' ) : null;
+$vmra_sched_schedule  = function_exists( 'vmra_seed_data' ) ? vmra_seed_data( 'schedule' ) : null;
+$vmra_sched_done      = (int) ( $vmra_sched_standings['rounds_completed'] ?? 0 );
+$vmra_sched_total     = is_array( $vmra_sched_schedule ) ? count( $vmra_sched_schedule['races'] ?? array() ) : 0;
+$vmra_sched_updated   = (string) ( $vmra_sched_standings['updated'] ?? '' );
+
+$vmra_sched_line = 'Schedule';
+if ( $vmra_sched_updated ) {
+	$vmra_sched_line = sprintf(
+		'Updated %s · Round %02d complete',
+		gmdate( 'M j, Y', strtotime( $vmra_sched_updated ) ),
+		$vmra_sched_done
+	);
+}
+
+$vmra_sched_left = max( 0, $vmra_sched_total - $vmra_sched_done );
+$vmra_sched_h1   = $vmra_sched_left > 0
+	? sprintf( 'Round %02d Done.<br>%d More to Run.', $vmra_sched_done, $vmra_sched_left )
+	: 'The 40th Season.';
+
 get_header(); ?>
 
 <style>
@@ -78,6 +99,23 @@ main{max-width:1080px;margin:0 auto;padding:60px 5vw}
   .race-actions{padding:18px 20px}
 }
 
+/* Weather forecast bar */
+.race-weather{display:flex;align-items:center;gap:16px;padding:12px 28px;border-top:1px solid var(--grease);background:linear-gradient(90deg,rgba(42,93,143,.12),transparent 60%);font-family:'JetBrains Mono',monospace;font-size:.75rem;letter-spacing:.08em;color:var(--chalk-dim);flex-wrap:wrap}
+.race-weather .wx-icon{font-size:1.4rem;line-height:1}
+.race-weather .wx-temp{font-family:'Anton',sans-serif;font-size:1.3rem;color:var(--sodium);letter-spacing:0}
+.race-weather .wx-cond{text-transform:uppercase;letter-spacing:.14em;color:var(--chalk)}
+.race-weather .wx-detail{display:flex;gap:14px;margin-left:auto}
+.race-weather .wx-detail span{white-space:nowrap}
+.race-weather .wx-rain{color:#5ba8f7}
+.race-weather .wx-wind{color:var(--chalk-dim)}
+.race-weather .wx-label{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--chalk-dim);opacity:.7}
+.race-weather.wx-pending{justify-content:center;opacity:.5}
+.race.completed .race-weather{display:none}
+@media(max-width:620px){
+  .race-weather{padding:10px 20px;gap:10px;font-size:.68rem}
+  .race-weather .wx-detail{margin-left:0;width:100%}
+}
+
 .note{background:var(--asphalt-2);border-left:3px solid var(--race-red);padding:18px 24px;margin:30px 0;font-size:.92rem;color:var(--chalk-dim)}
 </style>
 
@@ -85,12 +123,12 @@ main{max-width:1080px;margin:0 auto;padding:60px 5vw}
 $body = <<<'VMRA_BODY_EOT'
 <section class="hero"><div class="hero-inner">
   <span class="eyebrow">§ 2026 · 40th Anniversary Tour</span>
-  <h1>Apple Cup Done.<br>Ten More to Run.</h1>
+  <h1>VMRA_SCHED_H1</h1>
   <p class="lede">Kahl Cheth #23 took the 57th running of the Apple Cup at Tri-City — main event winner by the full 25-point margin on a night the defending champ didn't unload. Up next: Grocery Outlet Night at Evergreen this Saturday, then Apple Blossom Rubber Down at Wenatchee the following weekend, the CARS Tour Mark Galloway Shootout in June, the Ron Rohde Memorial at Stateline (non-points) in July, the 40th Anniversary Bash at South Sound late July, and a four-race summer/fall sprint into the Fall Classic at Tri-City October 3-4. Eleven dates total. Nine for points. Two for the love of it.</p>
 </div></section>
 
 <main id="main-content" tabindex="-1">
-  <p class="schedule-updated" id="scheduleUpdated" style="font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.12em;color:var(--chalk-dim);text-transform:uppercase;margin:0 0 20px;text-align:right">Updated Apr 23, 2026 · Round 01 complete</p>
+  <p class="schedule-updated" id="scheduleUpdated" style="font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.12em;color:var(--chalk-dim);text-transform:uppercase;margin:0 0 20px;text-align:right">VMRA_SCHED_UPDATED</p>
 
   <div class="race-list" id="raceList">
     <!-- Pre-rendered at authoring time from /data/schedule.json. The JS below re-hydrates this container from the live JSON on every page load. -->
@@ -405,6 +443,12 @@ $body = <<<'VMRA_BODY_EOT'
               '<div class="race-tag ' + tagClass + '">' + escHtml(race.tag_label) + '</div>' +
             '</div>';
 
+          // Weather placeholder for upcoming races
+          var weatherBar = '';
+          if (race.tag !== 'completed') {
+            weatherBar = '<div class="race-weather wx-pending" id="wx-r' + race.round + '" data-lat="' + (info.lat || '') + '" data-lon="' + (info.lon || '') + '" data-date="' + race.date + '" data-track="' + escAttr(race.track) + '"><span class="wx-label">Loading forecast…</span></div>';
+          }
+
           var trackBlock = '';
           if (addr) {
             trackBlock = '<div class="race-track-block">' +
@@ -424,15 +468,116 @@ $body = <<<'VMRA_BODY_EOT'
               '</div>';
           }
 
-          return '<div class="race ' + rowClass + '">' + head + trackBlock + '</div>';
+          return '<div class="race ' + rowClass + '">' + head + weatherBar + trackBlock + '</div>';
         }).join('');
         document.getElementById('raceList').innerHTML = html;
+
+        // Fetch weather for each upcoming race
+        fetchAllWeather();
       })
       .catch(function(){
         document.getElementById('raceList').innerHTML =
           '<div style="text-align:center;color:var(--chalk-dim);padding:40px">Schedule temporarily unavailable. Try refreshing.</div>';
       });
   })();
+
+  /* ===== Weather forecast for each race (Open-Meteo, no API key) ===== */
+  function wxIcon(code) {
+    if (code === 0) return '☀️';
+    if (code <= 3)  return '⛅';
+    if (code <= 48) return '🌫️';
+    if (code <= 57) return '🌦️';
+    if (code <= 67) return '🌧️';
+    if (code <= 77) return '❄️';
+    if (code <= 82) return '🌧️';
+    if (code <= 86) return '🌨️';
+    if (code <= 99) return '⛈️';
+    return '🌤️';
+  }
+  function wxLabel(code) {
+    if (code === 0) return 'Clear skies';
+    if (code <= 3)  return 'Partly cloudy';
+    if (code <= 48) return 'Foggy';
+    if (code <= 55) return 'Drizzle';
+    if (code <= 57) return 'Freezing drizzle';
+    if (code <= 65) return 'Rain';
+    if (code <= 67) return 'Freezing rain';
+    if (code <= 77) return 'Snow';
+    if (code <= 82) return 'Rain showers';
+    if (code <= 86) return 'Snow showers';
+    if (code <= 99) return 'Thunderstorms';
+    return '';
+  }
+  function fetchAllWeather() {
+    var bars = document.querySelectorAll('.race-weather[data-lat]');
+    var today = new Date(); today.setHours(0,0,0,0);
+    bars.forEach(function(bar) {
+      var lat = parseFloat(bar.dataset.lat);
+      var lon = parseFloat(bar.dataset.lon);
+      var raceDate = bar.dataset.date;
+      var track = bar.dataset.track;
+      if (!lat || !lon || !raceDate) {
+        bar.innerHTML = '<span class="wx-label">Forecast unavailable — coordinates not set</span>';
+        return;
+      }
+      var rd = new Date(raceDate + 'T12:00:00-07:00'); rd.setHours(0,0,0,0);
+      var daysOut = Math.round((rd - today) / 86400000);
+      if (daysOut > 16) {
+        bar.classList.remove('wx-pending');
+        bar.innerHTML = '<span class="wx-icon">📅</span><span class="wx-label">Race-day forecast available ' + (daysOut - 14) + ' days before race day</span>';
+        return;
+      }
+      if (daysOut < 0) {
+        bar.style.display = 'none';
+        return;
+      }
+      var url = 'https://api.open-meteo.com/v1/forecast'
+        + '?latitude=' + lat
+        + '&longitude=' + lon
+        + '&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,wind_speed_10m_max,weather_code'
+        + '&temperature_unit=fahrenheit'
+        + '&wind_speed_unit=mph'
+        + '&timezone=America/Los_Angeles'
+        + '&start_date=' + raceDate
+        + '&end_date=' + raceDate;
+      fetch(url)
+        .then(function(r){ if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+        .then(function(wx){
+          var d = wx && wx.daily;
+          if (!d || !d.temperature_2m_max || !d.temperature_2m_max.length) {
+            bar.innerHTML = '<span class="wx-label">Forecast data unavailable</span>';
+            bar.classList.remove('wx-pending');
+            return;
+          }
+          var hi   = Math.round(d.temperature_2m_max[0]);
+          var lo   = Math.round(d.temperature_2m_min[0]);
+          var pop  = Math.round((d.precipitation_probability_max && d.precipitation_probability_max[0]) || 0);
+          var wind = Math.round((d.wind_speed_10m_max && d.wind_speed_10m_max[0]) || 0);
+          var code = (d.weather_code && d.weather_code[0]) || 0;
+          var icon = wxIcon(code);
+          var label = wxLabel(code);
+          var prefix = daysOut === 0 ? 'Race-Day Weather'
+                     : daysOut === 1 ? 'Tomorrow\'s Forecast'
+                     : daysOut <= 3  ? 'Race Weekend Forecast'
+                     : 'Race-Day Forecast';
+          var html = '<span class="wx-icon">' + icon + '</span>'
+            + '<span class="wx-temp">' + hi + '°</span>'
+            + '<span class="wx-cond">' + label + '</span>'
+            + '<span class="wx-detail">'
+            + '<span>Hi ' + hi + '° / Lo ' + lo + '°</span>';
+          if (pop >= 10) html += '<span class="wx-rain">💧 ' + pop + '% rain</span>';
+          if (wind >= 8) html += '<span class="wx-wind">💨 ' + wind + ' mph</span>';
+          html += '</span>'
+            + '<span class="wx-label">' + prefix + ' · ' + track.replace(' Speedway','').replace(' Raceway','').replace(' Super Oval','') + '</span>';
+          bar.innerHTML = html;
+          bar.classList.remove('wx-pending');
+        })
+        .catch(function(){
+          bar.innerHTML = '<span class="wx-label">Forecast temporarily unavailable</span>';
+          bar.classList.remove('wx-pending');
+        });
+    });
+  }
   </script>
 
   <div class="note"><strong>Pre-registration:</strong> The Apple Cup uses Tri-City Raceway's online sign-up — head to <a href="https://tricityraceway.com/drivers.html" style="color:var(--sodium);text-decoration:none;border-bottom:1px solid currentColor" target="_blank" rel="noopener">tricityraceway.com/drivers.html</a> for the form. For all other rounds, contact the board at <a href="mailto:vmrainfo@gmail.com" style="color:var(--sodium);text-decoration:none;border-bottom:1px solid currentColor">vmrainfo@gmail.com</a>.</div>
@@ -442,6 +587,8 @@ VMRA_BODY_EOT;
 // Retarget /data/*.json fetches at the theme's data dir.
 $body = str_replace( "'/data/", "'" . $vmra_data_base . "/", $body );
 $body = str_replace( '"/data/', '"' . $vmra_data_base . '/', $body );
+$body = str_replace( 'VMRA_SCHED_UPDATED', esc_html( $vmra_sched_line ), $body );
+$body = str_replace( 'VMRA_SCHED_H1', $vmra_sched_h1, $body );
 echo $body;
 ?>
 

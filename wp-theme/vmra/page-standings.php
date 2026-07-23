@@ -69,6 +69,43 @@ if ( is_array( $vmra_standings ) && ! empty( $vmra_standings['rookies']['drivers
 }
 $vmra_rookie_note = (string) ( $vmra_standings['rookies']['note'] ?? '' );
 
+// Eyebrow + H1 are derived so they can't drift from the table. Total counts
+// only points-paying rounds — the schedule includes non-points exhibitions
+// (the Ron Rohde Memorial, the Sunday Tri-City finale).
+$vmra_rounds_done = (int) ( $vmra_standings['rounds_completed'] ?? 0 );
+$vmra_season      = (string) ( $vmra_standings['season'] ?? '2026' );
+$vmra_schedule    = function_exists( 'vmra_seed_data' ) ? vmra_seed_data( 'schedule' ) : null;
+$vmra_points_rounds = 0;
+if ( is_array( $vmra_schedule ) && ! empty( $vmra_schedule['races'] ) ) {
+	foreach ( $vmra_schedule['races'] as $race ) {
+		if ( ! isset( $race['points'] ) || false !== $race['points'] ) {
+			$vmra_points_rounds++;
+		}
+	}
+}
+$vmra_ytd_eyebrow = sprintf( '§ %s YTD · After Round %02d', $vmra_season, $vmra_rounds_done );
+if ( $vmra_points_rounds > 0 ) {
+	$vmra_ytd_eyebrow .= sprintf( ' of %02d', $vmra_points_rounds );
+}
+
+// H1: "<Surname> Leads the 40th." from whoever is actually on top.
+$vmra_h1 = 'The 40th Season Standings.';
+if ( ! empty( $vmra_standings['drivers'][0]['name'] ) ) {
+	$vmra_leader = (string) $vmra_standings['drivers'][0]['name'];
+	// Handle shared-car entries ("Bart Hecter Sr / Bart Hecter Jr") and
+	// initialled names ("C. Forney") — take the last word of the first name.
+	$vmra_leader_one = trim( explode( '/', $vmra_leader )[0] );
+	$vmra_parts      = preg_split( '/\s+/', $vmra_leader_one );
+	$vmra_surname    = end( $vmra_parts );
+	if ( in_array( strtolower( $vmra_surname ), array( 'sr', 'jr', 'sr.', 'jr.', 'ii', 'iii' ), true ) ) {
+		array_pop( $vmra_parts );
+		$vmra_surname = end( $vmra_parts );
+	}
+	if ( $vmra_surname ) {
+		$vmra_h1 = $vmra_surname . ' Leads the 40th.';
+	}
+}
+
 get_header(); ?>
 
 <style>
@@ -116,8 +153,8 @@ main{max-width:1080px;margin:0 auto;padding:60px 5vw}
 <?php
 $body = <<<'VMRA_BODY_EOT'
 <section class="hero"><div class="hero-inner">
-  <span class="eyebrow">§ 2026 YTD · After Round 01 of 11</span>
-  <h1>Cheth Leads the 40th.</h1>
+  <span class="eyebrow">VMRA_YTD_EYEBROW</span>
+  <h1>VMRA_STANDINGS_H1</h1>
   <p class="lede">One round down. Kahl Cheth #23 leads the 2026 points at 64 after taking the main at the 57th Apple Cup at Tri-City. Jason Quatsoe #8 sits four back at 60. Steve Woods #22 is another three behind at 57. Defending champ Kyten Jones #30 didn't unload on the night — the title race opens wide. Ten rounds left. Points stay with the car, not the driver.</p>
 </div></section>
 
@@ -215,6 +252,8 @@ $body = str_replace( 'VMRA_STANDINGS_ROWS', $vmra_standings_rows_html, $body );
 // Same for the Rookie of the Year table.
 $body = str_replace( 'VMRA_ROOKIE_ROWS', $vmra_rookie_rows_html, $body );
 $body = str_replace( 'VMRA_ROOKIE_NOTE', esc_html( $vmra_rookie_note ), $body );
+$body = str_replace( 'VMRA_YTD_EYEBROW', esc_html( $vmra_ytd_eyebrow ), $body );
+$body = str_replace( 'VMRA_STANDINGS_H1', esc_html( $vmra_h1 ), $body );
 // Lede comes from standings.json so it can't drift from the numbers below it.
 if ( $vmra_lede ) {
 	$body = preg_replace(

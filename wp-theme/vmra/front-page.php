@@ -538,7 +538,15 @@ get_header(); ?>
 			<h3><?php esc_html_e( '2026 Season at a Glance', 'vmra' ); ?></h3>
 			<div class="stat-row">
 				<span class="stat-k"><?php esc_html_e( 'Championship Rounds', 'vmra' ); ?></span>
-				<span class="stat-v"><?php printf( '%02d / 09', (int) ( $standings['rounds_completed'] ?? 1 ) ); ?></span>
+				<span class="stat-v"><?php
+				$vmra_pts_rounds = 0;
+				foreach ( ( $schedule['races'] ?? array() ) as $vmra_race ) {
+					if ( ! isset( $vmra_race['points'] ) || false !== $vmra_race['points'] ) {
+						$vmra_pts_rounds++;
+					}
+				}
+				printf( '%02d / %02d', (int) ( $standings['rounds_completed'] ?? 1 ), $vmra_pts_rounds );
+				?></span>
 			</div>
 			<div class="stat-row">
 				<span class="stat-k"><?php esc_html_e( 'Total Events (incl. Specials)', 'vmra' ); ?></span>
@@ -639,7 +647,7 @@ get_header(); ?>
 			</<?php echo $card_tag; ?>>
 		<?php endforeach; ?>
 	</div>
-	<p style="font-family:'JetBrains Mono',monospace;font-size:.78rem;letter-spacing:.12em;color:var(--chalk-dim);text-transform:uppercase;text-align:center;margin-top:22px">Top of the 2026 book after Round 01 · <a href="<?php echo esc_url( home_url( '/racers/' ) ); ?>" style="color:var(--sodium);text-decoration:none;border-bottom:1px solid var(--race-red);padding-bottom:2px">See all 23 drivers →</a></p>
+	<p style="font-family:'JetBrains Mono',monospace;font-size:.78rem;letter-spacing:.12em;color:var(--chalk-dim);text-transform:uppercase;text-align:center;margin-top:22px"><?php printf( esc_html__( 'Top of the 2026 book after Round %02d', 'vmra' ), (int) ( $standings['rounds_completed'] ?? 1 ) ); ?> · <a href="<?php echo esc_url( home_url( '/racers/' ) ); ?>" style="color:var(--sodium);text-decoration:none;border-bottom:1px solid var(--race-red);padding-bottom:2px"><?php printf( esc_html__( 'See all %d drivers →', 'vmra' ), count( $standings['drivers'] ?? array() ) ); ?></a></p>
 </section>
 
 <!-- ===================== TRACKS GRID ===================== -->
