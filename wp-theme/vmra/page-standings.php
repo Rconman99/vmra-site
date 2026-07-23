@@ -18,6 +18,11 @@ $vmra_data_base = esc_url( VMRA_THEME_URI . '/data' );
 $vmra_standings = function_exists( 'vmra_seed_data' ) ? vmra_seed_data( 'standings' ) : null;
 $vmra_driver_url_map = array();
 $vmra_standings_rows_html = '';
+$vmra_rookie_rows_html = '';
+$vmra_lede = '';
+if ( is_array( $vmra_standings ) ) {
+	$vmra_lede = (string) ( $vmra_standings['intro'] ?? '' );
+}
 if ( is_array( $vmra_standings ) && ! empty( $vmra_standings['drivers'] ) ) {
 	foreach ( $vmra_standings['drivers'] as $row ) {
 		$car  = (string) ( $row['car']  ?? '' );
@@ -40,6 +45,30 @@ if ( is_array( $vmra_standings ) && ! empty( $vmra_standings['drivers'] ) ) {
 	}
 }
 
+// Rookie of the Year runs as its own championship, same shape as the sheet.
+if ( is_array( $vmra_standings ) && ! empty( $vmra_standings['rookies']['drivers'] ) ) {
+	foreach ( $vmra_standings['rookies']['drivers'] as $row ) {
+		$car  = (string) ( $row['car']  ?? '' );
+		$name = (string) ( $row['name'] ?? '' );
+		$pos  = (int)    ( $row['position'] ?? 0 );
+		$pts  = (int)    ( $row['points']   ?? 0 );
+		$url  = $car ? vmra_driver_url_by_car( $car ) : '';
+		if ( $url ) {
+			$vmra_driver_url_map[ $car ] = $url;
+		}
+		$name_cell = $url
+			? '<a href="' . esc_url( $url ) . '" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--grease)">' . esc_html( $name ) . '</a>'
+			: esc_html( $name );
+		$vmra_rookie_rows_html .= '<tr>'
+			. '<td class="pos">' . $pos . '</td>'
+			. '<td class="car">#' . esc_html( $car ) . '</td>'
+			. '<td class="name">' . $name_cell . '</td>'
+			. '<td class="pts">' . $pts . '</td>'
+			. '</tr>';
+	}
+}
+$vmra_rookie_note = (string) ( $vmra_standings['rookies']['note'] ?? '' );
+
 get_header(); ?>
 
 <style>
@@ -56,6 +85,11 @@ a{color:inherit}
 .eyebrow{font-family:'JetBrains Mono',monospace;color:var(--sodium);font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:14px}
 h1{font-family:'Anton',sans-serif;font-size:clamp(2.5rem,6vw,4.5rem);letter-spacing:.02em;line-height:1;margin-bottom:18px}
 .lede{font-size:1.15rem;color:var(--chalk-dim);max-width:740px}
+
+.rookie-block{margin-top:56px;padding-top:34px;border-top:1px solid var(--grease)}
+.rookie-block h2{font-family:'Anton',sans-serif;font-size:clamp(1.5rem,3vw,2.1rem);letter-spacing:.02em;line-height:1;text-transform:uppercase;margin-bottom:8px}
+.rookie-block h2::before{content:"§ ";color:var(--sodium)}
+.rookie-sub{font-size:.95rem;color:var(--chalk-dim);margin-bottom:20px;max-width:620px}
 
 main{max-width:1080px;margin:0 auto;padding:60px 5vw}
 
@@ -101,6 +135,22 @@ $body = <<<'VMRA_BODY_EOT'
   </table>
   <p id="standingsUpdated" style="font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.12em;color:var(--chalk-dim);text-transform:uppercase;margin-top:14px;text-align:right">Updated Apr 23, 2026 · 1 round completed</p>
 
+  <section class="rookie-block" aria-labelledby="rookieHeading">
+    <h2 id="rookieHeading">Rookie of the Year</h2>
+    <p class="rookie-sub">VMRA_ROOKIE_NOTE</p>
+    <table class="standings">
+      <thead>
+        <tr>
+          <th>Pos</th>
+          <th>Car</th>
+          <th>Driver</th>
+          <th class="pts">Points</th>
+        </tr>
+      </thead>
+      <tbody id="rookieBody">VMRA_ROOKIE_ROWS</tbody>
+    </table>
+  </section>
+
   <script>
   (function(){
     var urlMap = window.vmraDriverUrls || {};
@@ -121,6 +171,23 @@ $body = <<<'VMRA_BODY_EOT'
             '</tr>';
         }).join('');
         document.getElementById('standingsBody').innerHTML = rows;
+
+        var rookieBody = document.getElementById('rookieBody');
+        var rookieList = (data.rookies && data.rookies.drivers) || [];
+        if (rookieBody && rookieList.length) {
+          rookieBody.innerHTML = rookieList.map(function(d){
+            var name = escapeHtml(d.name);
+            var nameCell = urlMap[d.car]
+              ? '<a href="' + urlMap[d.car] + '" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--grease)">' + name + '</a>'
+              : name;
+            return '<tr>' +
+              '<td class="pos">' + d.position + '</td>' +
+              '<td class="car">#' + escapeHtml(d.car) + '</td>' +
+              '<td class="name">' + nameCell + '</td>' +
+              '<td class="pts">' + d.points + '</td>' +
+              '</tr>';
+          }).join('');
+        }
         if (data.updated) {
           var dt = new Date(data.updated + 'T12:00:00');
           var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
@@ -145,6 +212,18 @@ $body = str_replace( "'/data/", "'" . $vmra_data_base . "/", $body );
 $body = str_replace( '"/data/', '"' . $vmra_data_base . '/', $body );
 // Substitute the pre-rendered standings rows (with driver-bio links baked in).
 $body = str_replace( 'VMRA_STANDINGS_ROWS', $vmra_standings_rows_html, $body );
+// Same for the Rookie of the Year table.
+$body = str_replace( 'VMRA_ROOKIE_ROWS', $vmra_rookie_rows_html, $body );
+$body = str_replace( 'VMRA_ROOKIE_NOTE', esc_html( $vmra_rookie_note ), $body );
+// Lede comes from standings.json so it can't drift from the numbers below it.
+if ( $vmra_lede ) {
+	$body = preg_replace(
+		'#<p class="lede">.*?</p>#s',
+		'<p class="lede">' . esc_html( $vmra_lede ) . '</p>',
+		$body,
+		1
+	);
+}
 // Publish the car→URL map so the JS hydrator links names the same way.
 echo '<script id="vmra-driver-urls">window.vmraDriverUrls = '
 	. wp_json_encode( $vmra_driver_url_map, JSON_UNESCAPED_SLASHES )
