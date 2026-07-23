@@ -1,6 +1,6 @@
 {
   "season": "2026",
-  "updated": "2026-06-27",
+  "updated": "2026-07-22",
   "rounds_completed": 4,
   "intro": "Four rounds down. Bart Hecter Jr #68 holds the points lead at 271 after the CARS Tour Mark Galloway Shootout at Evergreen, but Jason Quatsoe #8 closed to within ten at 261 — the tightest the title fight has been all year. Kahl Cheth #23 sits third on 255. Steve Woods #22 posted the biggest single-night score of the round, 63 points including the full 25 in the main, and climbed back to eighth on 199. Vince Conwell #82 holds fourth on 238. Points stay with the car, not the driver.",
   "drivers": [
@@ -149,7 +149,7 @@
       {
         "position": 1,
         "car": "68",
-        "name": "Bart Hecter Sr / Bart Hecter Jr",
+        "name": "Bart Hecter Jr",
         "points": 135
       },
       {
