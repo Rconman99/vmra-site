@@ -1,133 +1,133 @@
 {
   "season": "2026",
-  "updated": "2026-07-22",
-  "rounds_completed": 4,
-  "intro": "Four rounds in and the top of the board is a knife fight. Bart Hecter Jr #68 still has the points lead at 271, but Jason Quatsoe #8 outscored him by a single point at Evergreen and sits ten back at 261 — close enough that one bad night flips it. Kahl Cheth #23 is right there at 255. Vince Conwell #82 holds fourth at 238 in the Northwest Concrete Cutting car. And keep an eye on Steve Woods #22: quick time and the full 25 in the main at the Galloway Shootout gave him 63 for the night, the biggest score anybody's posted in 2026, and he's still only eighth. Five points races left. Points stay with the car, not the driver.",
+  "updated": "2026-07-25",
+  "rounds_completed": 5,
+  "intro": "South Sound didn't settle anything. Hector Jr still has the 68 on top at 349, but he's got company — Quatsoe's 8 car is 17 back at 332, and Cheth has the 23 right on his door at 330, just two points behind Quatsoe. Three cars covered by nineteen points with four races to run.\n\nConwell sits fourth in the 82 Northwest Concrete Cutting car at 300, eighteen clear of fifth and thirty off that three-car scrap up front. And Clother had the run of the night — the 7 banked 60 points and left South Sound on 157.\n\nFour points races left. Points stay with the car, not the driver.",
   "drivers": [
     {
       "position": 1,
       "car": "68",
       "name": "Bart Hecter Sr / Bart Hecter Jr",
-      "points": 271
+      "points": 349
     },
     {
       "position": 2,
       "car": "8",
       "name": "Jason Quatsoe",
-      "points": 261
+      "points": 332
     },
     {
       "position": 3,
       "car": "23",
       "name": "Kahl Cheth",
-      "points": 255
+      "points": 330
     },
     {
       "position": 4,
       "car": "82",
       "name": "Vince Conwell",
-      "points": 238
+      "points": 300
     },
     {
       "position": 5,
+      "car": "57",
+      "name": "Shane Strimple",
+      "points": 282
+    },
+    {
+      "position": 6,
       "car": "25B",
       "name": "B. Greiner",
       "points": 225
     },
     {
-      "position": 6,
-      "car": "57",
-      "name": "Shane Strimple",
-      "points": 216
-    },
-    {
       "position": 7,
-      "car": "72",
-      "name": "C. Forney",
-      "points": 207
+      "car": "51",
+      "name": "Dave Trapp",
+      "points": 224
     },
     {
       "position": 8,
       "car": "22",
       "name": "Steve Woods",
-      "points": 199
+      "points": 219
     },
     {
       "position": 9,
+      "car": "72",
+      "name": "C. Forney",
+      "points": 207
+    },
+    {
+      "position": 10,
+      "car": "7",
+      "name": "Mike Clother",
+      "points": 157
+    },
+    {
+      "position": 11,
       "car": "77",
       "name": "Vern Huson",
       "points": 147
     },
     {
-      "position": 10,
+      "position": 12,
+      "car": "79",
+      "name": "J. Boczar",
+      "points": 147
+    },
+    {
+      "position": 13,
       "car": "25RT",
       "name": "RT Greiner",
       "points": 145
     },
     {
-      "position": 11,
-      "car": "51",
-      "name": "Dave Trapp",
-      "points": 112
-    },
-    {
-      "position": 12,
-      "car": "7",
-      "name": "Mike Clother",
-      "points": 97
-    },
-    {
-      "position": 13,
-      "car": "79",
-      "name": "J. Boczar",
-      "points": 81
-    },
-    {
       "position": 14,
+      "car": "2",
+      "name": "Rick Villyard",
+      "points": 111
+    },
+    {
+      "position": 15,
+      "car": "92",
+      "name": "T. McCartney",
+      "points": 56
+    },
+    {
+      "position": 16,
       "car": "10",
       "name": "Bryan Roundtree",
       "points": 55
     },
     {
-      "position": 15,
-      "car": "2",
-      "name": "Rick Villyard",
-      "points": 47
-    },
-    {
-      "position": 16,
-      "car": "92",
-      "name": "T. McCartney",
-      "points": 20
-    },
-    {
       "position": 17,
-      "car": "6",
-      "name": "R. Learch",
-      "points": 0
-    },
-    {
-      "position": 18,
       "car": "11",
       "name": "B. Cole",
       "points": 0
     },
     {
-      "position": 19,
+      "position": 18,
       "car": "30",
       "name": "Kyten Jones",
       "points": 0
     },
     {
-      "position": 20,
+      "position": 19,
       "car": "37",
       "name": "Mitch Woods",
       "points": 0
     },
     {
-      "position": 21,
+      "position": 20,
       "car": "65",
       "name": "Randy Adams",
+      "points": 0
+    },
+    {
+      "position": 21,
+      "car": "6",
+      "name": "R. Learch",
       "points": 0
     },
     {
@@ -150,7 +150,7 @@
         "position": 1,
         "car": "68",
         "name": "Bart Hecter Jr",
-        "points": 135
+        "points": 193
       },
       {
         "position": 2,
@@ -162,7 +162,7 @@
         "position": 3,
         "car": "79",
         "name": "J. Boczar",
-        "points": 41
+        "points": 87
       }
     ]
   }
