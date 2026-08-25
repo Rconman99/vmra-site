@@ -1,6 +1,6 @@
 {
   "season": "2026",
-  "updated": "2026-05-05",
+  "updated": "2026-08-25",
   "races": [
     {
       "date": "2026-04-12",
@@ -49,6 +49,18 @@
       },
       "winner_note": "Swept the night — fast time, heat win, and the full 25 in the main. The 80 points on the day moved #68 from 4th to the season lead at 211.",
       "notes": "Round 3 of the 40th Anniversary tour at Wenatchee Valley Super Oval's quarter-mile. Hecter Jr's clean sweep was the story; Cheth #23 and Quatsoe #8 followed in the standings."
+    },
+    {
+      "date": "2026-08-22",
+      "round": 8,
+      "track": "Wenatchee Valley Super Oval",
+      "event": "Thunder in the Valley Open Wheel Show",
+      "winner": {
+        "car": "82",
+        "name": "Vince Conwell"
+      },
+      "winner_note": "Took the full 25 in the main and 69 on the night in the Northwest Concrete Cutting 82.",
+      "notes": "Round 8 of the 40th Anniversary tour at the Wenatchee Valley Super Oval's quarter-mile, and the seventh points-paying round of the season. Conwell #82 won the feature. Hecter Jr #68 took quick time and the biggest points haul of the night at 75, extending the season lead to 479. D. Eierman #76 and K. Gill #65 scored their first points of 2026."
     }
   ]
 }

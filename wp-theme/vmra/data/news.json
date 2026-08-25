@@ -1,6 +1,24 @@
 {
-  "updated": "2026-05-05",
+  "updated": "2026-08-25",
   "items": [
+    {
+      "date": "2026-08-25",
+      "category": "Coming Up · Round 09",
+      "headline": "NASCAR Championship Night at Evergreen — September 19",
+      "snippet": "Round 9 on the 40th Anniversary calendar and the eighth of nine points rounds — NASCAR Championship Night at Evergreen Speedway's half-mile on Saturday, September 19. Three cars cover thirty-one points at the top: Hecter's 68 on 479, Quatsoe's 8 on 464, Cheth's 23 on 448. One points race after this one.",
+      "byline": "The VMRA Desk",
+      "link": "/schedule/",
+      "car_num": "68",
+      "feature": true
+    },
+    {
+      "date": "2026-08-22",
+      "category": "Race Recap · Round 08",
+      "headline": "Vince Conwell Wins Thunder in the Valley at Wenatchee",
+      "snippet": "Vince Conwell took the 82 to the main event win at the Wenatchee Valley Super Oval, banking the full 25 in the feature and 69 on the night. Bart Hecter Jr had the bigger night overall — quick time and 75 points in the 68 — and leads on 479, fifteen up on Jason Quatsoe's 8 car at 464 and thirty-one clear of Kahl Cheth's 23 on 448. Two cars got on the board for the first time: D. Eierman won his heat in the 76 and left with 66, and K. Gill scored 54 in the 65.",
+      "byline": "The VMRA Desk",
+      "link": "/standings/"
+    },
     {
       "date": "2026-05-02",
       "category": "Race Recap · Round 03",
@@ -8,17 +26,7 @@
       "snippet": "Round 3 of the 40th Anniversary tour ran at Wenatchee Valley Super Oval's quarter-mile. Bart Hecter Jr #68 swept the night — fast time, heat win, and the full 25 in the main — for 80 points on the day. The #68 jumped from 4th to the season lead at 211. Cheth #23 sits 9 back in second, Quatsoe #8 just two more behind in third. Steve Woods #22 didn't unload at Apple Blossom and dropped from 1st to 9th.",
       "byline": "The VMRA Desk",
       "link": "/standings/",
-      "feature": true,
       "car_num": "68"
-    },
-    {
-      "date": "2026-05-05",
-      "category": "Coming Up · Round 04",
-      "headline": "Mark Galloway Shootout at Evergreen — June 27 · CARS Tour Weekend",
-      "snippet": "Eight weeks until Round 4 — the CARS Tour Mark Galloway Shootout at Evergreen Speedway. Big-stage half-mile night, points round. Hoosier take-offs only — ST1 left, ST2/ST3 right, procured by VMRA. Pre-registration via the board.",
-      "byline": "Rick Villyard",
-      "link": "/schedule/",
-      "car_num": "23"
     },
     {
       "date": "2026-04-25",
