@@ -1,15 +1,54 @@
 {
   "season": "2026",
-  "updated": "2026-04-23",
+  "updated": "2026-05-05",
   "races": [
     {
       "date": "2026-04-12",
       "round": 1,
       "track": "Tri-City Raceway",
       "event": "57th Apple Cup VMRA Season Opener",
-      "winner": { "car": "23", "name": "Kahl Cheth" },
+      "winner": {
+        "car": "23",
+        "name": "Kahl Cheth"
+      },
       "winner_note": "Took the main event by the full 25-point margin on a night Kyten Jones never unloaded.",
       "notes": "57th running of the Apple Cup and the season opener for VMRA's 40th Anniversary tour. Cheth #23 led home Quatsoe #8 and Woods #22."
+    },
+    {
+      "date": "2026-04-25",
+      "round": 2,
+      "track": "Evergreen Speedway",
+      "event": "Grocery Outlet Night",
+      "winner": {
+        "car": "22",
+        "name": "Steve Woods"
+      },
+      "winner_note": "Woods dominated the Evergreen half-mile to pull within striking distance of the lead.",
+      "notes": "Round 2 saw a classic Evergreen battle. Woods #22 took the win, with Cheth #23 and Jones #30 rounding out the podium."
+    },
+    {
+      "date": "2026-04-26",
+      "round": "EX",
+      "track": "Evergreen Speedway",
+      "event": "Sunday Showdown",
+      "winner": {
+        "car": "5",
+        "name": "Josh Van Winkle"
+      },
+      "winner_note": "Josh 'The Jet' Van Winkle took the #5 car to the winner's circle.",
+      "notes": "The weekend at Evergreen concluded with a spectacular performance by Van Winkle."
+    },
+    {
+      "date": "2026-05-02",
+      "round": 3,
+      "track": "Wenatchee Valley Super Oval",
+      "event": "Apple Blossom Rubber Down",
+      "winner": {
+        "car": "68",
+        "name": "Bart Hecter Jr"
+      },
+      "winner_note": "Swept the night — fast time, heat win, and the full 25 in the main. The 80 points on the day moved #68 from 4th to the season lead at 211.",
+      "notes": "Round 3 of the 40th Anniversary tour at Wenatchee Valley Super Oval's quarter-mile. Hecter Jr's clean sweep was the story; Cheth #23 and Quatsoe #8 followed in the standings."
     }
   ]
 }
