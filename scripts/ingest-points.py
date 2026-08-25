@@ -54,9 +54,18 @@ FULL_NAMES = {
     "11": "B. Cole",
     "30": "Kyten Jones",
     "37": "Mitch Woods",
-    "65": "Randy Adams",
+    "65": "K. Gill",
     "66": "G. Nash",
+    "76": "D. Eierman",
     "23x": "Chad Broom",
+}
+
+# The Rookie of the Year table can list two drivers sharing one car (the #68
+# runs Sr and Jr), so car number alone can't name a rookie row. Keyed by the
+# abbreviated name as it appears on the worksheet, lowercased.
+ROOKIE_NAMES = {
+    "b hector jr": "Bart Hecter Jr",
+    "b hector sr": "Bart Hecter Sr",
 }
 
 
@@ -135,9 +144,15 @@ def parse(rows):
         if total == 0 and len(row) > 6:
             total = to_int(row[6])
 
+        if in_rookies:
+            key = re.sub(r"\s+", " ", re.sub(r"[^a-z ]", "", name.lower())).strip()
+            full = ROOKIE_NAMES.get(key) or FULL_NAMES.get(car, name)
+        else:
+            full = FULL_NAMES.get(car, name)
+
         entry = {
             "car": car,
-            "name": FULL_NAMES.get(car, name),
+            "name": full,
             "points": total,
             "night": to_int(row[6]) if len(row) > 6 else 0,
         }
