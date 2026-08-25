@@ -145,7 +145,10 @@ for name in "${DATA_FILES[@]}"; do
       fi
     elif [[ "$live" != "—" && "$live" > "$loc" && $FORCE -eq 0 ]]; then
       act="${act}${t}:BLOCKED "
-    elif [[ "$live" == "$loc" ]]; then
+    elif [[ "$live" == "$loc" && $FORCE -eq 0 ]]; then
+      # Same "updated" date — assumed same content. That assumption can be
+      # wrong: two installs can carry the same date and different content if
+      # one was edited without bumping the date. --force pushes anyway.
       act="${act}${t}:same "
     else
       act="${act}${t}:push "
