@@ -218,7 +218,7 @@ get_header(); ?>
 					<span class="tag">Hoosier · ST1 / ST2 / ST3</span>
 				</div>
 				<div class="panel-track" id="towerTrack">Evergreen Speedway</div>
-				<div class="panel-loc" id="towerLocation">Evergreen Speedway · Monroe, WA · The Half-Mile</div>
+				<div class="panel-loc" id="towerLocation">Evergreen Speedway · Monroe, WA</div>
 
 				<div class="countdown" aria-live="polite">
 					<div class="count-cell"><div class="count-num">--</div><div class="count-label"><?php esc_html_e( 'Days', 'vmra' ); ?></div></div>
@@ -230,7 +230,7 @@ get_header(); ?>
 				<div class="panel-meta">
 					<div><span class="k"><?php esc_html_e( 'Green Flag', 'vmra' ); ?></span><span class="v" id="towerGreenFlag">Sat Apr 25 · 7:30 PM</span></div>
 					<div><span class="k"><?php esc_html_e( 'Event', 'vmra' ); ?></span><span class="v" id="towerEvent">Grocery Outlet Night</span></div>
-					<div><span class="k"><?php esc_html_e( 'Distance', 'vmra' ); ?></span><span class="v" id="towerDistance">5/8-mile paved oval — "The Half-Mile"</span></div>
+					<div><span class="k"><?php esc_html_e( 'Distance', 'vmra' ); ?></span><span class="v" id="towerDistance">3/8-mile paved inner oval</span></div>
 					<div id="towerCarsRow"><span class="k"><?php esc_html_e( 'Confirmed Cars', 'vmra' ); ?></span><span class="v" id="towerCars">17 and counting</span></div>
 				</div>
 			</div>
@@ -300,7 +300,7 @@ get_header(); ?>
 				<div class="date"><span class="month">Apr</span><span class="day">25</span></div>
 				<div class="round">Round 02 / 11</div>
 				<h3>Grocery Outlet Night</h3>
-				<div class="venue"><strong>Evergreen Speedway</strong><br>Evergreen Speedway · Monroe, WA · The Half-Mile<span class="addr">14405 179th Ave SE, Monroe, WA 98272</span></div>
+				<div class="venue"><strong>Evergreen Speedway</strong><br>Evergreen Speedway · Monroe, WA<span class="addr">14405 179th Ave SE, Monroe, WA 98272</span></div>
 				<div class="meta"><span class="purse">Hoosier · ST1 / ST2</span><a class="arrow" href="https://www.google.com/maps/dir/?api=1&amp;destination=14405%20179th%20Ave%20SE%2C%20Monroe%2C%20WA%2098272" target="_blank" rel="noopener">Directions →</a></div>
 			</article>
 			<article class="race-card">
@@ -314,7 +314,7 @@ get_header(); ?>
 				<div class="date"><span class="month">Jun</span><span class="day">27</span></div>
 				<div class="round">Round 04 / 11</div>
 				<h3>CARS Tour Mark Galloway Shootout</h3>
-				<div class="venue"><strong>Evergreen Speedway</strong><br>Evergreen Speedway · Monroe, WA · The Half-Mile<span class="addr">14405 179th Ave SE, Monroe, WA 98272</span></div>
+				<div class="venue"><strong>Evergreen Speedway</strong><br>Evergreen Speedway · Monroe, WA<span class="addr">14405 179th Ave SE, Monroe, WA 98272</span></div>
 				<div class="meta"><span class="purse">Hoosier · ST1 / ST2</span><a class="arrow" href="https://www.google.com/maps/dir/?api=1&amp;destination=14405%20179th%20Ave%20SE%2C%20Monroe%2C%20WA%2098272" target="_blank" rel="noopener">Directions →</a></div>
 			</article>
 			<article class="race-card">

@@ -174,7 +174,7 @@ $body = <<<'VMRA_BODY_EOT'
         <div class="race-actions">
           <div class="label">Track Address</div>
           <div class="address">14405 179th Ave SE, Monroe, WA 98272</div>
-          <div class="shape">5/8-mile paved oval — &quot;The Half-Mile&quot;</div>
+          <div class="shape">3/8-mile paved inner oval</div>
           <div class="race-btns">
             <a class="race-btn primary" href="https://www.google.com/maps/dir/?api=1&amp;destination=14405%20179th%20Ave%20SE%2C%20Monroe%2C%20WA%2098272" target="_blank" rel="noopener">Get Directions <span class="arrow">→</span></a>
             <a class="race-btn" href="https://evergreenspeedway.com/" target="_blank" rel="noopener">Track Website <span class="arrow">↗</span></a>
@@ -224,7 +224,7 @@ $body = <<<'VMRA_BODY_EOT'
         <div class="race-actions">
           <div class="label">Track Address</div>
           <div class="address">14405 179th Ave SE, Monroe, WA 98272</div>
-          <div class="shape">5/8-mile paved oval — &quot;The Half-Mile&quot;</div>
+          <div class="shape">3/8-mile paved inner oval</div>
           <div class="race-btns">
             <a class="race-btn primary" href="https://www.google.com/maps/dir/?api=1&amp;destination=14405%20179th%20Ave%20SE%2C%20Monroe%2C%20WA%2098272" target="_blank" rel="noopener">Get Directions <span class="arrow">→</span></a>
             <a class="race-btn" href="https://evergreenspeedway.com/" target="_blank" rel="noopener">Track Website <span class="arrow">↗</span></a>
@@ -299,7 +299,7 @@ $body = <<<'VMRA_BODY_EOT'
         <div class="race-actions">
           <div class="label">Track Address</div>
           <div class="address">14405 179th Ave SE, Monroe, WA 98272</div>
-          <div class="shape">5/8-mile paved oval — &quot;The Half-Mile&quot;</div>
+          <div class="shape">3/8-mile paved inner oval</div>
           <div class="race-btns">
             <a class="race-btn primary" href="https://www.google.com/maps/dir/?api=1&amp;destination=14405%20179th%20Ave%20SE%2C%20Monroe%2C%20WA%2098272" target="_blank" rel="noopener">Get Directions <span class="arrow">→</span></a>
             <a class="race-btn" href="https://evergreenspeedway.com/" target="_blank" rel="noopener">Track Website <span class="arrow">↗</span></a>
@@ -349,7 +349,7 @@ $body = <<<'VMRA_BODY_EOT'
         <div class="race-actions">
           <div class="label">Track Address</div>
           <div class="address">14405 179th Ave SE, Monroe, WA 98272</div>
-          <div class="shape">5/8-mile paved oval — &quot;The Half-Mile&quot;</div>
+          <div class="shape">3/8-mile paved inner oval</div>
           <div class="race-btns">
             <a class="race-btn primary" href="https://www.google.com/maps/dir/?api=1&amp;destination=14405%20179th%20Ave%20SE%2C%20Monroe%2C%20WA%2098272" target="_blank" rel="noopener">Get Directions <span class="arrow">→</span></a>
             <a class="race-btn" href="https://evergreenspeedway.com/" target="_blank" rel="noopener">Track Website <span class="arrow">↗</span></a>

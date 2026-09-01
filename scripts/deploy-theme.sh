@@ -126,7 +126,8 @@ echo "  file             local        public       temp         action"
 echo "  ---------------- ------------ ------------ ------------ ------------------"
 
 declare -a PLAN_PUBLIC PLAN_TEMP
-for name in "${DATA_FILES[@]}"; do
+for name in "${DATA_FILES[@]:-}"; do
+  [[ -z "$name" ]] && continue          # --all leaves DATA_FILES empty (bash 3.2 + set -u)
   loc="$(local_updated "$name")";  [[ -z "$loc" ]] && loc="—"
   pub="$(live_updated public "$name")"; [[ -z "$pub" ]] && pub="—"
   tmp="$(live_updated temp "$name")";   [[ -z "$tmp" ]] && tmp="—"
@@ -198,7 +199,8 @@ done
 echo ""
 echo "  verifying live:"
 for t in $TARGETS; do
-  for name in "${DATA_FILES[@]}"; do
+  for name in "${DATA_FILES[@]:-}"; do
+    [[ -z "$name" ]] && continue
     u="$(live_updated "$t" "$name")"
     printf "    %-8s %-16s %s\n" "$t" "$name" "${u:-unreachable}"
   done
