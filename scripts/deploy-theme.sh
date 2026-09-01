@@ -181,7 +181,8 @@ for t in $TARGETS; do
       rel="${f#$LOCAL_THEME/}"; sub="$(dirname "$rel")"
       [[ "$sub" == "." ]] && d="$rdir" || d="$rdir/$sub"
       upload "$f" "$d" "$t" || FAILED=$((FAILED+1))
-    done < <(find "$LOCAL_THEME" -type f ! -name '.DS_Store' ! -name '._*' ! -name '*.zip')
+    done < <(find "$LOCAL_THEME" -type f ! -name '.DS_Store' ! -name '._*' ! -name '*.zip' \
+                  ! -path "$LOCAL_THEME/deploy/*")
     continue
   fi
 
