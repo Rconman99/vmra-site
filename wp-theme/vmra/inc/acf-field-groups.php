@@ -51,7 +51,7 @@ add_action( 'acf/init', function () {
 		'fields'   => array(
 			array( 'key' => 'field_track_city_state',  'label' => 'City, State',     'name' => 'city_state',  'type' => 'text', 'instructions' => 'e.g. "Monroe, WA".',     'wrapper' => array( 'width' => 50 ) ),
 			array( 'key' => 'field_track_shape',       'label' => 'Shape',           'name' => 'shape',       'type' => 'text', 'instructions' => 'e.g. "Paved oval".',     'wrapper' => array( 'width' => 25 ) ),
-			array( 'key' => 'field_track_length',      'label' => 'Length',          'name' => 'length',      'type' => 'text', 'instructions' => 'e.g. "⅝ mile".',         'wrapper' => array( 'width' => 25 ) ),
+			array( 'key' => 'field_track_length',      'label' => 'Length',          'name' => 'length',      'type' => 'text', 'instructions' => 'e.g. "⅜ mile".',         'wrapper' => array( 'width' => 25 ) ),
 			array( 'key' => 'field_track_surface',     'label' => 'Surface',         'name' => 'surface',     'type' => 'text', 'instructions' => 'e.g. "Asphalt".',        'wrapper' => array( 'width' => 33 ) ),
 			array( 'key' => 'field_track_address',     'label' => 'Street Address',  'name' => 'address',     'type' => 'text', 'instructions' => 'Used for Google Maps link.', 'wrapper' => array( 'width' => 34 ) ),
 			array( 'key' => 'field_track_website',     'label' => 'Track Website',   'name' => 'website',     'type' => 'url',  'instructions' => 'Official site, optional.', 'wrapper' => array( 'width' => 33 ) ),

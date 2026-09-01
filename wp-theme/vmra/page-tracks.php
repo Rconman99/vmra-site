@@ -289,7 +289,7 @@ $body = <<<'VMRA_BODY_EOT'
       <div class="hero-stat"><div class="k">Tracks</div><div class="v">5</div></div>
       <div class="hero-stat"><div class="k">States</div><div class="v">WA · ID</div></div>
       <div class="hero-stat"><div class="k">Shortest</div><div class="v">¼ mi</div></div>
-      <div class="hero-stat"><div class="k">Longest</div><div class="v">⅝ mi</div></div>
+      <div class="hero-stat"><div class="k">Longest</div><div class="v">⅜ mi</div></div>
     </div>
   </div>
 </header>

@@ -664,10 +664,10 @@ get_header(); ?>
 		<a href="<?php echo esc_url( home_url( '/tracks/' ) ); ?>" class="track-card">
 			<div class="tc-state">Monroe · WA</div>
 			<h4>Evergreen Speedway</h4>
-			<div class="tc-city">The Fast Half-Mile</div>
+			<div class="tc-city">Washington's NASCAR Track</div>
 			<div class="tc-meta">
 				<div><span class="k">Surface</span> Paved oval</div>
-				<div><span class="k">Length</span> ⅝ mile</div>
+				<div><span class="k">Length</span> ⅜ mile</div>
 				<div><span class="k">2026 Rounds</span> 4</div>
 			</div>
 			<div class="tc-next">Next: Apr 25 →</div>
@@ -824,7 +824,7 @@ get_header(); ?>
 
 		<div class="sponsor-cta">
 			<div>
-				<h3><?php esc_html_e( 'Put Your Logo on the Fast Half-Mile', 'vmra' ); ?></h3>
+				<h3><?php esc_html_e( 'Put Your Logo on the Grid', 'vmra' ); ?></h3>
 				<p><?php esc_html_e( '908 Facebook followers. 23 drivers across 5 tracks. 40 years of brand equity. Download the 2026 Sponsorship Media Kit — tiers, pricing, reach, and why the 40th is the season to jump in.', 'vmra' ); ?></p>
 			</div>
 			<a href="mailto:vmrainfo@gmail.com?subject=2026%20Sponsorship%20Media%20Kit%20Request" class="btn-media-kit"><?php esc_html_e( 'Request Media Kit →', 'vmra' ); ?></a>

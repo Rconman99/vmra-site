@@ -47,7 +47,7 @@ add_action( 'init', function () {
  *
  * city_state   (text)   "West Richland, WA"
  * shape        (text)   "Paved oval"
- * length       (text)   "⅝ mile"
+ * length       (text)   "⅜ mile"
  * surface      (text)   "Asphalt"
  * address      (text)   Street address
  * website      (url)    Official track URL
