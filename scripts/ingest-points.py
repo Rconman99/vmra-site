@@ -34,7 +34,7 @@ NS = "{http://schemas.openxmlformats.org/spreadsheetml/2006/main}"
 # The worksheet abbreviates names; the site shows them in full. Keyed by car
 # number because that's what's stable — points follow the car, not the driver.
 FULL_NAMES = {
-    "68": "Bart Hecter Sr / Bart Hecter Jr",
+    "68": "Bart Hecter Sr",
     "8": "Jason Quatsoe",
     "23": "Kahl Cheth",
     "82": "Vince Conwell",
@@ -58,6 +58,7 @@ FULL_NAMES = {
     "66": "G. Nash",
     "76": "D. Eierman",
     "23x": "Chad Broom",
+    "31": "S. Conduff",
 }
 
 # The Rookie of the Year table can list two drivers sharing one car (the #68

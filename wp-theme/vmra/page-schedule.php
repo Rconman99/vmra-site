@@ -135,7 +135,7 @@ $body = <<<'VMRA_BODY_EOT'
 <section class="hero"><div class="hero-inner">
   <span class="eyebrow">§ 2026 · 40th Anniversary Tour</span>
   <h1>VMRA_SCHED_H1</h1>
-  <p class="lede">It comes down to one race. After NASCAR Championship Night at Evergreen, Bart Hecter Jr's 68 carries a 27-point lead into the finale at 557, but Jason Quatsoe's 8 (530) and Kahl Cheth's 23 (517) are still close enough to make the Fall Classic mean everything. Vince Conwell sits fourth at 484 in the Northwest Concrete Cutting car, Shane Strimple's 57 right behind at 477. The whole 40th-anniversary title gets settled October 3 at Tri-City — then the Sunday open comp on the 4th, run for the love of it. Eleven dates on the card. Nine that pay. Two we run because that's what this club is.</p>
+  <p class="lede">It comes down to one race. After NASCAR Championship Night at Evergreen, Bart Hecter Sr's 68 carries a 27-point lead into the finale at 557, but Jason Quatsoe's 8 (530) and Kahl Cheth's 23 (517) are still close enough to make the Fall Classic mean everything. Vince Conwell sits fourth at 484 in the Northwest Concrete Cutting car, Shane Strimple's 57 right behind at 477. The whole 40th-anniversary title gets settled October 3 at Tri-City — then the Sunday open comp on the 4th, run for the love of it. Eleven dates on the card. Nine that pay. Two we run because that's what this club is.</p>
 </div></section>
 
 <main id="main-content" tabindex="-1">
