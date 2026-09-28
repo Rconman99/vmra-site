@@ -1,15 +1,24 @@
 {
-  "updated": "2026-08-25",
+  "updated": "2026-09-27",
   "items": [
     {
-      "date": "2026-08-25",
-      "category": "Coming Up · Round 09",
-      "headline": "NASCAR Championship Night at Evergreen — September 19",
-      "snippet": "Round 9 on the 40th Anniversary calendar and the eighth of nine points rounds — NASCAR Championship Night at Evergreen Speedway's half-mile on Saturday, September 19. Three cars cover thirty-one points at the top: Hecter's 68 on 479, Quatsoe's 8 on 464, Cheth's 23 on 448. One points race after this one.",
+      "date": "2026-09-27",
+      "category": "Coming Up · Round 10",
+      "headline": "Fall Classic Championship Night at Tri-City — October 3",
+      "snippet": "It all comes down to one night. The Fall Classic VMRA Season Championship at Tri-City Raceway in West Richland on Saturday, October 3 is the last points race of the 40th Anniversary season. Hecter's 68 leads on 557, Quatsoe's 8 is 27 back, Cheth's 23 is 40 back. A perfect night is worth 80. The Fall Classic Open Comp runs Sunday, October 4 — no points, just racing.",
       "byline": "The VMRA Desk",
       "link": "/schedule/",
       "car_num": "68",
       "feature": true
+    },
+    {
+      "date": "2026-09-19",
+      "category": "Race Recap · Round 09",
+      "headline": "The 68 Wins NASCAR Championship Night at Evergreen — Lead Grows to 27",
+      "snippet": "The 68 took the main event at Evergreen's NASCAR Championship Night, banking the full 25 in the feature and 78 on the night, the best score in the field. Shane Strimple won his heat and finished second in the main in the 57, and Kahl Cheth ran third. Jason Quatsoe set fast time but finished sixth in the main, so the gap at the top grew: Bart Hecter Sr leads on 557, 27 up on Quatsoe's 8 and 40 clear of Cheth's 23. Bryan Roundtree had his best night of the year with 63, and S. Conduff scored 53 in the 31's first start. Fourteen cars took the green.",
+      "byline": "The VMRA Desk",
+      "link": "/standings/",
+      "car_num": "68"
     },
     {
       "date": "2026-08-22",

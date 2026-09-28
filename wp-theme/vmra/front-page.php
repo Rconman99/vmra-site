@@ -474,15 +474,15 @@ get_header(); ?>
 <section class="preview-strip" aria-label="<?php esc_attr_e( 'Pre-race preview', 'vmra' ); ?>">
 	<div class="preview-inner">
 		<div class="preview-label">
-			<span class="sub-label">§ Pre-Race · Round 02</span>
-			What To <span class="accent">Watch For</span><br>at Evergreen
+			<span class="sub-label">§ Pre-Race · Championship Night</span>
+			What To <span class="accent">Watch For</span><br>at Tri-City
 		</div>
 		<article class="preview-article">
-			<h3>Cheth Rolls Into Evergreen as the Points Leader — the Chasers Have Some Math to Do</h3>
-			<p>Kahl Cheth took the Apple Cup opener at Tri-City and walked out 64 points rich with the #23 on top of the board. Saturday he heads to Evergreen's half-mile paved oval for Grocery Outlet Night — where <strong>Steve Woods has historically found speed</strong>. Woods sits third, seven back, and if there's a track where he closes the gap, this is it. <strong>Jason Quatsoe #8</strong> is the one between them — four off Cheth, three up on Woods — and Evergreen's a track he can run.</p>
-			<p>The big subplot: defending champ <strong>Kyten Jones #30</strong> never unloaded at Tri-City. He sits on zero points heading into Round 2 on his home track. Every round he waits, the hill gets steeper — but Evergreen has been a Jones track. If he shows up, he's the one to beat Saturday night.</p>
-			<p>Rookie-of-the-Year watch: <strong>Bart Hecter Sr./Jr. #68</strong> (father-son sharing a car) are the early class leaders at 35 rookie points, with <strong>C. Forney #72</strong> (29) and <strong>J. Boczar #79</strong> (12) chasing.</p>
-			<p class="preview-byline">By <span class="byline-strong">The VMRA Desk</span> · April 23, 2026 · <a href="<?php echo esc_url( home_url( '/news/class-of-2026' ) ); ?>" style="color: var(--race-red); text-decoration: none;">Full preview →</a></p>
+			<h3>One Night for the 40th: Hecter Brings a 27-Point Cushion to the Fall Classic</h3>
+			<p>Forty seasons, nine points races, and it all gets settled Saturday, October 3 at Tri-City Raceway. <strong>Bart Hecter Sr's #68</strong> rolls in on 557 after winning the main at Evergreen. <strong>Jason Quatsoe #8</strong> is 27 back at 530, and he's the one who set fast time last time out. <strong>Kahl Cheth #23</strong> sits 40 back at 517 — and remember, Cheth opened this season by winning the Apple Cup on this same track back in April.</p>
+			<p>The math: a perfect night is worth 80 points — 20 for fast time, 15 for a heat win, 25 for the main and 20 for showing up. Quatsoe needs a big night and some help. Cheth needs more of both. Hecter just needs a clean one.</p>
+			<p>Behind them, <strong>Vince Conwell #82</strong> (484) and <strong>Shane Strimple #57</strong> (477) are seven points apart in the fight for fourth. Rookie of the Year: <strong>Bart Hecter Jr</strong> leads on 248, with <strong>J. Boczar #79</strong> at 154. Sunday's Fall Classic Open Comp pays no points — just racing to close out the year.</p>
+			<p class="preview-byline">By <span class="byline-strong">The VMRA Desk</span> · September 27, 2026 · <a href="<?php echo esc_url( home_url( '/standings/' ) ); ?>" style="color: var(--race-red); text-decoration: none;">Full standings →</a></p>
 		</article>
 	</div>
 </section>
