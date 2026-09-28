@@ -1,44 +1,44 @@
 {
   "season": "2026",
-  "updated": "2026-08-22",
-  "rounds_completed": 7,
-  "intro": "Wenatchee belonged to the 82. Vince Conwell drove the Northwest Concrete Cutting car to the main event win and took the full 25. Hector Jr still had the bigger night overall — quick time, a good heat, and 75 points banked in the 68.\n\nUp front it's three cars deep. The 68 leads on 479, Quatsoe has the 8 fifteen back at 464, and Cheth's 23 is another sixteen behind that on 448 — a thirty-one point spread across the top three. Conwell sits fourth on 427, twenty-one off Cheth and twenty-two clear of Strimple's 57.\n\nNew numbers on the board at the Super Oval: D. Eierman rolled the 76 out for the first time and won his heat, leaving with 66. K. Gill got the 65 on the board with 54.\n\nTwo points races left. Points stay with the car, not the driver.",
+  "updated": "2026-09-19",
+  "rounds_completed": 8,
+  "intro": "Evergreen's NASCAR Championship Night, and the 68 keeps rolling. Bart Hecter Jr banked quick-time money, a heat, and the full 25 in the main — 78 points on the night — to push the championship lead to 557. But this is still a three-car fight: Quatsoe's 8 is 27 back at 530, and Cheth's 23 another 13 behind on 517. Vince Conwell holds fourth at 484 in the Northwest Concrete Cutting car, with Shane Strimple's 57 right on his bumper at 477 after a strong 72-point night.\n\nBryan Roundtree lit up the 10 for the best run of his season — 63 points, quick-time sharp. And a new number joined the show: S. Conduff unloaded the 31 for the first time and left with 53. One points race left — the Fall Classic at Tri-City. Points stay with the car, not the driver.",
   "drivers": [
     {
       "position": 1,
       "car": "68",
       "name": "Bart Hecter Sr / Bart Hecter Jr",
-      "points": 479
+      "points": 557
     },
     {
       "position": 2,
       "car": "8",
       "name": "Jason Quatsoe",
-      "points": 464
+      "points": 530
     },
     {
       "position": 3,
       "car": "23",
       "name": "Kahl Cheth",
-      "points": 448
+      "points": 517
     },
     {
       "position": 4,
       "car": "82",
       "name": "Vince Conwell",
-      "points": 427
+      "points": 484
     },
     {
       "position": 5,
       "car": "57",
       "name": "Shane Strimple",
-      "points": 405
+      "points": 477
     },
     {
       "position": 6,
       "car": "25B",
       "name": "B. Greiner",
-      "points": 350
+      "points": 402
     },
     {
       "position": 7,
@@ -48,75 +48,75 @@
     },
     {
       "position": 8,
+      "car": "25RT",
+      "name": "RT Greiner",
+      "points": 271
+    },
+    {
+      "position": 9,
+      "car": "79",
+      "name": "J. Boczar",
+      "points": 254
+    },
+    {
+      "position": 10,
       "car": "51",
       "name": "Dave Trapp",
       "points": 224
     },
     {
-      "position": 9,
+      "position": 11,
+      "car": "2",
+      "name": "Rick Villyard",
+      "points": 217
+    },
+    {
+      "position": 12,
       "car": "72",
       "name": "C. Forney",
       "points": 207
     },
     {
-      "position": 10,
-      "car": "25RT",
-      "name": "RT Greiner",
-      "points": 205
+      "position": 13,
+      "car": "7",
+      "name": "Mike Clother",
+      "points": 202
     },
     {
-      "position": 11,
-      "car": "79",
-      "name": "J. Boczar",
-      "points": 196
-    },
-    {
-      "position": 12,
+      "position": 14,
       "car": "77",
       "name": "Vern Huson",
       "points": 167
     },
     {
-      "position": 13,
-      "car": "2",
-      "name": "Rick Villyard",
-      "points": 160
-    },
-    {
-      "position": 14,
-      "car": "7",
-      "name": "Mike Clother",
-      "points": 157
-    },
-    {
       "position": 15,
       "car": "76",
       "name": "D. Eierman",
-      "points": 66
+      "points": 120
     },
     {
       "position": 16,
+      "car": "10",
+      "name": "Bryan Roundtree",
+      "points": 118
+    },
+    {
+      "position": 17,
+      "car": "65",
+      "name": "K. Gill",
+      "points": 103
+    },
+    {
+      "position": 18,
       "car": "92",
       "name": "T. McCartney",
       "points": 56
     },
     {
-      "position": 17,
-      "car": "10",
-      "name": "Bryan Roundtree",
-      "points": 55
-    },
-    {
-      "position": 18,
-      "car": "65",
-      "name": "K. Gill",
-      "points": 54
-    },
-    {
       "position": 19,
-      "car": "11",
-      "name": "B. Cole",
-      "points": 0
+      "car": "31",
+      "name": "S. Conduff",
+      "points": 53
     },
     {
       "position": 20,
@@ -126,24 +126,30 @@
     },
     {
       "position": 21,
+      "car": "11",
+      "name": "B. Cole",
+      "points": 0
+    },
+    {
+      "position": 22,
       "car": "30",
       "name": "Kyten Jones",
       "points": 0
     },
     {
-      "position": 22,
+      "position": 23,
       "car": "6",
       "name": "R. Learch",
       "points": 0
     },
     {
-      "position": 23,
+      "position": 24,
       "car": "66",
       "name": "G. Nash",
       "points": 0
     },
     {
-      "position": 24,
+      "position": 25,
       "car": "23x",
       "name": "Chad Broom",
       "points": 0
@@ -156,19 +162,19 @@
         "position": 1,
         "car": "68",
         "name": "Bart Hecter Jr",
-        "points": 190
+        "points": 248
       },
       {
         "position": 2,
-        "car": "72",
-        "name": "C. Forney",
-        "points": 121
+        "car": "79",
+        "name": "J. Boczar",
+        "points": 154
       },
       {
         "position": 3,
-        "car": "79",
-        "name": "J. Boczar",
-        "points": 116
+        "car": "72",
+        "name": "C. Forney",
+        "points": 121
       },
       {
         "position": 4,

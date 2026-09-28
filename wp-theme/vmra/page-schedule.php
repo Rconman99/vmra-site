@@ -29,7 +29,18 @@ if ( $vmra_sched_updated ) {
 	);
 }
 
-$vmra_sched_left = max( 0, $vmra_sched_total - $vmra_sched_done );
+// Count dates still ahead on the calendar. Subtracting points rounds from
+// total dates goes wrong once a non-points event has run (Stateline R5).
+$vmra_sched_left = 0;
+if ( is_array( $vmra_sched_schedule ) && $vmra_sched_updated ) {
+	foreach ( ( $vmra_sched_schedule['races'] ?? array() ) as $vmra_r ) {
+		if ( (string) ( $vmra_r['date'] ?? '' ) > $vmra_sched_updated ) {
+			$vmra_sched_left++;
+		}
+	}
+} else {
+	$vmra_sched_left = max( 0, $vmra_sched_total - $vmra_sched_done );
+}
 $vmra_sched_h1   = $vmra_sched_left > 0
 	? sprintf( 'Round %02d Done.<br>%d More to Run.', $vmra_sched_done, $vmra_sched_left )
 	: 'The 40th Season.';
@@ -124,7 +135,7 @@ $body = <<<'VMRA_BODY_EOT'
 <section class="hero"><div class="hero-inner">
   <span class="eyebrow">§ 2026 · 40th Anniversary Tour</span>
   <h1>VMRA_SCHED_H1</h1>
-  <p class="lede">Steve Woods #22 finally got the night he'd been chasing at the CARS Tour Mark Galloway Shootout — quick time, then the full 25 in the main, 63 points on the board and the best haul anybody's put together this year. All it bought him was one spot. That's how tight this thing is. Up front, Bart Hecter Jr #68 and Jason Quatsoe #8 traded blows all evening and finished separated by a single point on the night, which leaves ten between them in the book with five points races to go. Kahl Cheth #23 sits third, Vince Conwell #82 fourth in the Northwest Concrete Cutting car. Next up: the Ron Rohde Memorial at Stateline on July 11 — no points, all heart — then the 40th Anniversary Bash at South Sound to open the back half. Eleven dates on the card. Nine that pay. Two we run because that's what this club is.</p>
+  <p class="lede">It comes down to one race. After NASCAR Championship Night at Evergreen, Bart Hecter Jr's 68 carries a 27-point lead into the finale at 557, but Jason Quatsoe's 8 (530) and Kahl Cheth's 23 (517) are still close enough to make the Fall Classic mean everything. Vince Conwell sits fourth at 484 in the Northwest Concrete Cutting car, Shane Strimple's 57 right behind at 477. The whole 40th-anniversary title gets settled October 3 at Tri-City — then the Sunday open comp on the 4th, run for the love of it. Eleven dates on the card. Nine that pay. Two we run because that's what this club is.</p>
 </div></section>
 
 <main id="main-content" tabindex="-1">
