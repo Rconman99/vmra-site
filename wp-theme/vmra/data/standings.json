@@ -1,74 +1,74 @@
 {
   "season": "2026",
-  "updated": "2026-09-19",
-  "rounds_completed": 8,
-  "intro": "Evergreen's NASCAR Championship Night, and the 68 keeps rolling — second-quickest in time trials, a strong heat, and the full 25 in the main, 78 points on the night — pushing Bart Hecter Sr's championship lead to 557. Jason Quatsoe set fast time in the 8 and sits 27 back at 530, with Kahl Cheth's 23 another 13 behind on 517. Vince Conwell holds fourth at 484 in the Northwest Concrete Cutting car, with Shane Strimple's 57 right on his bumper at 477 after a heat win and second in the main.\n\nBryan Roundtree had the best night of his season in the 10 — third-quickest in time trials and 63 points, more than he'd scored all year coming in. And a new number joined the show: S. Conduff unloaded the 31 for the first time, finished eighth in the main and left with 53. One points race left — the Fall Classic at Tri-City. Points stay with the car, not the driver.",
+  "updated": "2026-10-03",
+  "rounds_completed": 9,
+  "intro": "That's a wrap on the 40th Anniversary season. The 68 brought it home at Tri-City's Fall Classic Championship Night — second in the main, 59 points on the night — and closes out the 2026 VMRA championship on 616, 36 clear of the field.\n\nThe fight for second went right down to the wire. Kahl Cheth won the main in the 23 and had the biggest night of anyone, 63 points, to pull dead level with Jason Quatsoe's 8 on 580. Tied on points, the tiebreak goes to the main event — Cheth's win puts the 23 second, Quatsoe's 8 third. Vince Conwell ran third in the main in the Northwest Concrete Cutting car and holds fourth at 539, just 4 ahead of Shane Strimple's 57 on 535.\n\nRookie of the Year goes to Bart Hecter Jr on 287, with Jesse Boczar second on 185. Thanks to every driver, crew, track and fan who made year 40 one to remember. Points stay with the car, not the driver.",
   "drivers": [
     {
       "position": 1,
       "car": "68",
       "name": "Bart Hecter Sr",
-      "points": 557
+      "points": 616
     },
     {
       "position": 2,
-      "car": "8",
-      "name": "Jason Quatsoe",
-      "points": 530
+      "car": "23",
+      "name": "Kahl Cheth",
+      "points": 580
     },
     {
       "position": 3,
-      "car": "23",
-      "name": "Kahl Cheth",
-      "points": 517
+      "car": "8",
+      "name": "Jason Quatsoe",
+      "points": 580
     },
     {
       "position": 4,
       "car": "82",
       "name": "Vince Conwell",
-      "points": 484
+      "points": 539
     },
     {
       "position": 5,
       "car": "57",
       "name": "Shane Strimple",
-      "points": 477
+      "points": 535
     },
     {
       "position": 6,
       "car": "25B",
       "name": "B. Greiner",
-      "points": 402
+      "points": 445
     },
     {
       "position": 7,
       "car": "22",
       "name": "Steve Woods",
-      "points": 284
+      "points": 336
     },
     {
       "position": 8,
       "car": "25RT",
       "name": "RT Greiner",
-      "points": 271
+      "points": 315
     },
     {
       "position": 9,
       "car": "79",
       "name": "J. Boczar",
-      "points": 254
+      "points": 305
     },
     {
       "position": 10,
       "car": "51",
       "name": "Dave Trapp",
-      "points": 224
+      "points": 267
     },
     {
       "position": 11,
       "car": "2",
       "name": "Rick Villyard",
-      "points": 217
+      "points": 263
     },
     {
       "position": 12,
@@ -90,21 +90,21 @@
     },
     {
       "position": 15,
+      "car": "65",
+      "name": "K. Gill",
+      "points": 148
+    },
+    {
+      "position": 16,
       "car": "76",
       "name": "D. Eierman",
       "points": 120
     },
     {
-      "position": 16,
-      "car": "10",
-      "name": "Bryan Roundtree",
-      "points": 118
-    },
-    {
       "position": 17,
-      "car": "65",
-      "name": "K. Gill",
-      "points": 103
+      "car": "31",
+      "name": "S. Conduff",
+      "points": 98
     },
     {
       "position": 18,
@@ -114,9 +114,9 @@
     },
     {
       "position": 19,
-      "car": "31",
-      "name": "S. Conduff",
-      "points": 53
+      "car": "10",
+      "name": "Bryan Roundtree",
+      "points": 55
     },
     {
       "position": 20,
@@ -162,13 +162,13 @@
         "position": 1,
         "car": "68",
         "name": "Bart Hecter Jr",
-        "points": 248
+        "points": 287
       },
       {
         "position": 2,
         "car": "79",
         "name": "J. Boczar",
-        "points": 154
+        "points": 185
       },
       {
         "position": 3,
