@@ -478,11 +478,11 @@ get_header(); ?>
 			Season <span class="accent">Wrap</span><br>at Tri-City
 		</div>
 		<article class="preview-article">
-			<h3>Forty Seasons In, the 68 Is Your 2026 Champion</h3>
-			<p>The 40th Anniversary season came down to Tri-City Raceway on October 3, and the <strong>#68</strong> closed it out — second in the main, 59 points on the night, and the championship on 616. <strong>Kahl Cheth #23</strong> won the Fall Classic main, on the same track where he won the Apple Cup to open the year in April.</p>
+			<h3>Forty Seasons In, Bart Hecter Jr Is Your 2026 Champion</h3>
+			<p>The 40th Anniversary season came down to Tri-City Raceway on October 3, and <strong>Bart Hecter Jr</strong> closed it out in the <strong>#68</strong> — second in the main, 59 points on the night, and the championship on 616. <strong>Kahl Cheth #23</strong> won the Fall Classic main, on the same track where he won the Apple Cup to open the year in April.</p>
 			<p>Second place went right to the wire. Cheth's 63-point night pulled him level with <strong>Jason Quatsoe #8</strong> on 580, and the tie goes to Cheth on main-event finish. <strong>Vince Conwell #82</strong> ran third in the main and holds fourth on 539, four ahead of <strong>Shane Strimple #57</strong>.</p>
-			<p>Rookie of the Year: <strong>Bart Hecter Jr</strong> on 287, with <strong>J. Boczar #79</strong> second on 185. Thanks to every driver, crew, track and fan who made year 40 one to remember.</p>
-			<p class="preview-byline">By <span class="byline-strong">The VMRA Desk</span> · October 6, 2026 · <a href="<?php echo esc_url( home_url( '/standings/' ) ); ?>" style="color: var(--race-red); text-decoration: none;">Final standings →</a></p>
+			<p>Hecter Jr takes Rookie of the Year too, on 287, with <strong>J. Boczar #79</strong> second on 185. Thanks to every driver, crew, track and fan who made year 40 one to remember.</p>
+			<p class="preview-byline">By <span class="byline-strong">The VMRA Desk</span> · October 7, 2026 · <a href="<?php echo esc_url( home_url( '/standings/' ) ); ?>" style="color: var(--race-red); text-decoration: none;">Final standings →</a></p>
 		</article>
 	</div>
 </section>

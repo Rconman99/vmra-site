@@ -1,6 +1,6 @@
 {
   "season": "2026",
-  "updated": "2026-10-06",
+  "updated": "2026-10-07",
   "races": [
     {
       "date": "2026-04-12",
@@ -69,10 +69,10 @@
       "event": "NASCAR Championship Night",
       "winner": {
         "car": "68",
-        "name": "Bart Hecter Sr / Bart Hecter Jr"
+        "name": "Bart Hecter Jr"
       },
       "winner_note": "Took the full 25 in the main and 78 on the night, the best score in the field.",
-      "notes": "Round 9 of the 40th Anniversary tour and the eighth points-paying round. The #68 won the feature, with Strimple #57 second after a heat win and Cheth #23 third. Quatsoe #8 set fast time but finished sixth in the main, so the 68's lead grew to 27 at 557. Roundtree #10 had his best night of the year with 63, and S. Conduff scored 53 in the 31's first start. Fourteen cars took the green."
+      "notes": "Round 9 of the 40th Anniversary tour and the eighth points-paying round. Hecter Jr #68 won the feature, with Strimple #57 second after a heat win and Cheth #23 third. Quatsoe #8 set fast time but finished sixth in the main, so the 68's lead grew to 27 at 557. Roundtree #10 had his best night of the year with 63, and S. Conduff scored 53 in the 31's first start. Fourteen cars took the green."
     },
     {
       "date": "2026-10-03",
@@ -84,7 +84,7 @@
         "name": "Kahl Cheth"
       },
       "winner_note": "Took the full 25 in the main and 63 on the night, the best score in the field.",
-      "notes": "Round 10 of the 40th Anniversary tour and the ninth and final points-paying round. Cheth #23 won the feature ahead of the #68 and Conwell #82. The 68 clinched the 2026 championship on 616. Cheth and Quatsoe #8 finished tied on 580; Cheth takes second on main-event finish. Woods #22 set fast time. Thirteen cars started."
+      "notes": "Round 10 of the 40th Anniversary tour and the ninth and final points-paying round. Cheth #23 won the feature ahead of Hecter Jr #68 and Conwell #82. Hecter Jr #68 ran second and clinched the 2026 championship on 616. Cheth and Quatsoe #8 finished tied on 580; Cheth takes second on main-event finish. Woods #22 set fast time. Thirteen cars started."
     }
   ]
 }
