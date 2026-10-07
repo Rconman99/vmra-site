@@ -74,7 +74,7 @@ main.race-body{max-width:1080px;margin:0 auto;padding:60px 5vw}
 		<?php if ( $winner ) : ?>
 			<div><span class="k">Winner</span><span class="v sodium"><a href="<?php echo esc_url( get_permalink( $winner ) ); ?>" style="color:inherit"><?php echo esc_html( get_the_title( $winner ) ); ?></a></span></div>
 		<?php endif; ?>
-		<div><span class="k">Cars</span><span class="v"><?php echo (int) count( $results ) ?: '—'; ?></span></div>
+		<div><span class="k">Cars</span><span class="v"><?php echo (int) get_post_meta( get_the_ID(), 'car_count', true ) ?: ( (int) count( $results ) ?: '—' ); ?></span></div>
 		<div><span class="k">Round Type</span><span class="v"><?php echo get_post_meta( get_the_ID(), 'is_points', true ) ? 'Points' : 'Special · Non-Points'; ?></span></div>
 	</div>
 </div></section>

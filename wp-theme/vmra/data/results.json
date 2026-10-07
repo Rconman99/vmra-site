@@ -63,6 +63,18 @@
       "notes": "Round 8 of the 40th Anniversary tour at the Wenatchee Valley Super Oval's quarter-mile, and the seventh points-paying round of the season. Conwell #82 won the feature. Hecter Jr #68 took quick time and the biggest points haul of the night at 75, extending the season lead to 479. D. Eierman #76 and K. Gill #65 scored their first points of 2026."
     },
     {
+      "date": "2026-09-19",
+      "round": 9,
+      "track": "Evergreen Speedway",
+      "event": "NASCAR Championship Night",
+      "winner": {
+        "car": "68",
+        "name": "Bart Hecter Sr / Bart Hecter Jr"
+      },
+      "winner_note": "Took the full 25 in the main and 78 on the night, the best score in the field.",
+      "notes": "Round 9 of the 40th Anniversary tour and the eighth points-paying round. The #68 won the feature, with Strimple #57 second after a heat win and Cheth #23 third. Quatsoe #8 set fast time but finished sixth in the main, so the 68's lead grew to 27 at 557. Roundtree #10 had his best night of the year with 63, and S. Conduff scored 53 in the 31's first start. Fourteen cars took the green."
+    },
+    {
       "date": "2026-10-03",
       "round": 10,
       "track": "Tri-City Raceway",
