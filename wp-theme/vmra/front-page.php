@@ -471,18 +471,18 @@ get_header(); ?>
 </section>
 
 <!-- ===================== PREVIEW · What To Watch ===================== -->
-<section class="preview-strip" aria-label="<?php esc_attr_e( 'Pre-race preview', 'vmra' ); ?>">
+<section class="preview-strip" aria-label="<?php esc_attr_e( 'Season wrap', 'vmra' ); ?>">
 	<div class="preview-inner">
 		<div class="preview-label">
-			<span class="sub-label">§ Pre-Race · Championship Night</span>
-			What To <span class="accent">Watch For</span><br>at Tri-City
+			<span class="sub-label">§ Final · Championship Night</span>
+			Season <span class="accent">Wrap</span><br>at Tri-City
 		</div>
 		<article class="preview-article">
-			<h3>One Night for the 40th: Hecter Brings a 27-Point Cushion to the Fall Classic</h3>
-			<p>Forty seasons, nine points races, and it all gets settled Saturday, October 3 at Tri-City Raceway. <strong>Bart Hecter Sr's #68</strong> rolls in on 557 after winning the main at Evergreen. <strong>Jason Quatsoe #8</strong> is 27 back at 530, and he's the one who set fast time last time out. <strong>Kahl Cheth #23</strong> sits 40 back at 517 — and remember, Cheth opened this season by winning the Apple Cup on this same track back in April.</p>
-			<p>The math: a perfect night is worth 80 points — 20 for fast time, 15 for a heat win, 25 for the main and 20 for showing up. Quatsoe needs a big night and some help. Cheth needs more of both. Hecter just needs a clean one.</p>
-			<p>Behind them, <strong>Vince Conwell #82</strong> (484) and <strong>Shane Strimple #57</strong> (477) are seven points apart in the fight for fourth. Rookie of the Year: <strong>Bart Hecter Jr</strong> leads on 248, with <strong>J. Boczar #79</strong> at 154. Sunday's Fall Classic Open Comp pays no points — just racing to close out the year.</p>
-			<p class="preview-byline">By <span class="byline-strong">The VMRA Desk</span> · September 27, 2026 · <a href="<?php echo esc_url( home_url( '/standings/' ) ); ?>" style="color: var(--race-red); text-decoration: none;">Full standings →</a></p>
+			<h3>Forty Seasons In, the 68 Is Your 2026 Champion</h3>
+			<p>The 40th Anniversary season came down to Tri-City Raceway on October 3, and the <strong>#68</strong> closed it out — second in the main, 59 points on the night, and the championship on 616. <strong>Kahl Cheth #23</strong> won the Fall Classic main, on the same track where he won the Apple Cup to open the year in April.</p>
+			<p>Second place went right to the wire. Cheth's 63-point night pulled him level with <strong>Jason Quatsoe #8</strong> on 580, and the tie goes to Cheth on main-event finish. <strong>Vince Conwell #82</strong> ran third in the main and holds fourth on 539, four ahead of <strong>Shane Strimple #57</strong>.</p>
+			<p>Rookie of the Year: <strong>Bart Hecter Jr</strong> on 287, with <strong>J. Boczar #79</strong> second on 185. Thanks to every driver, crew, track and fan who made year 40 one to remember.</p>
+			<p class="preview-byline">By <span class="byline-strong">The VMRA Desk</span> · October 6, 2026 · <a href="<?php echo esc_url( home_url( '/standings/' ) ); ?>" style="color: var(--race-red); text-decoration: none;">Final standings →</a></p>
 		</article>
 	</div>
 </section>
@@ -498,7 +498,7 @@ get_header(); ?>
 				$leader_first = explode( ' ', $leader['name'] )[0];
 				printf( esc_html__( '%s on Top After Round %02d', 'vmra' ), esc_html( $leader_first ), (int) ( $standings['rounds_completed'] ?? 1 ) );
 			?></h2>
-			<p class="block-sub"><?php esc_html_e( 'Top five after the Apple Cup opener at Tri-City. Updates after every round.', 'vmra' ); ?></p>
+			<p class="block-sub"><?php esc_html_e( 'Top five in the championship. Updates after every round.', 'vmra' ); ?></p>
 		</div>
 		<a href="<?php echo esc_url( home_url( '/standings/' ) ); ?>" class="block-link"><?php esc_html_e( 'Full Standings →', 'vmra' ); ?></a>
 	</div>
@@ -509,11 +509,11 @@ get_header(); ?>
 				<div>Pos</div>
 				<div>Car</div>
 				<div>Driver</div>
-				<div class="hide-sm">R1 Finish</div>
+				<div class="hide-sm">Gap</div>
 				<div style="text-align:right;">Points</div>
 			</div>
 			<?php
-			$finish_labels = array( 'Main Win', 'P2 Main', 'P3 Main', 'P4 Main', 'P5 Main' );
+			$leader_pts = (int) $standings['drivers'][0]['points'];
 			foreach ( array_slice( $standings['drivers'], 0, 5 ) as $i => $d ) :
 				$pos_class   = $i === 0 ? 'p1' : ( $i === 1 ? 'p2' : ( $i === 2 ? 'p3' : '' ) );
 				$plate_class = $i === 0 ? 'leader' : '';
@@ -526,9 +526,8 @@ get_header(); ?>
 					<div><div class="car-plate <?php echo esc_attr( $plate_class ); ?>"><?php echo esc_html( $d['car'] ); ?></div></div>
 					<div>
 						<div class="driver-name"><?php echo esc_html( $d['name'] ); ?></div>
-						<span class="driver-town"><?php echo $i === 0 ? 'Apple Cup Winner · WA' : ( $i === 1 ? 'Second · WA' : ( $i === 2 ? '3x Champion · Wenatchee WA' : ( $i === 3 ? 'Rookie · R1 Top-5' : 'Strimple Racing · WA' ) ) ); ?></span>
 					</div>
-					<div class="wins hide-sm"><?php echo esc_html( $finish_labels[ $i ] ?? '—' ); ?></div>
+					<div class="wins hide-sm"><?php echo 0 === $i ? esc_html__( 'Leader', 'vmra' ) : esc_html( '−' . ( $leader_pts - (int) $d['points'] ) ); ?></div>
 					<div class="points"><?php echo esc_html( $d['points'] ); ?></div>
 				</<?php echo $row_tag; ?>>
 			<?php endforeach; ?>

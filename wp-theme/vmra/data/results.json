@@ -1,6 +1,6 @@
 {
   "season": "2026",
-  "updated": "2026-08-25",
+  "updated": "2026-10-06",
   "races": [
     {
       "date": "2026-04-12",
@@ -61,6 +61,18 @@
       },
       "winner_note": "Took the full 25 in the main and 69 on the night in the Northwest Concrete Cutting 82.",
       "notes": "Round 8 of the 40th Anniversary tour at the Wenatchee Valley Super Oval's quarter-mile, and the seventh points-paying round of the season. Conwell #82 won the feature. Hecter Jr #68 took quick time and the biggest points haul of the night at 75, extending the season lead to 479. D. Eierman #76 and K. Gill #65 scored their first points of 2026."
+    },
+    {
+      "date": "2026-10-03",
+      "round": 10,
+      "track": "Tri-City Raceway",
+      "event": "Fall Classic Championship Night",
+      "winner": {
+        "car": "23",
+        "name": "Kahl Cheth"
+      },
+      "winner_note": "Took the full 25 in the main and 63 on the night, the best score in the field.",
+      "notes": "Round 10 of the 40th Anniversary tour and the ninth and final points-paying round. Cheth #23 won the feature ahead of the #68 and Conwell #82. The 68 clinched the 2026 championship on 616. Cheth and Quatsoe #8 finished tied on 580; Cheth takes second on main-event finish. Woods #22 set fast time. Thirteen cars started."
     }
   ]
 }
