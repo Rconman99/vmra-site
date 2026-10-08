@@ -478,6 +478,9 @@ get_header(); ?>
 			Season <span class="accent">Wrap</span><br>at Tri-City
 		</div>
 		<article class="preview-article">
+			<figure style="margin:0 0 24px;max-width:720px">
+				<img src="<?php echo esc_url( VMRA_THEME_URI . '/assets/media/vmra-2026-champion-68.jpg' ); ?>" width="1448" height="1086" loading="lazy" decoding="async" alt="<?php esc_attr_e( 'Bart Hecter Jr\'s #68 Hector Racing modified on track under a 2026 VMRA Champion banner', 'vmra' ); ?>" style="display:block;width:100%;height:auto;border:1px solid var(--grease)">
+			</figure>
 			<h3>Forty Seasons In, Bart Hecter Jr Is Your 2026 Champion</h3>
 			<p>The 40th Anniversary season came down to Tri-City Raceway on October 3, and <strong>Bart Hecter Jr</strong> closed it out in the <strong>#68</strong> — second in the main, 59 points on the night, and the championship on 616. <strong>Kahl Cheth #23</strong> won the Fall Classic main, on the same track where he won the Apple Cup to open the year in April.</p>
 			<p>Second place went right to the wire. Cheth's 63-point night pulled him level with <strong>Jason Quatsoe #8</strong> on 580, and the tie goes to Cheth on main-event finish. <strong>Vince Conwell #82</strong> ran third in the main and holds fourth on 539, four ahead of <strong>Shane Strimple #57</strong>.</p>
